@@ -1,0 +1,298 @@
+
+import React, { Fragment, useEffect, useState, useMemo } from "react";
+import { NavigationContainer } from '@react-navigation/native';
+import ApiKeys from './constants/ApiKeys'
+import * as firebase from 'firebase';
+import { StatusBar, StyleSheet, Image, View, ActivityIndicator, AsyncStorage } from 'react-native';
+
+
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { createStackNavigator } from '@react-navigation/stack';
+
+//import * as Font from 'expo-font'
+
+
+import Authentication from './screens/AuthenticationScreen/Authentication';
+import Signup from "./screens/SignupScreen/Signup";
+import ForgotPassword from "./screens/ForgotPasswordScreen/ForgotPassword";
+import Splash from './screens/SplashScreen/Splash';
+import Dashboard from './screens/DashboardScreen/Dashboard'
+import VideoCall from './screens/DashboardScreen/VideoCall'
+
+import Contacts from './screens/ControlPanel/Contacts'
+import Favorites from "./screens/ControlPanel/Favorites";
+import Profile from "./screens/ProfileScreen/Profile";
+import ImportContacts from "./screens/ControlPanel/ImportContacts";
+
+import { AuthContext } from './contexts/context'
+import UserInfoContextProvider from "./contexts/UserInfoContext";
+import Call from "./screens/ControlPanel/Call";
+import ChangePassword from "./screens/ForgotPasswordScreen/ChangePassword";
+
+import io from 'socket.io-client';
+const socket = io.connect('http://192.168.0.9:4443', { transports: ['websocket'] });
+
+//const socket = io.connect('https://evening-shore-95443.herokuapp.com/', { transports: ['websocket'] });
+
+socket.on('connect', () => {
+  console.log('Socket:',socket.connected); // true
+});
+
+socket.on('message', function (message) {
+  console.log('hello', message);
+  var data = message;
+  ///setCallResponse('');
+  switch (data.type) {
+    case 'handleVideoOffer':
+      console.log('getting called');
+      //handleVideoOffer(data);
+      break;
+  }
+});
+global.globalUserInfo = [];
+global.globalContacts = [];
+global.globalActiveUsers = [];
+
+const theme = {
+  ...DefaultTheme,
+  roundness: 2,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#33FFFF',
+    accent: '#FFFFFF',
+    text: '#FFFFFF',
+    placeholder: '#FFFFFF',
+    background: '#FC5757'
+  },
+};
+
+
+const Stack = createStackNavigator();
+export default function App() {
+
+  const initialLoginState = {
+    isLoading: true,
+    email: null,
+    userToken: null,
+  }
+
+  const loginReducer = (prevState, action) => {
+    switch (action.type) {
+      case "RETRIEVE_TOKEN":
+        return {
+          ...prevState,
+          email: action.token,
+          isLoading: false
+        }
+      case "LOGIN":
+        return {
+          ...prevState,
+          email: action.id,
+          userToken: action.token,
+          isLoading: false
+        }
+      case "LOGOUT":
+        return {
+          ...prevState,
+          email: null,
+          userToken: null,
+          isLoading: false
+        }
+      case "REGISTER":
+        return {
+          ...prevState,
+          email: action.id,
+          userToken: action.token,
+          isLoading: false
+        }
+    }
+  }
+
+  const [loginState, dispatch] = React.useReducer(loginReducer, initialLoginState)
+      
+  socket.on('roommessage', function (message) {
+    var data = message;
+    switch (data.type) {
+      case 'login':
+        console.log('New user : ' + data.username);
+        global.globalActiveUsers.push(data.username);
+        break;
+      case 'disconnect':
+        global.globalActiveUsers.forEach((item, index) => {
+            if(item === data.username) {
+                console.log('New user : ' + data.username);
+                global.globalActiveUsers.splice(index, 1);
+            }
+        });
+        break;
+      default:
+        break;
+    }
+  });
+
+  const authContext = useMemo(() => ({
+    signIn: async (isFound,contacts) => {
+      let userToken;
+      userToken = 'token';
+
+      contacts.sort(function(a, b) {
+        var nameA = a.fullname.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.fullname.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+      
+        // names must be equal
+        return 0;
+      });
+      var filteredContacts = contacts.filter(function(el) { return el.id != isFound['id']; });
+      try {
+        await AsyncStorage.setItem('token', userToken);
+        await AsyncStorage.setItem('userinfo', JSON.stringify(isFound));
+        await AsyncStorage.setItem('contacts', JSON.stringify(filteredContacts));
+      } catch (error) {
+
+        alert(error+'this')
+      }
+
+      globalUserInfo = isFound
+      globalContacts = filteredContacts
+      
+      dispatch({ type: 'LOGIN', id: isFound['email'], token: userToken });
+    },
+    signOut: async () => {
+      try {
+        await AsyncStorage.removeItem('token');
+        await AsyncStorage.removeItem('userinfo');
+        await AsyncStorage.removeItem('contacts');
+      } catch (error) {
+        alert(error)
+      }
+      dispatch({ type: 'LOGOUT' })
+    },
+  }))
+
+
+
+
+  useEffect(() => {
+
+    async function loadFont() {
+      await Font.loadAsync({
+        regular: require('./assets/fonts/OpenSans-Regular.ttf')
+      })
+    }
+    loadFont()
+
+    setTimeout(async () => {
+      let userToken = null;
+      let userInfo = null
+      let contacts = null
+      try {
+        userToken = await AsyncStorage.getItem('token');
+        userInfo = await AsyncStorage.getItem('userinfo');
+        contacts = await AsyncStorage.getItem('contacts');
+      } catch (error) {
+        alert(error)
+      }
+      console.log(userInfo+' app')
+      globalUserInfo = JSON.parse(userInfo)
+      globalContacts = JSON.parse(contacts)
+      dispatch({ type: 'REGISTER', token: userToken });
+    }, 1000)
+  }, [])
+
+  if (loginState.isLoading) {
+    return (
+      <View style={styles.wrapper}>
+        <Image source={require("./assets/icon.png")}
+          style={styles.logo} />
+        <ActivityIndicator />
+      </View>
+    )
+  }
+
+  return (
+    <PaperProvider theme={theme}>
+      <StatusBar hidden={true} />
+      <AuthContext.Provider value={authContext}>
+        <NavigationContainer>
+
+
+          {loginState.userToken == null ? (
+            <Stack.Navigator headerMode="none">
+              <Stack.Screen
+                name="Authentication"
+                component={Authentication}
+              />
+              <Stack.Screen
+                name="Signup"
+                component={Signup}
+              />
+              <Stack.Screen
+                name="ForgotPassword"
+                component={ForgotPassword}
+              />
+              <Stack.Screen
+                name="ChangePassword"
+                component={ChangePassword}
+              />
+            </Stack.Navigator>
+          ) :
+            <UserInfoContextProvider>
+              <Stack.Navigator headerMode="none">
+                <Stack.Screen
+                  name="Dashboard"
+                  component={Dashboard}
+                />
+                  <Stack.Screen
+                  name="VideoCall"
+                  component={VideoCall}
+                />
+                <Stack.Screen
+                  name="Contacts"
+                  component={Contacts}
+                />
+                <Stack.Screen
+                  name="Favorites"
+                  component={Favorites}
+                />
+                <Stack.Screen
+                  name="Profile"
+                  component={Profile}
+                />
+                 <Stack.Screen
+                  name="Call"
+                  component={Call}
+                />
+                 <Stack.Screen
+                  name="ImportContacts"
+                  component={ImportContacts}
+                />
+              </Stack.Navigator>
+            </UserInfoContextProvider>
+          }
+
+        </NavigationContainer>
+      </AuthContext.Provider>
+    </PaperProvider>
+  );
+};
+
+const styles = StyleSheet.create({
+  wrapper: {
+    display: "flex",
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+
+  logo: {
+    width: 300,
+    height: 300,
+  },
+
+});
