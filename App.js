@@ -1,14 +1,16 @@
 
 import React, { Fragment, useEffect, useState, useMemo } from "react";
-import { NavigationContainer } from '@react-navigation/native';
+import 'react-native-gesture-handler';
 import ApiKeys from './constants/ApiKeys'
 import * as firebase from 'firebase';
 import { StatusBar, StyleSheet, Image, View, ActivityIndicator, AsyncStorage } from 'react-native';
 
 
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
-import { createStackNavigator } from '@react-navigation/stack';
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator, DrawerContent } from '@react-navigation/drawer';
 //import * as Font from 'expo-font'
 
 
@@ -23,11 +25,20 @@ import Contacts from './screens/ControlPanel/Contacts'
 import Favorites from "./screens/ControlPanel/Favorites";
 import Profile from "./screens/ProfileScreen/Profile";
 import ImportContacts from "./screens/ControlPanel/ImportContacts";
+import Account from "./screens/DrawerScreen/Account"
+import NewProfile from "./screens/DrawerScreen/NewProfile"
+import VirtualCoin from "./screens/DrawerScreen/VirtualCoin";
+import AddCoins from "./screens/DrawerScreen/AddCoins";
 
 import { AuthContext } from './contexts/context'
 import UserInfoContextProvider from "./contexts/UserInfoContext";
 import Call from "./screens/ControlPanel/Call";
 import ChangePassword from "./screens/ForgotPasswordScreen/ChangePassword";
+import { sortContacts } from "./Utils/Utils";
+import ContactsContextProvider, { ContactsContext } from "./contexts/ConcactsContext";
+import CustomDrawer from "./components/CustomDrawer";
+import SendInvites from "./screens/ControlPanel/SendInvites";
+
 
 import io from 'socket.io-client';
 const socket = io.connect('http://192.168.0.9:4443', { transports: ['websocket'] });
@@ -68,6 +79,17 @@ const theme = {
 
 
 const Stack = createStackNavigator();
+
+const Drawer = createDrawerNavigator();
+function DashBoardScreen() {
+  return (
+    <Drawer.Navigator drawerPosition="right" drawerContent={props => <CustomDrawer {...props} />}>
+      <Drawer.Screen name="DrawerDashboard" component={Dashboard} />
+      <Drawer.Screen name="Account" component={Account} />
+      <Drawer.Screen name="NewProfile" component={NewProfile} />
+    </Drawer.Navigator>
+  );
+}
 export default function App() {
 
   const initialLoginState = {
@@ -219,6 +241,7 @@ export default function App() {
     <PaperProvider theme={theme}>
       <StatusBar hidden={true} />
       <AuthContext.Provider value={authContext}>
+      <ContactsContextProvider>
         <NavigationContainer>
 
 
@@ -246,7 +269,7 @@ export default function App() {
               <Stack.Navigator headerMode="none">
                 <Stack.Screen
                   name="Dashboard"
-                  component={Dashboard}
+                  component={DashBoardScreen}
                 />
                   <Stack.Screen
                   name="VideoCall"
@@ -272,11 +295,28 @@ export default function App() {
                   name="ImportContacts"
                   component={ImportContacts}
                 />
+                <Stack.Screen
+                    name="VirtualCoin"
+                    component={VirtualCoin}
+                  />
+                  <Stack.Screen
+                    name="AddCoins"
+                    component={AddCoins}
+                  />
+                  <Stack.Screen
+                    name="SendInvites"
+                    component={SendInvites}
+                  />
+                  <Stack.Screen
+                    name="ChangePassword"
+                    component={ChangePassword}
+                  />
               </Stack.Navigator>
             </UserInfoContextProvider>
           }
 
         </NavigationContainer>
+        </ContactsContextProvider>
       </AuthContext.Provider>
     </PaperProvider>
   );

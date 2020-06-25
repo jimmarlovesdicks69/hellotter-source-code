@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { Fragment,useState, useEffect, useContext } from "react";
 import {
   StyleSheet,
   ImageBackground,
@@ -11,7 +11,7 @@ import {
 import { TextInput, HelperText } from "react-native-paper";
 import { validateEmail } from '../../Utils/Utils';
 
-import { CheckBox } from "react-native-elements";
+import { CheckBox, Input } from "react-native-elements";
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
@@ -38,7 +38,7 @@ export default function Authentication({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const [] = useState(false);
+  const [formValid, setFormValid] = useState(false);
   const [errorMessage1, setErrorMessage1] = useState("");
   const [errorMessage2, setErrorMessage2] = useState("");
   const [isLoading, setisLoading] = useState(false);
@@ -177,7 +177,7 @@ export default function Authentication({ navigation }) {
                         </TouchableOpacity>
                     </View>
                     <Text style={styles.version}>
-                        V1.0.0
+                        V1.0.1
                     </Text>
                 </View>
 

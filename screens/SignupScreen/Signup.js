@@ -160,15 +160,18 @@ export default function Signup({ navigation }) {
 
 
                 <View style={styles.view2}>
-                    <TouchableOpacity
-                        onPress={() => navigation.goBack()}
-                    >
-                        <Text style={styles.alreadyMember}>
-                            Already a Member? Login
-                            </Text>
-                    </TouchableOpacity>
+                    <View style={styles.view3}>
+                        <Text size={15} color="white">
+                            {"Already a Member? "}
+                        </Text>
+                        <TouchableOpacity onPress={() => navigation.goBack()}>
+                            <Text color="white" size={15} style={styles.login}>
+                                Sign in
+                        </Text>
+                        </TouchableOpacity>
+                    </View>
                     <Text style={styles.version}>
-                        V1.0.0
+                        V1.0.1
                         </Text>
                 </View>
 
@@ -238,11 +241,6 @@ const styles = StyleSheet.create({
         fontSize: 15,
         textAlign: 'center'
     },
-    alreadyMember: {
-        color: 'white',
-        marginBottom: 10,
-        fontSize: 15
-    },
     version: {
         color: 'white'
     },
@@ -254,5 +252,14 @@ const styles = StyleSheet.create({
         width: screenWidth,
         justifyContent: 'center',
         alignItems: 'center'
-    }
+    },
+    login: {
+        color: 'white',
+        marginBottom: 10,
+        textDecorationLine: 'underline',
+    },
+    view3: {
+        flexDirection: 'row',
+        marginBottom: 10,
+    },
 });

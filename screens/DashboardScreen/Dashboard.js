@@ -5,12 +5,15 @@ import ControlPanel from '../../components/ControlPanel'
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { AuthContext } from '../../contexts/context'
 import { UserInfoContext } from "../../contexts/UserInfoContext";
+import { ContactsContext } from "../../contexts/ConcactsContext";
 
 export default function Dashboard({ navigation }) {
   const { signOut } = useContext(AuthContext);
   const { userInfo, setUser } = useContext(UserInfoContext)
+  const { contacts, setSavedContacts } = useContext(ContactsContext)
 
   setUser(globalUserInfo)
+  setSavedContacts(globalContacts)
   console.log(globalUserInfo)
   useEffect(() => {
 
