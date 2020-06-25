@@ -39,11 +39,11 @@ export default function ForgotPassword({ navigation }) {
 
                 } else {
                     if (response['message'] == "email already verified") {
-                        setIsReset(true)
+                        //setIsReset(true)
                         
-                        // navigation.navigate('ChangePassword', { 'email': email })
+                        navigation.navigate('ChangePassword', { 'email': email,'from': 'login' })
                     } else if (response['message'] == "email already sent") {
-                        // alert('Please Check your email')
+                        alert('Please Check your email')
                         setIsReset(true)
                     } else {
                         setIsReset(true)
@@ -109,7 +109,7 @@ export default function ForgotPassword({ navigation }) {
                         <Text color='black' size={18} style={{ marginTop: 15, textAlign: 'center' }}>Your request is already confirmed, please check your email to see the instructions to reset Password</Text>
                     </View>
                     <View style={styles.formView}>
-                        <DefButton text='LOGIN' onPress={() => { navigation.goBack() }}></DefButton>
+                        <DefButton text='RESET PASSWORD' onPress={() => { navigation.navigate('ChangePassword', { 'email': email }) }}></DefButton>
                     </View>
                 </View>
             }

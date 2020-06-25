@@ -36,3 +36,19 @@ export const getLastName = (fullName) => {
   var lastName = fullName.split(' ').slice(-1).join(' ');
   return lastName
 }
+export const sortContacts = (contacts) => {
+  var sorted = contacts.sort(function (a, b) {
+    var nameA = a.fullname.toUpperCase(); // ignore upper and lowercase
+    var nameB = b.fullname.toUpperCase(); // ignore upper and lowercase
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+
+    // names must be equal
+    return 0;
+  });
+  return sorted
+}

@@ -12,18 +12,16 @@ const Text = (props) => {
             color
         }
     }
-
+    Text.defaultProps = {
+        weigth: "regular",
+        size:15,
+        color:'white'
+    }
     return (
         <ReactNative.Text style={{ ...getProps(), ...props.style }}>
             {props.children}
         </ReactNative.Text>
     );
 };
-
-Text.defaultProps = {
-    weigth: "regular",
-    size:15,
-    color:'white'
-}
 
 export default Text;

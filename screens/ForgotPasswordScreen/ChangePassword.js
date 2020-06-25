@@ -6,7 +6,7 @@ import { TextInput, HelperText } from "react-native-paper";
 import DefButton from '../../components/DefButton';
 
 export default function ChangePassword({ route,navigation }) {
-    const { email } = route.params;
+    const { email, from } = route.params;
 
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
@@ -108,10 +108,16 @@ export default function ChangePassword({ route,navigation }) {
                         <Image source={require('../../assets/check-symbol.png')}></Image>
                     </View>
                     <View style={styles.titleView}>
-                        <Text color='black' size={18} style={{ marginTop: 15, textAlign: 'center' }}>Success! Login again for access.</Text>
+                        {from == 'login' ?
+                            <Text color='black' size={18} style={{ marginTop: 15, textAlign: 'center' }}>Success! Login again for access.</Text> :
+                            <Text color='black' size={18} style={{ marginTop: 15, textAlign: 'center' }}>Password Successfully Changed.</Text>}
                     </View>
                     <View style={styles.formView}>
-                        <DefButton text='LOGIN' onPress={() => navigation.navigate('Login')}></DefButton>
+                        {from == 'login' ?
+                            <DefButton text='LOGIN' onPress={() => navigation.navigate('Login')}></DefButton> :
+                            <DefButton text='OK' onPress={() => navigation.goBack()}></DefButton>
+                        }
+
                     </View>
                 </View>
             }

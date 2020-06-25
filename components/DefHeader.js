@@ -1,7 +1,8 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import { useTheme, IconButton } from 'react-native-paper';
 import { TouchableOpacity } from "react-native-gesture-handler";
+import Text from './Text'
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -32,9 +33,15 @@ const DefHeader = (props) => {
 
     return (
         <View style={styles.view}>
-            <TouchableOpacity onPress={()=>{navigation.navigate('Profile')}}>
-                <Image source={require('../assets/End.png')} />
-            </TouchableOpacity>
+            {props.isBack ?
+                <TouchableOpacity onPress={() => { navigation.goBack() }}>
+                    <Text size={17} color='black'>Back</Text>
+                </TouchableOpacity>
+                :
+                <TouchableOpacity onPress={() => { navigation.navigate('Profile') }}>
+                    <Image source={require('../assets/End.png')} />
+                </TouchableOpacity>
+            }
             <Image style={styles.logo} source={require('../assets/hellootter_singup.png')} />
             <TouchableOpacity onPress={() => {navigation.navigate('VideoCall')}}>
                 <Image source={require('../assets/cameraplus.png')} />

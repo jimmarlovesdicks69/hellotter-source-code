@@ -41,19 +41,23 @@ let incallwith = ''; // To store username of other peer
 var localPC = null, remotePC = null; // RTCRtpTransceiver
 var isConnected = false;
 var localICECandidates =[];
-//const configuration = { iceServers: [{ url: 'stun:stun.l.google.com:19302' }] };
-let configuration = {};
+const configuration = {  };
+// let configuration = {};
 configuration.iceServers = [];
-// second step, set STUN url
-configuration.iceServers.push({
-    url: 'stun:st.hellotter.com:3478?transport=tcp'
+// // second step, set STUN url
+ configuration.iceServers.push({
+   urls: ['stun:numb.viagenie.ca:3478', 'stun:st.hellotter.com:3478?transport=udp', 'stun:st.hellotter.com:5349?transport=tcp']
 });
+
+
 // last step, set TURN url (recommended) 
 configuration.iceServers.push({ 
-    url: 'turn:st.hellotter.com:3478?transport=tcp',
-    username: 'guest',
-    credential: 'somepassword'
+  url: 'turn:numb.viagenie.ca:3478' ,  
+  username: 'sweeti270789@gmail.com', 
+  credential: 'Hotwire@21'
 });  
+
+
 console.log("configuration:", configuration);
 //configuration.iceServers.push({
   //urls: ['stun:stun.l.google.com:19302', 'stun:st.geniusschoolmanager.com:5349']
@@ -230,6 +234,7 @@ function handleVideoOffer(data) {
       'Incoming Call',
       data.callername + ' is calling you',
       [
+        console.log('Callling accepted by non working Wi-Fi'),
         { text: 'Cancel', onPress: () => callReject(data), style: 'cancel' },
         { text: 'OK', onPress: () => callAccept(data) },
       ],
@@ -266,11 +271,25 @@ async function handleVideoAnswer(data) {
 async function handleCandidateData(data) {
   var candidate = new RTCIceCandidate(data.candidate);
   log('*** Adding received ICE candidate: ' + data.candidate);
-  log(localPC);
-  log(remotePC);
+  log('*** Checking candidate: ' + candidate);
+
+  log('localPC ' +localPC);
+  log('remotePC ' +remotePC);
   if(candidate){
-    if (localPC) await localPC.addIceCandidate(candidate);
-    if (remotePC) await remotePC.addIceCandidate(candidate);
+    log('*** candidate: ' + data.candidate);
+
+    if (localPC)
+    {
+      await localPC.addIceCandidate(candidate) 
+      log('*** localPC Await: ');
+
+    }
+    if (remotePC) 
+    {
+      await remotePC.addIceCandidate(candidate)
+      log('*** remotePC Await: ');
+
+    }
   }
 }
 
@@ -308,6 +327,7 @@ socket.on('message', function (message) {
       break;
     case 'handlecandidate':
       handleCandidateData(data);
+      log('handle handleCandidateData');
       break;
     case 'handleVideoAnswer':
       log(data.sdp.type);
@@ -445,6 +465,19 @@ export default class VideoCall extends Component {
     //  console.log(this.state.localStream)
   }
 
+  switchCamera() {
+      const { localStream } = this.state;
+      localStream.getVideoTracks().forEach((track) => {
+      console.log('Switch Camera');
+      track._switchCamera()
+      });
+  }
+
+  // muteAudio() {
+  //   const { localStream } = this.state;
+  //   localStream.getAudioTracks()[0].enabled = false;
+  // }
+
   renderVideo() {
     return (
       <View style={{ flex: 1 }}>
@@ -466,7 +499,8 @@ export default class VideoCall extends Component {
         </View>
         <View style={styles.container}>
           <Button  onPress={() => this.callUser()} title="Call" color="#81c04d" />
-          <Button  onPress={() => this.callUser()} title="Mic" color="#81c04d" />
+          {/* <Button  onPress={() => this.switchCamera()} title="Switch Camera" color="#81c04d" /> */}
+
           <Text style={[styles.instructions, { color: 'grey' }]}>{this.state.callResponse}</Text>
         </View>
         </View>

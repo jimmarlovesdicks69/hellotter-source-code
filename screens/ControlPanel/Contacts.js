@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from "react";
+import React, { Fragment, useContext, useState, useEffect } from "react";
 import { StyleSheet, View, Image,Button } from 'react-native';
 
 
@@ -11,11 +11,11 @@ import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 
 import Text from '../../components/Text'
 import { UserInfoContext } from "../../contexts/UserInfoContext";
-
+import { ContactsContext } from "../../contexts/ConcactsContext";
 export default function Contacts({ navigation }) {
 
     const { userInfo } = useContext(UserInfoContext)
-
+    const { searchContacts } = useContext(ContactsContext)
     const [contacts, setContacts] = useState(globalContacts);
     const [search, setSearch] = useState(setSearch);
     const [activeUsers, setActiveUsers] = useState(globalActiveUsers);
@@ -44,17 +44,17 @@ export default function Contacts({ navigation }) {
         <View style={styles.wrapper}>
             <DefHeader />
             <Profile fullname={userInfo.fullname} email={userInfo.email} />
-            <Search name="Contacts" value={search} onChange={(val)=> filterContacts(val.toLowerCase())}/>
+            <Search name="Contacts" value={search} onChange={(val) => setSearch(val)}/>
              <ScrollView>
                 <View style={styles.contactsContainer}>
-                    {contacts.map((name, index) => {
+                    {searchContacts(search).map((name, index) => {
                         var nextLetter = (index == globalContacts.length - 1) ? "" : globalContacts[index + 1]['fullname'][0];
                         if (letter != name['fullname'][0]) {
                             letter = name['fullname'][0]
                             return (
                                 <View key={index}>
                                     <View style={styles.letterContainer}>
-                                        <Text color={'black'}>{name['fullname'][0]}</Text>
+                                        <Text color={'black'}>{name['fullname'][0].toUpperCase()}</Text>
                                     </View>
                                     <TouchableOpacity onPress={()=> callUser(name.email)}>
                                         <View style={styles.nameContainer}>
