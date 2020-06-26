@@ -20,14 +20,7 @@ const FilterPanel = (props) => {
     const [selectedTab, setSelectedTab] = useState(0)
     const [selectedFilter, setSelectedFilter] = useState({ index: -1, selected: '' })
 
-    const handleTabFilterOnPress = (tab) => {
-        var arr = tabs
-        arr.map(a => a.selected = false)
-        var index = arr.findIndex((obj => obj.name == tab));
-        arr[index].selected = true
-        console.log(arr)
-        setTabs([...arr])
-    }
+
 
     return (
         <Animatable.View duration={500} animation={props.showFilterPanel ? "fadeInUp" : "fadeOutDown"}

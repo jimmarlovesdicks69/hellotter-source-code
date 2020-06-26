@@ -83,6 +83,7 @@ export default function ImportContacts({ route, navigation }) {
                         <Image style={{ marginRight: 10 }} source={require('../../assets/yahoo.png')} />
                         <Text color='black' size={18}>Yahoo mail</Text>
                     </View>
+                    <ImportButton onPress={() => {}} />
                 </View>
 
                 <View style={styles.mail}>
