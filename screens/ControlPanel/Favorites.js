@@ -83,6 +83,7 @@ export default function Favorites() {
                     })}
                 </View>
             </ScrollView>
+            <View style={{marginBottom:60}}/>
             <ControlPanel />
         </View>
     )

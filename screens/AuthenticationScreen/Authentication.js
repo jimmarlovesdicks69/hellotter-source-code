@@ -150,11 +150,13 @@ export default function Authentication({ navigation }) {
             {errorMessage2}
           </HelperText>
           <CheckBox
-            style={styles.checkBox}
-            title="Remember me"
-            checked={rememberMe}
-            onPress={() => setRememberMe(!rememberMe)}
-          />
+                        containerStyle={styles.checkBox}
+                        title="Remember me"
+                        checked={rememberMe}
+                        checkedColor='white'
+                        textStyle={{ color: 'white' }}
+                        onPress={() => setRememberMe(!rememberMe)}
+                    />
           <DefButton onPress={() => login(email, password)} text="LOGIN" />
           <TouchableOpacity onPress={()=> navigation.navigate('ForgotPassword')}>
             <Text style={styles.forgotPassword}>
@@ -210,8 +212,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   icon: {
-    marginTop: 10,
-    marginBottom: 40,
+    marginTop: screenHeight*.01,
+    marginBottom: screenHeight*.05,
     width: 100,
     height: 100,
     alignSelf: 'center'
@@ -224,9 +226,13 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     fontFamily: "regular"
   },
-  checkBoxText: {
+  checkBox: {
     backgroundColor: "transparent",
-  },
+    borderColor: "transparent",
+    margin: 0,
+    marginBottom: 10,
+    padding: 0
+},
   forgotPassword: {
     color: 'white',
     alignSelf: "center",

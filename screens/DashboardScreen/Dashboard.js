@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import DefHeader from '../../components/DefHeader'
 import ControlPanel from '../../components/ControlPanel'
@@ -13,12 +13,20 @@ export default function Dashboard({ navigation }) {
   const { userInfo, setUser } = useContext(UserInfoContext)
   const { contacts, setSavedContacts } = useContext(ContactsContext)
 
+  const [showFilterPanel, setShowFilterPanel] = useState(false)
+  const [countRender, setCountRender] = useState(false)
 
-  console.log(globalUserInfo)
+  // console.log(globalUserInfo)
+
   useEffect(() => {
     setUser(globalUserInfo)
-    setSavedContacts(globalContacts)
+    setSavedContacts([...globalContacts])
   }, [])
+
+  
+  useEffect(() => {
+    console.log(showFilterPanel)
+  }, [showFilterPanel])
 
   return (
     <Fragment>
@@ -37,8 +45,13 @@ export default function Dashboard({ navigation }) {
         {/* </View> */}
 
 
-        <ControlPanel />
-        {/* <FilterPanel/> */}
+        {!showFilterPanel &&
+          <ControlPanel onFilterPanelPressed={() => { setShowFilterPanel(true); setCountRender(true) }} />
+        }
+
+        {countRender &&
+          <FilterPanel onBackdropPressed={() => setShowFilterPanel(false)} showFilterPanel={showFilterPanel} />
+        }
       </View>
     </Fragment>
   );
