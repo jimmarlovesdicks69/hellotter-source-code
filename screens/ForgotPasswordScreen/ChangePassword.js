@@ -114,7 +114,7 @@ export default function ChangePassword({ route,navigation }) {
                     </View>
                     <View style={styles.formView}>
                         {from == 'login' ?
-                            <DefButton text='LOGIN' onPress={() => navigation.navigate('Login')}></DefButton> :
+                            <DefButton text='LOGIN' onPress={() => navigation.navigate('Authentication')}></DefButton> :
                             <DefButton text='OK' onPress={() => navigation.goBack()}></DefButton>
                         }
 

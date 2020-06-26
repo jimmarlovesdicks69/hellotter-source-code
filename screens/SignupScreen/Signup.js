@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions, Image, Platform, ActivityIndicator,ToastAndroid } from 'react-native';
+import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions, Image, Platform, ActivityIndicator, ToastAndroid } from 'react-native';
 import { TextInput, HelperText } from "react-native-paper";
-import { validateEmail,setNameFirstLetterCapital } from '../../Utils/Utils';
+import { validateEmail, setNameFirstLetterCapital } from '../../Utils/Utils';
 import * as firebase from 'firebase';
 import { ScrollView } from "react-native-gesture-handler";
 
@@ -24,7 +24,7 @@ export default function Signup({ navigation }) {
     const [errorMessage3, setErrorMessage3] = useState("");
     const [errorMessage4, setErrorMessage4] = useState("");
 
-    
+
 
     useEffect(() => {
 
@@ -213,8 +213,8 @@ const styles = StyleSheet.create({
         alignSelf: "stretch",
     },
     icon: {
-        marginTop: 10,
-        marginBottom: 40,
+        marginTop: screenHeight * .01,
+        marginBottom: screenHeight * .05,
         width: 100,
         height: 100,
         alignSelf: 'center'

@@ -3,13 +3,15 @@ import { View, StyleSheet, Dimensions, Image } from 'react-native'
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer'
 import Text from '../components/Text'
 import { TouchableOpacity } from 'react-native-gesture-handler';
-//import { AntDesign } from '@expo/vector-icons';
+// import { AntDesign } from '@expo/vector-icons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 const screenHeight = Math.round(Dimensions.get('window').height);
 const CustomDrawer = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.close}>
-                {/* <AntDesign name="close" size={35} color="black" /> */}
+                <AntDesign name="close" size={35} color="black" />
+
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate('NewProfile')}>
                 <View style={styles.nav}>

@@ -60,7 +60,7 @@ export default function ForgotPassword({ navigation }) {
         <View style={styles.wrapper}>
 
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=> navigation.goBack()}>
                 <Text color='black' size={20}>Back</Text>
             </TouchableOpacity>
             {!isReset ?

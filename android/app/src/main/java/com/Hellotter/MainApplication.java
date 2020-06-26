@@ -5,9 +5,11 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
+import co.apptailor.googlesignin.RNGoogleSigninPackage;
 // import com.oney.WebRTCModule.WebRTCModulePackage;  // No longer needed due to autolinking
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -25,8 +27,10 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
           @SuppressWarnings("UnnecessaryLocalVariable")
           List<ReactPackage> packages = new PackageList(this).getPackages();
+          
           // Packages that cannot be autolinked yet can be added manually here, for example:
-          // packages.add(new MyReactNativePackage());
+          // packages.add(new RNGoogleSigninPackage());
+          
           // packages.add(new WebRTCModulePackage()); // No longer needed due to autolinking
           return packages;
         }

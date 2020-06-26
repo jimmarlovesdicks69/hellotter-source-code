@@ -4,7 +4,7 @@ import { View, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import DefHeader from '../../components/DefHeader';
 import Profile from '../../components/Profile';
 import FavoritesSearch from '../../components/FavoritesSearch';
-import { ScrollView } from 'react-native-elements';
+import { ScrollView } from 'react-native-gesture-handler';
 import ControlPanel from '../../components/ControlPanel';
 import { Avatar } from "react-native-elements";
 import { useTheme } from 'react-native-paper';
@@ -83,6 +83,7 @@ export default function Favorites() {
                     })}
                 </View>
             </ScrollView>
+            <View style={{marginBottom:60}}/>
             <ControlPanel />
         </View>
     )

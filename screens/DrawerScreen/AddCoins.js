@@ -4,7 +4,7 @@ import DefHeader from '../../components/DefHeader';
 import Text from '../../components/Text'
 import { UserInfoContext } from '../../contexts/UserInfoContext';
 import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler';
-//import { MaterialIcons } from '@expo/vector-icons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import * as Animatable from 'react-native-animatable';
 // import { ScrollView } from 'react-native-gesture-handler';
 
@@ -33,7 +33,7 @@ export default function AddCoins() {
                         onPress={() => setPickerVisible(true)}>
                         <Image source={require('../../assets/visa.png')} style={{ marginRight: 5 }} />
                         <Text color="black" size={17} style={{ marginRight: 15 }}>{cardType}</Text>
-                        {/* <MaterialIcons name="keyboard-arrow-down" size={20} /> */}
+                        <MaterialIcons name="keyboard-arrow-down" size={20} />
                     </TouchableOpacity>
 
                 </View>
@@ -189,6 +189,7 @@ const styles = StyleSheet.create({
     content: {
         paddingHorizontal: 20,
         paddingVertical: 15,
+        alignItems:'center',
         height: 70,
         flexDirection: 'row',
         justifyContent: 'space-between'
@@ -230,15 +231,13 @@ const styles = StyleSheet.create({
         borderBottomWidth: .5,
         borderColor: '#000',
         alignItems: 'center',
-        paddingBottom: 5,
-        width: screenWidth * .6
+        width: screenWidth * .6,
     },
     cvvContainer: {
         flexDirection: 'row',
         borderBottomWidth: .5,
         borderColor: '#000',
         alignItems: 'center',
-        paddingBottom: 5,
         width: screenWidth * .25,
     },
     expContainer: {
@@ -246,7 +245,6 @@ const styles = StyleSheet.create({
         borderBottomWidth: .5,
         borderColor: '#000',
         alignItems: 'center',
-        paddingBottom: 5,
         marginRight:15,
         width: screenWidth * .25,
     },

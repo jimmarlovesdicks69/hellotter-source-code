@@ -88,6 +88,7 @@ export default function Call() {
 
 
             </ScrollView>
+            <View style={{marginBottom:60}}/>
             <ControlPanel />
         </View>
     )
