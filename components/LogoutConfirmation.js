@@ -34,7 +34,7 @@ const LogoutConfirmation = (props) => {
 
 const styles = StyleSheet.create({
     view: {
-        height: screenHeight,
+        flex:1,
         width: screenWidth,
         backgroundColor: 'rgba(52, 52, 52, 0.8)',
         position: 'absolute',

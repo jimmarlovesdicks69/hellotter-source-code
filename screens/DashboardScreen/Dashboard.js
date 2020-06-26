@@ -19,12 +19,12 @@ export default function Dashboard({ navigation }) {
   // console.log(globalUserInfo)
 
   useEffect(() => {
-    globalContacts.splice(0,1)
+    globalContacts.splice(0, 1)
     setUser(globalUserInfo)
     setSavedContacts([...globalContacts])
   }, [])
 
-  
+
   useEffect(() => {
     console.log(showFilterPanel)
   }, [showFilterPanel])
@@ -36,12 +36,6 @@ export default function Dashboard({ navigation }) {
         {/* <View style={styles.videoView}> */}
 
         <ImageBackground source={require('../../assets/BGthrone.png')} style={{ flexGrow: 1, resizeMode: 'cover' }}>
-          <TouchableOpacity onPress={() => signOut()}>
-            <View style={{ height: 20, width: 60, backgroundColor: 'white' }}>
-              <Text>Sign Out</Text>
-            </View>
-
-          </TouchableOpacity>
         </ImageBackground>
         {/* </View> */}
 

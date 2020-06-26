@@ -85,7 +85,7 @@ const Profile = ({ navigation }) => {
                     </View>
                     <TouchableOpacity
                         style={{ backgroundColor: "#FC5757", padding: 20, borderRadius: 30, margin: 30 }}
-                        onPress={() => props.onPressLogout()}>
+                        onPress={() => setShowSignOut(true)}>
                         <Text style={{ color: "#FFFFFF", textAlign: "center", fontWeight: 'bold' }}>
                             LOGOUT
                         </Text>

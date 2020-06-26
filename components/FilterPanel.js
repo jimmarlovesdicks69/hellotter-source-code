@@ -30,7 +30,7 @@ const FilterPanel = (props) => {
                 <View style={{ height: 40, flexDirection: 'row', alignItems: 'center', paddingLeft: 10 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', width: 60, justifyContent: 'space-between' }}>
                         <Image source={require('../assets/stop.png')} />
-                        <Image source={require('../assets/Favorite.png')} />
+                        <Image source={require('../assets/Favorite1.png')} />
                         <Image source={require('../assets/vline.png')} />
                     </View>
                     <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1, marginLeft: 10, justifyContent: 'space-between' }}>
@@ -61,9 +61,9 @@ const FilterPanel = (props) => {
 export default FilterPanel;
 
 
-const favoritesImages = [require('../assets/filters/maskicon-24.png'), require('../assets/filters/maskicon-24.png'), require('../assets/filters/maskicon-24.png'), require('../assets/filters/maskicon-24.png'), require('../assets/filters/maskicon-24.png'), require('../assets/filters/maskicon-24.png'), require('../assets/filters/maskicon-24.png'), require('../assets/filters/maskicon-24.png')]
-const trendingImages = [require('../assets/filters/stickers-352.png'), require('../assets/filters/stickers-352.png'), require('../assets/filters/stickers-352.png'), require('../assets/filters/stickers-352.png'), require('../assets/filters/stickers-352.png'), require('../assets/filters/stickers-352.png'), require('../assets/filters/stickers-352.png'), require('../assets/filters/stickers-352.png')]
-const beautyImages = [require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-355.png'),]
+const favoritesImages = [require('../assets/filters/maskicon-24.png'), require('../assets/filters/stickers-352.png'), require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-118.png'), require('../assets/filters/stickers-117.png'), require('../assets/filters/stickers-111.png'), require('../assets/filters/stickers-112.png'), require('../assets/filters/stickers-115.png')]
+const trendingImages = [ require('../assets/filters/stickers-352.png'), require('../assets/filters/maskicon-24.png'), require('../assets/filters/stickers-118.png'), require('../assets/filters/stickers-117.png'), require('../assets/filters/stickers-111.png'), require('../assets/filters/stickers-115.png'), require('../assets/filters/stickers-112.png'), require('../assets/filters/stickers-352.png')]
+const beautyImages = [require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-352.png'), require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-355.png'),]
 const funImages = [require('../assets/filters/stickers-370.png'), require('../assets/filters/stickers-370.png'), require('../assets/filters/stickers-370.png'), require('../assets/filters/stickers-370.png'), require('../assets/filters/stickers-370.png'), require('../assets/filters/stickers-370.png'), require('../assets/filters/stickers-370.png'), require('../assets/filters/stickers-370.png')]
 const kidsImages = [require('../assets/filters/stickers-372.png'), require('../assets/filters/stickers-372.png'), require('../assets/filters/stickers-372.png'), require('../assets/filters/stickers-372.png'), require('../assets/filters/stickers-372.png'), require('../assets/filters/stickers-372.png'), require('../assets/filters/stickers-372.png'), require('../assets/filters/stickers-372.png'),]
 
