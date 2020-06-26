@@ -6,17 +6,18 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { AuthContext } from '../../contexts/context'
 import { UserInfoContext } from "../../contexts/UserInfoContext";
 import { ContactsContext } from "../../contexts/ConcactsContext";
+import FilterPanel from "../../components/FilterPanel";
 
 export default function Dashboard({ navigation }) {
   const { signOut } = useContext(AuthContext);
   const { userInfo, setUser } = useContext(UserInfoContext)
   const { contacts, setSavedContacts } = useContext(ContactsContext)
 
-  setUser(globalUserInfo)
-  setSavedContacts(globalContacts)
+
   console.log(globalUserInfo)
   useEffect(() => {
-
+    setUser(globalUserInfo)
+    setSavedContacts(globalContacts)
   }, [])
 
   return (
@@ -37,6 +38,7 @@ export default function Dashboard({ navigation }) {
 
 
         <ControlPanel />
+        {/* <FilterPanel/> */}
       </View>
     </Fragment>
   );
