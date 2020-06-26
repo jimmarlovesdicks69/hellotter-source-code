@@ -10,6 +10,8 @@ import {
   Dimensions,
   StatusBar,
   Alert,
+  ImageBackground,
+  Image,
 } from 'react-native';
 import ListView from 'deprecated-react-native-listview';
 import {
@@ -23,6 +25,7 @@ import {
   mediaDevices,
   registerGlobals,
 } from 'react-native-webrtc';
+
 const { width, height } = Dimensions.get('window');
 import io from 'socket.io-client';
 import _ from 'lodash';
@@ -489,22 +492,31 @@ export default class VideoCall extends Component {
           <Text style={styles.toolbarTitle}>{this.currUser}</Text>
           <Text style={styles.toolbarButton} />
         </View>
-        <View style={styles.container}>
+        <ImageBackground source={require('../../assets/background_dashboard.png')} style={{ flexGrow: 1,alignItems: 'center', paddingTop:50}}>
+       
+        <TouchableOpacity onPress={()=> this.switchCamera()}>
+            <Image source={require('../../assets/switch_camera.png')} style = {styles.ImageClass} />
+        </TouchableOpacity>
+
         <View style={styles.rtcview}>
+
           {this.state.localStream && <RTCView style={styles.rtc} streamURL={this.state.localStream.toURL()} />}
         </View>
 
         <View style={styles.rtcview}>
           {this.state.remoteStream && <RTCView style={styles.rtc} streamURL={this.state.remoteStream.toURL()} />}
-        </View>
-        <View style={styles.container}>
+        </View> 
+      
           <Button  onPress={() => this.callUser()} title="Call" color="#81c04d" />
           {/* <Button  onPress={() => this.switchCamera()} title="Switch Camera" color="#81c04d" /> */}
 
           <Text style={[styles.instructions, { color: 'grey' }]}>{this.state.callResponse}</Text>
-        </View>
-        </View>
+          
+        </ImageBackground>
+
+
       </View>
+
     );
   }
   renderLogin() {
@@ -518,6 +530,8 @@ export default class VideoCall extends Component {
           <Text style={styles.toolbarTitle}>Make a video call</Text>
           <Text style={styles.toolbarButton} />
         </View>
+        <ImageBackground source={require('../../assets/background_dashboard.png')} style={{ flexGrow: 1}}>
+
         <View style={styles.container}>
           <Text style={styles.instructions}>Enter User Name :</Text>
           <TextInput
@@ -535,13 +549,16 @@ export default class VideoCall extends Component {
           <Button  style={styles.clickButton} onPress={() => this.onPressLogin()} title="Click" color="#81c04d"/>
           <Text style={styles.instructions}>{this.state.message}</Text>
         </View>
+        </ImageBackground>
       </View>
     );
   }
   renderList() {
     return (
-      <View style={{ flex: 1 }}>
+      
+      <View  style={{ flex: 1 }}>
         <StatusBar barStyle="light-content" />
+        
         <View style={styles.toolbar}>
         <TouchableOpacity onPress={()=>{this.props.navigation.navigate('Dashboard')}}>
             <Text style={styles.toolbarButton}>Back</Text>
@@ -549,13 +566,16 @@ export default class VideoCall extends Component {
           <Text style={styles.toolbarTitle}>My Contacts</Text>
           <Text style={styles.toolbarButton} />
         </View>
+        <ImageBackground source={require('../../assets/background_dashboard.png')} style={{ flexGrow: 1}}>
 
         <ListView
-          //style={{marginTop: 10}}
+          style={{marginTop: 0, backgroundColor: '#fff'}}
           enableEmptySections={true}
           dataSource={this.state.dataSource}
           renderRow={rowData => this.renderRow(rowData)}
         />
+        </ImageBackground>
+         
       </View>
     );
   }
@@ -578,7 +598,7 @@ export default class VideoCall extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    //flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
@@ -604,15 +624,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   toolbar: {
-    backgroundColor: '#81c04d',
+    backgroundColor: '#33FFFF',   
     paddingTop: 30,
     paddingBottom: 10,
-    flexDirection: 'row',
-    marginBottom:10
+    flexDirection: 'row'
   },
   toolbarButton: {
     width: 55,
-    color: '#fff',
+    color: '#000',
     textAlign: 'center',
   },
   clickButton: {
@@ -621,22 +640,30 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   toolbarTitle: {
-    color: '#fff',
+    color: '#000',
     textAlign: 'center',
-    fontWeight: 'bold',
+    //fontWeight: 'bold',
     flex: 1,
   },
   rtcview: {
     justifyContent: 'center',
     alignItems: 'center',
     height: '40%',
-    width: '80%',
-    backgroundColor: 'black',
-    marginBottom:10
+    width: '50%',
+    backgroundColor: 'transparent',
+    marginBottom:10,
+    borderRadius:10,
+    borderWidth: 1,
+    borderColor: '#ffffff'
   },
 
   rtc: {
-    width: '80%',
+    width: '100%',
     height: '100%',
+
+  },
+  ImageClass: {
+    height: 40, // Provide your own width, height and frame rate here
+    width: 40,
   },
 });
