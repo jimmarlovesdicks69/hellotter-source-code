@@ -1,5 +1,4 @@
-
-package com.Hellotter;
+package dw.hellotter;
 
 import android.app.Application;
 import android.content.Context;

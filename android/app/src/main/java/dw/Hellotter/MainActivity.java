@@ -1,4 +1,4 @@
-package com.Hellotter;
+package dw.hellotter;
 
 import com.facebook.react.ReactActivity;
 

@@ -202,12 +202,12 @@ export default function App() {
 
   useEffect(() => {
 
-    async function loadFont() {
-      await Font.loadAsync({
-        regular: require('./assets/fonts/OpenSans-Regular.ttf')
-      })
-    }
-    loadFont()
+    // async function loadFont() {
+    //   await Font.loadAsync({
+    //     regular: require('./assets/fonts/OpenSans-Regular.ttf')
+    //   })
+    // }
+    // loadFont()
 
     setTimeout(async () => {
       let userToken = null;

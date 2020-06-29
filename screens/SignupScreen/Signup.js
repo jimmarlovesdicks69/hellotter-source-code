@@ -76,113 +76,134 @@ export default function Signup({ navigation }) {
         ToastAndroid.show("Signup Succesfull!", ToastAndroid.SHORT);
     };
     return (
-
         <KeyboardAwareScrollView
             showsVerticalScrollIndicator={false}
             enableAutomaticScroll
             extraScrollHeight={10}
             enableOnAndroid={true}
-            extraHeight={Platform.select({ android: 100 })}
             style={styles.scroll}
         >
-            <ImageBackground
-                source={require("../../assets/background.png")}
-                style={styles.image}
-            >
-
-                <View>
+            <View style={styles.parent1}>
+                <View style={styles.child1}>
                     <Image style={styles.icon} source={require('../../assets/Hellotter-logo-white.png')} />
-                    <TextInput
-                        style={styles.input}
-                        label="Fullname"
-                        value={fullname}
-                        underlineColor="#fff"
-                        onChangeText={(value) => setFullName(value)}
-                    />
-                    <HelperText
-                        type="error"
-                        visible={errorMessage1.length != ""}
-                    >
-                        {errorMessage1}
-                    </HelperText>
-                    <TextInput
-                        style={styles.input}
-                        label="Email"
-                        value={email}
-                        underlineColor="#fff"
-                        onChangeText={(value) => setEmail(value)}
-                    />
-                    <HelperText
-                        type="error"
-                        visible={errorMessage2.length != ""}
-                    >
-                        {errorMessage2}
-                    </HelperText>
-                    <TextInput
-                        style={styles.input}
-                        label="Password"
-                        value={password}
-                        underlineColor="#fff"
-                        secureTextEntry
-                        onChangeText={(value) => setPassword(value)}
-                    />
-                    <HelperText
-                        type="error"
-                        visible={errorMessage3.length != ""}
-                    >
-                        {errorMessage3}
-                    </HelperText>
-                    <TextInput
-                        style={styles.input}
-                        label="Confirm Password"
-                        value={confirmPassword}
-                        underlineColor="#fff"
-                        secureTextEntry
-                        onChangeText={(value) => setConfirmPassword(value)}
-                    />
-                    <HelperText
-                        type="error"
-                        visible={errorMessage4.length != ""}
-                    >
-                        {errorMessage4}
-                    </HelperText>
-                    <Text style={styles.agreement}>
-                        By Clicking "Sign Up", I agree to the terms and conditions of hellotter
-                        </Text>
-                    <TouchableOpacity
-                        style={styles.submitButton}
-                        // disabled={!formValid}
-                        onPress={() => signUp(email, password, fullname, confirmPassword)}
-                    >
-                        <Text style={styles.submitButtonText}> SIGN UP </Text>
-                    </TouchableOpacity>
                 </View>
+                <View style={styles.parent2}>
+                    <View style={styles.child2}>
+                        <View>
+                            <TextInput
+                                style={styles.input}
+                                label="Fullname"
+                                value={fullname}
+                                underlineColor="#fff"
+                                onChangeText={(value) => setFullName(value)}
+                            />
+                            <HelperText
+                                type="error"
+                                visible={errorMessage1.length != ""}
+                            >
+                                {errorMessage1}
+                            </HelperText>
+                            <TextInput
+                                style={styles.input}
+                                label="Email"
+                                value={email}
+                                underlineColor="#fff"
+                                onChangeText={(value) => setEmail(value)}
+                            />
+                            <HelperText
+                                type="error"
+                                visible={errorMessage2.length != ""}
+                            >
+                                {errorMessage2}
+                            </HelperText>
+                            <TextInput
+                                style={styles.input}
+                                label="Password"
+                                value={password}
+                                underlineColor="#fff"
+                                secureTextEntry
+                                onChangeText={(value) => setPassword(value)}
+                            />
+                            <HelperText
+                                type="error"
+                                visible={errorMessage3.length != ""}
+                            >
+                                {errorMessage3}
+                            </HelperText>
+                            <TextInput
+                                style={styles.input}
+                                label="Confirm Password"
+                                value={confirmPassword}
+                                underlineColor="#fff"
+                                secureTextEntry
+                                onChangeText={(value) => setConfirmPassword(value)}
+                            />
+                            <HelperText
+                                type="error"
+                                visible={errorMessage4.length != ""}
+                            >
+                                {errorMessage4}
+                            </HelperText>
+                            <Text style={styles.agreement}>
+                                By Clicking "Sign Up", I agree to the terms and conditions of hellotter
+                        </Text>
+                            <TouchableOpacity
+                                style={styles.submitButton}
+                                // disabled={!formValid}
+                                onPress={() => signUp(email, password, fullname, confirmPassword)}
+                            >
+                                <Text style={styles.submitButtonText}> SIGN UP </Text>
+                            </TouchableOpacity>
+                        </View>
 
 
-                <View style={styles.view2}>
-                    <View style={styles.view3}>
-                        <Text size={15} color="white">
-                            {"Already a Member? "}
+                        <View style={styles.view2}>
+                            <View style={styles.view3}>
+                                <Text size={15} color="white">
+                                    {"Already a Member? "}
+                                </Text>
+                                <TouchableOpacity onPress={() => navigation.goBack()}>
+                                    <Text color="white" size={15} style={styles.login}>
+                                        Sign in
                         </Text>
-                        <TouchableOpacity onPress={() => navigation.goBack()}>
-                            <Text color="white" size={15} style={styles.login}>
-                                Sign in
+                                </TouchableOpacity>
+                            </View>
+                            <Text style={styles.version}>
+                                V1.0.1
                         </Text>
-                        </TouchableOpacity>
+                        </View>
+
                     </View>
-                    <Text style={styles.version}>
-                        V1.0.1
-                        </Text>
                 </View>
-
                 {isLoading &&
                     <View style={styles.spinner}>
                         <ActivityIndicator size="large" color="#0000ff" />
                     </View>
                 }
-
-            </ImageBackground>
+            </View>
         </KeyboardAwareScrollView>
+        // <KeyboardAwareScrollView
+        //     showsVerticalScrollIndicator={false}
+        //     enableAutomaticScroll
+        //     extraScrollHeight={10}
+        //     enableOnAndroid={true}
+        //     extraHeight={Platform.select({ android: 100 })}
+        //     style={styles.scroll}
+        // >
+        //     <ImageBackground
+        //         source={require("../../assets/background.png")}
+        //         style={styles.image}
+        //     >
+
+
+        //         {isLoading &&
+        //             <View style={styles.spinner}>
+        //                 <ActivityIndicator size="large" color="#0000ff" />
+        //             </View>
+        //         }
+
+        //     </ImageBackground>
+        // </KeyboardAwareScrollView>
 
 
 
@@ -210,14 +231,10 @@ const styles = StyleSheet.create({
     },
     input: {
         backgroundColor: "transparent",
-        alignSelf: "stretch",
     },
     icon: {
-        marginTop: screenHeight * .01,
-        marginBottom: screenHeight * .05,
         width: 100,
         height: 100,
-        alignSelf: 'center'
     },
     error: {
         marginBottom: 5,
@@ -261,5 +278,34 @@ const styles = StyleSheet.create({
     view3: {
         flexDirection: 'row',
         marginBottom: 10,
+    },
+    parent1: {
+        flex: 1,
+        backgroundColor: "#33FFFF"
+    },
+    parent2: {
+        height: screenHeight * .85,
+        width: "100%",
+        alignSelf: 'center',
+        backgroundColor: "#3389FF",
+        transform: [{ scaleX: 1.5 }],
+        borderTopStartRadius: 300,
+        borderTopEndRadius: 300,
+        overflow: 'hidden',
+
+    },
+    child1: {
+        height: screenHeight * .15,
+        backgroundColor: "#33FFFF",
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    child2: {
+        flex:1,
+        transform: [{ scaleX: 0.70 }],
+        backgroundColor: '#3389FF',
+        justifyContent: "space-between",
+        paddingTop: 40,
+        paddingHorizontal: 40
     },
 });
