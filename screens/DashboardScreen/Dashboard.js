@@ -35,7 +35,13 @@ export default function Dashboard({ navigation }) {
         <DefHeader />
         {/* <View style={styles.videoView}> */}
 
-        <ImageBackground source={require('../../assets/BGthrone.png')} style={{ flexGrow: 1, resizeMode: 'cover' }}>
+        <ImageBackground source={require('../../assets/backgrounddashboard.png')} style={{ flexGrow: 1, resizeMode: 'cover' }}>
+          <TouchableOpacity onPress={() => signOut()}>
+            <View style={{ height: 20, width: 60, backgroundColor: 'white' }}>
+              <Text>Sign Out</Text>
+            </View>
+
+          </TouchableOpacity>
         </ImageBackground>
         {/* </View> */}
 

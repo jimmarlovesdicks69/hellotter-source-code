@@ -23,6 +23,8 @@ import {
   mediaDevices,
   registerGlobals,
 } from 'react-native-webrtc';
+import DefHeader from '../../components/DefHeader';
+
 const { width, height } = Dimensions.get('window');
 import io from 'socket.io-client';
 import _ from 'lodash';
@@ -481,6 +483,7 @@ export default class VideoCall extends Component {
   renderVideo() {
     return (
       <View style={{ flex: 1 }}>
+                <DefHeader />
         <StatusBar barStyle="light-content" />
         <View style={styles.toolbar}>
           <TouchableOpacity onPress={() => this.backtouserList()}>
@@ -489,27 +492,32 @@ export default class VideoCall extends Component {
           <Text style={styles.toolbarTitle}>{this.currUser}</Text>
           <Text style={styles.toolbarButton} />
         </View>
-        <View style={styles.container}>
-        <View style={styles.rtcview}>
-          {this.state.localStream && <RTCView style={styles.rtc} streamURL={this.state.localStream.toURL()} />}
-        </View>
+        <ImageBackground source={require('../../assets/backgrounddashboard.png')} style={{ flexGrow: 1,alignItems: 'center', paddingTop:50}}>
+       
+        <TouchableOpacity onPress={()=> this.switchCamera()}>
+            <Image source={require('../../assets/switchcamera.png')} style = {styles.ImageClass} />
+        </TouchableOpacity>
 
         <View style={styles.rtcview}>
-          {this.state.remoteStream && <RTCView style={styles.rtc} streamURL={this.state.remoteStream.toURL()} />}
-        </View>
-        <View style={styles.container}>
+          {this.state.localStream && <RTCView style={styles.rtc} streamURL={this.state.localStream.toURL()} />}
+        </View> 
+
+        <View style={styles.rtcview1}>
+          {this.state.remoteStream && <RTCView style={styles.rtc1} streamURL={this.state.remoteStream.toURL()} />}
+        </View> 
+      
           <Button  onPress={() => this.callUser()} title="Call" color="#81c04d" />
           {/* <Button  onPress={() => this.switchCamera()} title="Switch Camera" color="#81c04d" /> */}
 
           <Text style={[styles.instructions, { color: 'grey' }]}>{this.state.callResponse}</Text>
+          </ImageBackground>
         </View>
-        </View>
-      </View>
     );
   }
   renderLogin() {
     return (
       <View style={{ flex: 1 }}>
+        <DefHeader />
         <StatusBar barStyle="light-content" />
         <View style={styles.toolbar}>
           <TouchableOpacity onPress={()=>{this.props.navigation.navigate('Dashboard')}}>
@@ -518,6 +526,8 @@ export default class VideoCall extends Component {
           <Text style={styles.toolbarTitle}>Make a video call</Text>
           <Text style={styles.toolbarButton} />
         </View>
+        <ImageBackground source={require('../../assets/backgrounddashboard.png')} style={{ flexGrow: 1}}>
+
         <View style={styles.container}>
           <Text style={styles.instructions}>Enter User Name :</Text>
           <TextInput
@@ -535,12 +545,15 @@ export default class VideoCall extends Component {
           <Button  style={styles.clickButton} onPress={() => this.onPressLogin()} title="Click" color="#81c04d"/>
           <Text style={styles.instructions}>{this.state.message}</Text>
         </View>
+        </ImageBackground>
       </View>
     );
   }
   renderList() {
     return (
-      <View style={{ flex: 1 }}>
+      
+      <View  style={{ flex: 1 }}>
+        <DefHeader />
         <StatusBar barStyle="light-content" />
         <View style={styles.toolbar}>
         <TouchableOpacity onPress={()=>{this.props.navigation.navigate('Dashboard')}}>
@@ -549,6 +562,7 @@ export default class VideoCall extends Component {
           <Text style={styles.toolbarTitle}>My Contacts</Text>
           <Text style={styles.toolbarButton} />
         </View>
+        <ImageBackground source={require('../../assets/backgrounddashboard.png')} style={{ flexGrow: 1}}>
 
         <ListView
           //style={{marginTop: 10}}
@@ -556,6 +570,7 @@ export default class VideoCall extends Component {
           dataSource={this.state.dataSource}
           renderRow={rowData => this.renderRow(rowData)}
         />
+        </ImageBackground>
       </View>
     );
   }
@@ -629,14 +644,39 @@ const styles = StyleSheet.create({
   rtcview: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: '40%',
-    width: '80%',
-    backgroundColor: 'black',
-    marginBottom:10
+    height: '30%',
+    width: '38%',
+    backgroundColor: 'transparent',
+    marginBottom:10,
+    borderRadius:10,
+    borderWidth: 1,
+    borderColor: 'transparent'
   },
 
   rtc: {
     width: '80%',
     height: '100%',
+
+  },
+  rtcview1: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '40%',
+    width: '42%',
+    backgroundColor: 'transparent',
+    marginBottom:10,
+    borderRadius:10,
+    borderWidth: 1,
+    borderColor: 'transparent'
+  },
+
+  rtc1: {
+    width: '100%',
+    height: '100%',
+
+  },
+  ImageClass: {
+    height: 40, // Provide your own width, height and frame rate here
+    width: 40,
   },
 });

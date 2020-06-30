@@ -179,7 +179,7 @@ export default function Authentication({ navigation }) {
                 </TouchableOpacity>
               </View>
               <Text style={styles.version}>
-                V1.0.1
+                V1.1.1
                     </Text>
             </View>
           </View>
