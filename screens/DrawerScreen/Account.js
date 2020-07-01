@@ -4,7 +4,6 @@ import Text from '../../components/Text'
 
 import DefHeader from '../../components/DefHeader';
 import { UserInfoContext } from '../../contexts/UserInfoContext';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function Account({ navigation }) {
@@ -43,7 +42,7 @@ export default function Account({ navigation }) {
                         <Text color="black" size={18}>Strype payment</Text>
                         <Text color="black" size={18}></Text>
                     </View>
-                    <MaterialIcons name="navigate-next" size={25} color="black" />
+                    {/* <MaterialIcons name="navigate-next" size={25} color="black" /> */}
                 </View>
             </TouchableOpacity>
             <View style={{ height: 40 }} />
@@ -59,7 +58,7 @@ export default function Account({ navigation }) {
                         <Text color="black" size={18}>$120</Text>
                         <Text color="black" size={18}></Text>
                     </View>
-                    <MaterialIcons name="navigate-next" size={25} color="black" />
+                    {/* <MaterialIcons name="navigate-next" size={25} color="black" /> */}
 
                 </View>
             </TouchableOpacity>

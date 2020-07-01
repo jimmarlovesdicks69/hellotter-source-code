@@ -20,15 +20,15 @@ import DefButton from "../../components/DefButton";
 import Text from "../../components/Text";
 
 
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 
-const socket = io.connect('http://192.168.0.9:4443', { transports: ['websocket'] });
+// const socket = io.connect('http://192.168.0.9:4443', { transports: ['websocket'] });
 
 //const socket = io.connect('https://evening-shore-95443.herokuapp.com/', { transports: ['websocket'] });
 
-socket.on('connect', () => {
-  console.log('Socket:', socket.connected); // true
-});
+// socket.on('connect', () => {
+//   console.log('Socket:', socket.connected); // true
+// });
 
 
 const screenHeight = Math.round(Dimensions.get('window').height);
@@ -96,14 +96,14 @@ export default function Authentication({ navigation }) {
     console.log('message from socket:', data);
   }
 
-  socket.on('message', function (message) {
-    var data = message;
-    switch (data.type) {
-      case 'login':
-        onLogin(data);
-        break;
-    }
-  });
+  // socket.on('message', function (message) {
+  //   var data = message;
+  //   switch (data.type) {
+  //     case 'login':
+  //       onLogin(data);
+  //       break;
+  //   }
+  // });
 
   return (
     <KeyboardAwareScrollView
@@ -241,8 +241,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
   },
   error: {
-    marginBottom: 5,
-    fontFamily: "regular"
+    marginBottom: 5
   },
   checkBox: {
     backgroundColor: "transparent",

@@ -30,12 +30,11 @@ export default function Dashboard({ navigation }) {
   }, [showFilterPanel])
 
   return (
-    <Fragment>
       <View style={styles.wrapper}>
         <DefHeader />
         {/* <View style={styles.videoView}> */}
 
-        <ImageBackground source={require('../../assets/backgrounddashboard.png')} style={{ flexGrow: 1, resizeMode: 'cover' }}>
+        <ImageBackground source={require('../../assets/BGthrone.png')} style={{ flexGrow: 1, resizeMode: 'cover' }}>
           <TouchableOpacity onPress={() => signOut()}>
             <View style={{ height: 20, width: 60, backgroundColor: 'white' }}>
               <Text>Sign Out</Text>
@@ -54,7 +53,6 @@ export default function Dashboard({ navigation }) {
           <FilterPanel onBackdropPressed={() => setShowFilterPanel(false)} showFilterPanel={showFilterPanel} />
         }
       </View>
-    </Fragment>
   );
 };
 

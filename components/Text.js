@@ -8,7 +8,6 @@ const Text = (props) => {
 
         return {
             fontSize: size,
-            fontFamily: weigth,
             color
         }
     }

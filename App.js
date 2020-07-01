@@ -19,7 +19,7 @@ import Signup from "./screens/SignupScreen/Signup";
 import ForgotPassword from "./screens/ForgotPasswordScreen/ForgotPassword";
 import Splash from './screens/SplashScreen/Splash';
 import Dashboard from './screens/DashboardScreen/Dashboard'
-import VideoCall from './screens/DashboardScreen/VideoCall'
+//import VideoCall from './screens/DashboardScreen/VideoCall'
 
 import Contacts from './screens/ControlPanel/Contacts'
 import Favorites from "./screens/ControlPanel/Favorites";
@@ -40,26 +40,26 @@ import CustomDrawer from "./components/CustomDrawer";
 import SendInvites from "./screens/ControlPanel/SendInvites";
 
 
-import io from 'socket.io-client';
-const socket = io.connect('http://192.168.0.9:4443', { transports: ['websocket'] });
+// import io from 'socket.io-client';
+// const socket = io.connect('http://192.168.0.9:4443', { transports: ['websocket'] });
 
 //const socket = io.connect('https://evening-shore-95443.herokuapp.com/', { transports: ['websocket'] });
 
-socket.on('connect', () => {
-  console.log('Socket:',socket.connected); // true
-});
+// socket.on('connect', () => {
+//   console.log('Socket:',socket.connected); // true
+// });
 
-socket.on('message', function (message) {
-  console.log('hello', message);
-  var data = message;
-  ///setCallResponse('');
-  switch (data.type) {
-    case 'handleVideoOffer':
-      console.log('getting called');
-      //handleVideoOffer(data);
-      break;
-  }
-});
+// socket.on('message', function (message) {
+//   console.log('hello', message);
+//   var data = message;
+//   ///setCallResponse('');
+//   switch (data.type) {
+//     case 'handleVideoOffer':
+//       console.log('getting called');
+//       //handleVideoOffer(data);
+//       break;
+//   }
+// });
 global.globalUserInfo = [];
 global.globalContacts = [];
 global.globalActiveUsers = [];
@@ -132,25 +132,25 @@ export default function App() {
 
   const [loginState, dispatch] = React.useReducer(loginReducer, initialLoginState)
       
-  socket.on('roommessage', function (message) {
-    var data = message;
-    switch (data.type) {
-      case 'login':
-        console.log('New user : ' + data.username);
-        global.globalActiveUsers.push(data.username);
-        break;
-      case 'disconnect':
-        global.globalActiveUsers.forEach((item, index) => {
-            if(item === data.username) {
-                console.log('New user : ' + data.username);
-                global.globalActiveUsers.splice(index, 1);
-            }
-        });
-        break;
-      default:
-        break;
-    }
-  });
+  // socket.on('roommessage', function (message) {
+  //   var data = message;
+  //   switch (data.type) {
+  //     case 'login':
+  //       console.log('New user : ' + data.username);
+  //       global.globalActiveUsers.push(data.username);
+  //       break;
+  //     case 'disconnect':
+  //       global.globalActiveUsers.forEach((item, index) => {
+  //           if(item === data.username) {
+  //               console.log('New user : ' + data.username);
+  //               global.globalActiveUsers.splice(index, 1);
+  //           }
+  //       });
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // });
 
   const authContext = useMemo(() => ({
     signIn: async (isFound,contacts) => {
@@ -271,10 +271,10 @@ export default function App() {
                   name="Dashboard"
                   component={DashBoardScreen}
                 />
-                  <Stack.Screen
+                  {/* <Stack.Screen
                   name="VideoCall"
                   component={VideoCall}
-                />
+                /> */}
                 <Stack.Screen
                   name="Contacts"
                   component={Contacts}

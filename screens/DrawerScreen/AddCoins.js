@@ -4,7 +4,6 @@ import DefHeader from '../../components/DefHeader';
 import Text from '../../components/Text'
 import { UserInfoContext } from '../../contexts/UserInfoContext';
 import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import * as Animatable from 'react-native-animatable';
 // import { ScrollView } from 'react-native-gesture-handler';
 
@@ -33,7 +32,7 @@ export default function AddCoins() {
                         onPress={() => setPickerVisible(true)}>
                         <Image source={require('../../assets/visa.png')} style={{ marginRight: 5 }} />
                         <Text color="black" size={17} style={{ marginRight: 15 }}>{cardType}</Text>
-                        <MaterialIcons name="keyboard-arrow-down" size={20} />
+                        {/* <MaterialIcons name="keyboard-arrow-down" size={20} /> */}
                     </TouchableOpacity>
 
                 </View>
