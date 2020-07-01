@@ -12,7 +12,7 @@
 		0A54D19424ABEAB2006C4EBA /* backgrounddashboarda@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54D19124ABEAB2006C4EBA /* backgrounddashboarda@3x.png */; };
 		0A54D19524ABEAB2006C4EBA /* backgrounddashboarda@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54D19224ABEAB2006C4EBA /* backgrounddashboarda@2x.png */; };
 		0A54D19624ABEAB2006C4EBA /* backgrounddashboarda.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54D19324ABEAB2006C4EBA /* backgrounddashboarda.png */; };
-		0A8E180D24ABF40200F4C1DD /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A8E180A24ABF40200F4C1DD /* main.jsbundle */; };
+		0AC332FF24AC7FC8001EA2E0 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 0AC332FE24AC7FC8001EA2E0 /* main.jsbundle */; };
 		0AC5CC3624ABCD80005A2195 /* check-symbol@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AC5CBA724ABCD7F005A2195 /* check-symbol@3x.png */; };
 		0AC5CC3724ABCD80005A2195 /* hellootter_singup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AC5CBA824ABCD7F005A2195 /* hellootter_singup@2x.png */; };
 		0AC5CC3824ABCD80005A2195 /* Image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AC5CBA924ABCD7F005A2195 /* Image@3x.png */; };
@@ -218,7 +218,7 @@
 		0A54D19124ABEAB2006C4EBA /* backgrounddashboarda@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgrounddashboarda@3x.png"; sourceTree = "<group>"; };
 		0A54D19224ABEAB2006C4EBA /* backgrounddashboarda@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgrounddashboarda@2x.png"; sourceTree = "<group>"; };
 		0A54D19324ABEAB2006C4EBA /* backgrounddashboarda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgrounddashboarda.png; sourceTree = "<group>"; };
-		0A8E180A24ABF40200F4C1DD /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		0AC332FE24AC7FC8001EA2E0 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		0AC5CBA724ABCD7F005A2195 /* check-symbol@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check-symbol@3x.png"; sourceTree = "<group>"; };
 		0AC5CBA824ABCD7F005A2195 /* hellootter_singup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hellootter_singup@2x.png"; sourceTree = "<group>"; };
 		0AC5CBA924ABCD7F005A2195 /* Image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Image@3x.png"; sourceTree = "<group>"; };
@@ -647,7 +647,6 @@
 		13B07FAE1A68108700A75B9A /* hellotter */ = {
 			isa = PBXGroup;
 			children = (
-				0A8E180A24ABF40200F4C1DD /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -725,6 +724,7 @@
 		A215F0BCE8334E1B8D5C1CA3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0AC332FE24AC7FC8001EA2E0 /* main.jsbundle */,
 				0AC5CBA624ABCD7F005A2195 /* assets */,
 				A10ACEFC15024B2C8AC091F3 /* AntDesign.ttf */,
 				AE216050F3A143DB8CFC21A9 /* Entypo.ttf */,
@@ -844,7 +844,7 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 43W8U5X85T;
 						LastSwiftMigration = 1120;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -913,7 +913,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A8E180D24ABF40200F4C1DD /* main.jsbundle in Resources */,
 				0AC5CC5824ABCD80005A2195 /* stickers-115@2x.png in Resources */,
 				0AC5CC8924ABCD80005A2195 /* Account.png in Resources */,
 				0AC5CC5F24ABCD80005A2195 /* email2@2x.png in Resources */,
@@ -1054,6 +1053,7 @@
 				0AC5CC8124ABCD80005A2195 /* visa@2x.png in Resources */,
 				0AC5CC7224ABCD80005A2195 /* switchcamera.png in Resources */,
 				0AC5CC9524ABCD80005A2195 /* background.png in Resources */,
+				0AC332FF24AC7FC8001EA2E0 /* main.jsbundle in Resources */,
 				0AC5CC4124ABCD80005A2195 /* maskicon-24@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1444,10 +1444,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 43W8U5X85T;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -1491,7 +1491,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.8weekapp.Hellotter;
 				PRODUCT_NAME = hellotter;
-				PROVISIONING_PROFILE_SPECIFIER = "Hellotter Distribution Prov Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1504,10 +1504,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 43W8U5X85T;
+				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1546,7 +1546,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.8weekapp.Hellotter;
 				PRODUCT_NAME = hellotter;
-				PROVISIONING_PROFILE_SPECIFIER = "Hellotter Distribution Prov Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

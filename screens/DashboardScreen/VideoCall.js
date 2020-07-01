@@ -494,7 +494,7 @@ export default class VideoCall extends Component {
           <Text style={styles.toolbarTitle}>{this.currUser}</Text>
           <Text style={styles.toolbarButton} />
         </View>
-        <ImageBackground source={require('../../assets/backgrounddashboard.png')} style={{ flexGrow: 1,alignItems: 'center', paddingTop:50}}>
+        <ImageBackground source={require('../../assets/backgrounddashboarda.png')} style={{ flexGrow: 1,alignItems: 'center', paddingTop:50}}>
         <View style={styles.rtcview}>
         <TouchableOpacity onPress={()=> this.switchCamera()}>
             <Image source={require('../../assets/switchcamera.png')} style = {styles.ImageClass} />
@@ -528,7 +528,7 @@ export default class VideoCall extends Component {
           <Text style={styles.toolbarTitle}>Make a video call</Text>
           <Text style={styles.toolbarButton} />
         </View>
-        <ImageBackground source={require('../../assets/backgrounddashboard.png')} style={{ flexGrow: 1}}>
+        <ImageBackground source={require('../../assets/backgrounddashboarda.png')} style={{ flexGrow: 1}}>
 
         <View style={styles.container}>
           <Text style={styles.instructions}>Enter User Name :</Text>
@@ -565,7 +565,7 @@ export default class VideoCall extends Component {
           <Text style={styles.toolbarTitle}>My Contacts</Text>
           <Text style={styles.toolbarButton} />
         </View>
-        <ImageBackground source={require('../../assets/backgrounddashboard.png')} style={{ flexGrow: 1}}>
+        <ImageBackground source={require('../../assets/backgrounddashboarda.png')} style={{ flexGrow: 1}}>
 
         <ListView
           style={{marginTop: 0, backgroundColor: '#fff'}}

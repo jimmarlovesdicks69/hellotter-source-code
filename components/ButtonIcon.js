@@ -12,7 +12,7 @@ const ButtonIcon = (props) => {
             onPress={() => props.onPress()}
             buttonStyle={{ backgroundColor: 'red', borderRadius: 5, width: screenWidth * .4 }}
             title={props.title}
-            // fontFamily="regular"
+            fontFamily="regular"
         />
     );
 };

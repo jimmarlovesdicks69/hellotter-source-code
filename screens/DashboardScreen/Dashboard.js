@@ -7,6 +7,7 @@ import { AuthContext } from '../../contexts/context'
 import { UserInfoContext } from "../../contexts/UserInfoContext";
 import { ContactsContext } from "../../contexts/ConcactsContext";
 import FilterPanel from "../../components/FilterPanel";
+//import { black } from "react-native-paper/lib/typescript/src/styles/colors";
 
 export default function Dashboard({ navigation }) {
   const { signOut } = useContext(AuthContext);
@@ -30,6 +31,7 @@ export default function Dashboard({ navigation }) {
   }, [showFilterPanel])
 
   return (
+    <Fragment>
       <View style={styles.wrapper}>
         <DefHeader />
         {/* <View style={styles.videoView}> */}
@@ -53,6 +55,7 @@ export default function Dashboard({ navigation }) {
           <FilterPanel onBackdropPressed={() => setShowFilterPanel(false)} showFilterPanel={showFilterPanel} />
         }
       </View>
+    </Fragment>
   );
 };
 
@@ -60,7 +63,6 @@ export default function Dashboard({ navigation }) {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-
   },
   videoView: {
     flexGrow: 1,
