@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Image } from 'react-native'
+import { View, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native'
 
 import DefHeader from '../../components/DefHeader';
 import Profile from '../../components/Profile';
@@ -13,6 +13,7 @@ import { UserInfoContext } from '../../contexts/UserInfoContext';
 import { getInitials } from '../../Utils/Utils';
 
 
+const screenHeight = Math.round(Dimensions.get('window').height);
 export default function Favorites() {
     const { userInfo } = useContext(UserInfoContext)
 
@@ -83,7 +84,7 @@ export default function Favorites() {
                     })}
                 </View>
             </ScrollView>
-            <View style={{marginBottom:60}}/>
+            <View style={{marginBottom:Platform.OS == 'ios'?screenHeight*.01: screenHeight * .10}}/>
             <ControlPanel />
         </View>
     )

@@ -117,7 +117,7 @@ export default function Authentication({ navigation }) {
       <View style={styles.parent1}>
         <View style={styles.child1}>
           <SafeAreaView>
-            <Image style={styles.icon} source={require('../../assets/Hellotter-logo-white.png')} />
+            <Image style={styles.icon} source={require('../../assets/hellootter_singup.png')} resizeMode={'cover'}/>
           </SafeAreaView>
         </View>
         <View style={styles.parent2}>
@@ -237,8 +237,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   icon: {
-    width: 100,
-    height: 100,
+    width: screenWidth* 0.2
   },
   input: {
     backgroundColor: "transparent",
@@ -249,9 +248,14 @@ const styles = StyleSheet.create({
   checkBox: {
     backgroundColor: "transparent",
     borderColor: "transparent",
+    alignSelf:'stretch',
     marginTop: 20,
+    alignSelf:'center',
     marginBottom: 10,
-    padding: 0
+    width:screenWidth,
+    paddingHorizontal:40,
+    padding: 0,
+    // margin:0
   },
   forgotPassword: {
     color: 'white',

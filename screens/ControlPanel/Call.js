@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image, Dimensions } from 'react-native';
 import { UserInfoContext } from '../../contexts/UserInfoContext';
 import DefHeader from '../../components/DefHeader';
 import Profile from '../../components/Profile';
@@ -12,6 +12,8 @@ import ControlPanel from '../../components/ControlPanel';
 import { IconButton, useTheme } from 'react-native-paper';
 import { ContactsContext } from '../../contexts/ConcactsContext';
 
+
+const screenHeight = Math.round(Dimensions.get('window').height);
 export default function Call() {
     const { userInfo } = useContext(UserInfoContext)
     const { searchContacts,contacts } = useContext(ContactsContext)
@@ -91,7 +93,7 @@ export default function Call() {
 
 
             </ScrollView>
-            <View style={{marginBottom:60}}/>
+            <View style={{marginBottom:Platform.OS == 'ios'?screenHeight*.01: screenHeight * .10}}/>
             <ControlPanel />
         </View>
     )

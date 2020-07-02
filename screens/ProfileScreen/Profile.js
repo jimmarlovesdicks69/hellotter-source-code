@@ -20,9 +20,10 @@ const Profile = ({ navigation }) => {
     const { colors } = useTheme();
 
     return (
-        <SafeAreaView style={{backgroundColor:'white'}}>
-            <ScrollView>
-                <View style={styles.wrapper}>
+
+        <ScrollView>
+            <View style={styles.wrapper}>
+                <SafeAreaView style={{ backgroundColor: 'white' }}>
                     <View style={styles.avatarContainer}>
                         <View style={styles.navigationContainer}>
                             <TouchableOpacity onPress={() => { navigation.goBack() }}>
@@ -90,13 +91,13 @@ const Profile = ({ navigation }) => {
                         </Text>
                         </TouchableOpacity>
                     </View>
+                </SafeAreaView>
+                {showSignout &&
+                    <LogoutConfirmation onPressCancel={() => setShowSignOut(false)} onPressLogout={() => signOut()} />
+                }
+            </View>
+        </ScrollView>
 
-                    {showSignout &&
-                        <LogoutConfirmation onPressCancel={() => setShowSignOut(false)} onPressLogout={() => signOut()} />
-                    }
-                </View>
-            </ScrollView>
-        </SafeAreaView>
     );
 };
 

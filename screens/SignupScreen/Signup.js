@@ -4,7 +4,7 @@ import { TextInput, HelperText } from "react-native-paper";
 import { validateEmail, setNameFirstLetterCapital } from '../../Utils/Utils';
 import * as firebase from 'firebase';
 import { ScrollView } from "react-native-gesture-handler";
-
+import DefButton from "../../components/DefButton";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import Text from '../../components/Text';
@@ -86,7 +86,7 @@ export default function Signup({ navigation }) {
             <View style={styles.parent1}>
                 <View style={styles.child1}>
                     <SafeAreaView>
-                        <Image style={styles.icon} source={require('../../assets/Hellotter-logo-white.png')} />
+                        <Image style={styles.icon} source={require('../../assets/hellootter_singup.png')} resizeMode={'cover'}/>
                     </SafeAreaView>
                 </View>
                 <View style={styles.parent2}>
@@ -149,13 +149,7 @@ export default function Signup({ navigation }) {
                             <Text style={styles.agreement}>
                                 By Clicking "Sign Up", I agree to the terms and conditions of hellotter
                         </Text>
-                            <TouchableOpacity
-                                style={styles.submitButton}
-                                // disabled={!formValid}
-                                onPress={() => signUp(email, password, fullname, confirmPassword)}
-                            >
-                                <Text style={styles.submitButtonText}> SIGN UP </Text>
-                            </TouchableOpacity>
+                            <DefButton text="SIGNUP" onPress={() => signUp(email, password, fullname, confirmPassword)}/>
                         </View>
 
 
@@ -235,8 +229,7 @@ const styles = StyleSheet.create({
         backgroundColor: "transparent",
     },
     icon: {
-        width: 100,
-        height: 100,
+        width: screenWidth* 0.2
     },
     error: {
         marginBottom: 5,

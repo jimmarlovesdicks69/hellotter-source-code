@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Image,ActivityIndicator } from 'react-native'
+import { View, StyleSheet, Image,ActivityIndicator, SafeAreaView } from 'react-native'
 import Text from '../../components/Text'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { TextInput, HelperText } from "react-native-paper";
@@ -54,7 +54,7 @@ export default function ChangePassword({ route,navigation }) {
 
     return (
         <View styles={styles.wrapper}>
-
+            <SafeAreaView>
             {!isReset ?
                 <View>
                     <View style={styles.titleView}>
@@ -121,6 +121,7 @@ export default function ChangePassword({ route,navigation }) {
                     </View>
                 </View>
             }
+            </SafeAreaView>
             {isLoading &&
                 <View style={styles.spinner}>
                     <ActivityIndicator size="large" color="#0000ff" />

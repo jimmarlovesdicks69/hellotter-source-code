@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Image,Dimensions,ActivityIndicator } from 'react-native'
+import { View, StyleSheet, Image, Dimensions, ActivityIndicator, SafeAreaView } from 'react-native'
 import Text from '../../components/Text'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { TextInput, HelperText } from "react-native-paper";
@@ -40,8 +40,8 @@ export default function ForgotPassword({ navigation }) {
                 } else {
                     if (response['message'] == "email already verified") {
                         //setIsReset(true)
-                        
-                        navigation.navigate('ChangePassword', { 'email': email,'from': 'login' })
+
+                        navigation.navigate('ChangePassword', { 'email': email, 'from': 'login' })
                     } else if (response['message'] == "email already sent") {
                         alert('Please Check your email')
                         setIsReset(true)
@@ -59,60 +59,61 @@ export default function ForgotPassword({ navigation }) {
     return (
         <View style={styles.wrapper}>
 
+            <SafeAreaView>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Text color='black' size={20}>Back</Text>
+                </TouchableOpacity>
+                {!isReset ?
+                    <View>
+                        <View style={styles.titleView}>
+                            <Text color='black' size={25} style={{ fontWeight: 'bold' }}>Reset Password</Text>
+                            <Text color='black' size={18} style={{ marginTop: 15, textAlign: 'center' }}>Enter your email. We'll send you a link to reset your password</Text>
+                        </View>
+                        <View style={styles.formView}>
+                            <TextInput
+                                style={styles.input}
+                                label='Email'
+                                theme={{ colors: { placeholder: 'black', text: 'black', primary: 'black' } }}
+                                value={email}
+                                underlineColor="black"
+                                onChangeText={(value) => setEmail(value)}
+                            />
+                            <HelperText
+                                style={styles.error}
+                                type="error"
+                                visible={errorMessage1}
+                            >
+                                {errorMessage1}
+                            </HelperText>
 
-            <TouchableOpacity onPress={()=> navigation.goBack()}>
-                <Text color='black' size={20}>Back</Text>
-            </TouchableOpacity>
-            {!isReset ?
-                <View>
-                    <View style={styles.titleView}>
-                        <Text color='black' size={25} style={{ fontWeight: 'bold' }}>Reset Password</Text>
-                        <Text color='black' size={18} style={{ marginTop: 15, textAlign: 'center' }}>Enter your email. We'll send you a link to reset your password</Text>
+                        </View>
+                        <View style={styles.buttonView}>
+                            <DefButton text='RESET PASSWORD' onPress={() => { resetPassword(email) }}></DefButton>
+                        </View>
+                        <View style={styles.view3}>
+                            <Text color="black">{"Remember password? "}</Text>
+                            <TouchableOpacity onPress={() => { navigation.goBack() }}>
+                                <Text color="black" style={{ textDecorationLine: 'underline', }}>Log In</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <View style={styles.formView}>
-                        <TextInput
-                            style={styles.input}
-                            label='Email'
-                            theme={{ colors: { placeholder: 'black', text: 'black', primary: 'black' } }}
-                            value={email}
-                            underlineColor="black"
-                            onChangeText={(value) => setEmail(value)}
-                        />
-                        <HelperText
-                            style={styles.error}
-                            type="error"
-                            visible={errorMessage1}
-                        >
-                            {errorMessage1}
-                        </HelperText>
-
+                    :
+                    <View>
+                        <View style={styles.titleView}>
+                            <Text color='black' size={25} style={{ fontWeight: 'bold' }}>Email Sent</Text>
+                        </View>
+                        <View style={styles.email}>
+                            <Image source={require('../../assets/email2.png')}></Image>
+                        </View>
+                        <View style={styles.titleView}>
+                            <Text color='black' size={18} style={{ marginTop: 15, textAlign: 'center' }}>Check your email for instruction to reset your password.</Text>
+                        </View>
+                        <View style={styles.formView}>
+                            <DefButton text='RESET PASSWORD' onPress={() => { navigation.navigate('ChangePassword', { 'email': email }) }}></DefButton>
+                        </View>
                     </View>
-                    <View style={styles.buttonView}>
-                        <DefButton text='RESET PASSWORD' onPress={() => {resetPassword(email)}}></DefButton>
-                    </View>
-                    <View style={styles.view3}>
-                        <Text color="black">{"Remember password? "}</Text>
-                        <TouchableOpacity onPress={() => { navigation.goBack() }}>
-                            <Text color="black" style={{ textDecorationLine: 'underline', }}>Log In</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                :
-                <View>
-                    <View style={styles.titleView}>
-                        <Text color='black' size={25} style={{ fontWeight: 'bold' }}>Email Sent</Text>
-                    </View>
-                    <View style={styles.email}>
-                        <Image source={require('../../assets/email2.png')}></Image>
-                    </View>
-                    <View style={styles.titleView}>
-                        <Text color='black' size={18} style={{ marginTop: 15, textAlign: 'center' }}>Your request is already confirmed, please check your email to see the instructions to reset Password</Text>
-                    </View>
-                    <View style={styles.formView}>
-                        <DefButton text='RESET PASSWORD' onPress={() => { navigation.navigate('ChangePassword', { 'email': email }) }}></DefButton>
-                    </View>
-                </View>
-            }
+                }
+            </SafeAreaView>
             {isLoading &&
                 <View style={styles.spinner}>
                     <ActivityIndicator size="large" color="#0000ff" />
@@ -153,7 +154,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     view3: {
-        alignSelf: 'center', 
+        alignSelf: 'center',
         flexDirection: 'row',
     },
     spinner: {
@@ -166,5 +167,5 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
 
-    
+
 });
