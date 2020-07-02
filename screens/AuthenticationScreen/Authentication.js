@@ -117,7 +117,7 @@ export default function Authentication({ navigation }) {
       <View style={styles.parent1}>
         <View style={styles.child1}>
           <SafeAreaView>
-          <Image style={styles.icon} source={require('../../assets/Hellotter-logo-white.png')} />
+            <Image style={styles.icon} source={require('../../assets/Hellotter-logo-white.png')} />
           </SafeAreaView>
         </View>
         <View style={styles.parent2}>
@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   child2: {
-    flex:1,
+    flex: 1,
     transform: [{ scaleX: 0.70 }],
     backgroundColor: '#3389FF',
     justifyContent: "space-between",
