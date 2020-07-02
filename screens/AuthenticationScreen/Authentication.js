@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
-  ActivityIndicator
+  ActivityIndicator,
+  SafeAreaView
 } from "react-native";
 import { TextInput, HelperText } from "react-native-paper";
 import { validateEmail } from '../../Utils/Utils';
@@ -115,7 +116,9 @@ export default function Authentication({ navigation }) {
     >
       <View style={styles.parent1}>
         <View style={styles.child1}>
-          <Image style={styles.icon} source={require('../../assets/Hellotter-logo-white.png')} />
+          <SafeAreaView>
+            <Image style={styles.icon} source={require('../../assets/Hellotter-logo-white.png')} />
+          </SafeAreaView>
         </View>
         <View style={styles.parent2}>
           <View style={styles.child2}>
@@ -301,7 +304,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   child2: {
-    flex:1,
+    flex: 1,
     transform: [{ scaleX: 0.70 }],
     backgroundColor: '#3389FF',
     justifyContent: "space-between",

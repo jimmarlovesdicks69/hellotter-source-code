@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions, Image, Platform, ActivityIndicator, ToastAndroid } from 'react-native';
+import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions, Image, Platform, ActivityIndicator, ToastAndroid, SafeAreaView } from 'react-native';
 import { TextInput, HelperText } from "react-native-paper";
 import { validateEmail, setNameFirstLetterCapital } from '../../Utils/Utils';
 import * as firebase from 'firebase';
@@ -85,7 +85,9 @@ export default function Signup({ navigation }) {
         >
             <View style={styles.parent1}>
                 <View style={styles.child1}>
-                    <Image style={styles.icon} source={require('../../assets/Hellotter-logo-white.png')} />
+                    <SafeAreaView>
+                        <Image style={styles.icon} source={require('../../assets/Hellotter-logo-white.png')} />
+                    </SafeAreaView>
                 </View>
                 <View style={styles.parent2}>
                     <View style={styles.child2}>
@@ -301,7 +303,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     child2: {
-        flex:1,
+        flex: 1,
         transform: [{ scaleX: 0.70 }],
         backgroundColor: '#3389FF',
         justifyContent: "space-between",

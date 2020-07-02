@@ -239,7 +239,7 @@ export default function App() {
 
   return (
     <PaperProvider theme={theme}>
-      <StatusBar hidden={true} />
+      <StatusBar hidden={true} backgroundColor='#33FFFF'/>
       <AuthContext.Provider value={authContext}>
       <ContactsContextProvider>
         <NavigationContainer>
