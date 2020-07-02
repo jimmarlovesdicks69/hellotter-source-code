@@ -158,6 +158,7 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* hellotterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* hellotterTests.m */; };
+		2F990FBC24AD9C7600CC9F6B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F990FB924AD9C7500CC9F6B /* GoogleService-Info.plist */; };
 		565B0EF92A3001C0771804AC /* libPods-hellotter-hellotterTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C7846E81DCCEA425211EDC /* libPods-hellotter-hellotterTests.a */; };
 		8B395A1467F8B2682DE79958 /* libPods-hellotter-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51DBA0DE013163A97B7F32FB /* libPods-hellotter-tvOS.a */; };
 /* End PBXBuildFile section */
@@ -369,6 +370,7 @@
 		23B359D35C7FC7BECC4DD990 /* Pods-hellotter-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hellotter-tvOS.release.xcconfig"; path = "Target Support Files/Pods-hellotter-tvOS/Pods-hellotter-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* hellotter-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hellotter-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* hellotter-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "hellotter-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F990FB924AD9C7500CC9F6B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		38C7846E81DCCEA425211EDC /* libPods-hellotter-hellotterTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hellotter-hellotterTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CF156E8D09A7EAD830AA656 /* Pods-hellotter-hellotterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hellotter-hellotterTests.debug.xcconfig"; path = "Target Support Files/Pods-hellotter-hellotterTests/Pods-hellotter-hellotterTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3EC02AF72741404CA79EFD27 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
@@ -484,113 +486,113 @@
 		0AC5CBA624ABCD7F005A2195 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				0AC5CBFB24ABCD7F005A2195 /* Account.png */,
+				0AC5CBFD24ABCD7F005A2195 /* Account@2x.png */,
+				0AC5CBEE24ABCD7F005A2195 /* Account@3x.png */,
+				0AC5CC0724ABCD7F005A2195 /* background.png */,
+				0AC5CC1F24ABCD7F005A2195 /* background@2x.png */,
+				0AC5CC2F24ABCD80005A2195 /* background@3x.png */,
 				0A54D19324ABEAB2006C4EBA /* backgrounddashboarda.png */,
 				0A54D19224ABEAB2006C4EBA /* backgrounddashboarda@2x.png */,
 				0A54D19124ABEAB2006C4EBA /* backgrounddashboarda@3x.png */,
-				0AC5CBA724ABCD7F005A2195 /* check-symbol@3x.png */,
-				0AC5CBA824ABCD7F005A2195 /* hellootter_singup@2x.png */,
-				0AC5CBA924ABCD7F005A2195 /* Image@3x.png */,
-				0AC5CBAA24ABCD7F005A2195 /* icon-cross@3x.png */,
-				0AC5CBAB24ABCD7F005A2195 /* icon-importcontact.png */,
-				0AC5CBAC24ABCD7F005A2195 /* filters */,
-				0AC5CBCE24ABCD7F005A2195 /* cameraplus@2x.png */,
-				0AC5CBCF24ABCD7F005A2195 /* Plus.png */,
-				0AC5CBD024ABCD7F005A2195 /* icon-importcontact-2@2x.png */,
-				0AC5CBD124ABCD7F005A2195 /* email2@2x.png */,
-				0AC5CBD224ABCD7F005A2195 /* Hellotter-logo-white@3x.png */,
-				0AC5CBD324ABCD7F005A2195 /* stop.png */,
-				0AC5CBD424ABCD7F005A2195 /* Call@3x.png */,
-				0AC5CBD524ABCD7F005A2195 /* Favorites@2x.png */,
-				0AC5CBD624ABCD7F005A2195 /* icon.png */,
-				0AC5CBD724ABCD7F005A2195 /* wallet.png */,
-				0AC5CBD824ABCD7F005A2195 /* popmail.png */,
-				0AC5CBDB24ABCD7F005A2195 /* Call@2x.png */,
-				0AC5CBDC24ABCD7F005A2195 /* Favorites@3x.png */,
-				0AC5CBDD24ABCD7F005A2195 /* Hellotter-logo-white@2x.png */,
-				0AC5CBDE24ABCD7F005A2195 /* icon-importcontact-2@3x.png */,
-				0AC5CBDF24ABCD7F005A2195 /* email2@3x.png */,
-				0AC5CBE024ABCD7F005A2195 /* cameraplus@3x.png */,
-				0AC5CBE124ABCD7F005A2195 /* Image@2x.png */,
-				0AC5CBE224ABCD7F005A2195 /* icon-cross@2x.png */,
-				0AC5CBE324ABCD7F005A2195 /* hellootter_singup@3x.png */,
-				0AC5CBE424ABCD7F005A2195 /* switchcamera.png */,
-				0AC5CBE524ABCD7F005A2195 /* check-symbol@2x.png */,
-				0AC5CBE624ABCD7F005A2195 /* Contacts@2x.png */,
-				0AC5CBE724ABCD7F005A2195 /* yahoo@2x.png */,
-				0AC5CBE824ABCD7F005A2195 /* icon-sendinvites@2x.png */,
-				0AC5CBE924ABCD7F005A2195 /* hotmail@2x.png */,
-				0AC5CBEA24ABCD7F005A2195 /* prof@2x.png */,
-				0AC5CBEB24ABCD7F005A2195 /* splash@3x.png */,
-				0AC5CBEC24ABCD7F005A2195 /* Favorite1@3x.png */,
-				0AC5CBED24ABCD7F005A2195 /* vline@3x.png */,
-				0AC5CBEE24ABCD7F005A2195 /* Account@3x.png */,
-				0AC5CBEF24ABCD7F005A2195 /* switchcamera@3x.png */,
-				0AC5CBF024ABCD7F005A2195 /* check-symbol.png */,
-				0AC5CBF124ABCD7F005A2195 /* Plus@2x.png */,
-				0AC5CBF224ABCD7F005A2195 /* vline.png */,
-				0AC5CBF324ABCD7F005A2195 /* visa@2x.png */,
-				0AC5CBF424ABCD7F005A2195 /* visa.png */,
-				0AC5CBF524ABCD7F005A2195 /* Gift@3x.png */,
-				0AC5CBF624ABCD7F005A2195 /* Gift@2x.png */,
-				0AC5CBF724ABCD7F005A2195 /* gmail.png */,
-				0AC5CBF824ABCD7F005A2195 /* visa@3x.png */,
-				0AC5CBF924ABCD7F005A2195 /* Plus@3x.png */,
-				0AC5CBFA24ABCD7F005A2195 /* switchcamera@2x.png */,
-				0AC5CBFB24ABCD7F005A2195 /* Account.png */,
-				0AC5CBFC24ABCD7F005A2195 /* vline@2x.png */,
-				0AC5CBFD24ABCD7F005A2195 /* Account@2x.png */,
-				0AC5CBFE24ABCD7F005A2195 /* Favorite1@2x.png */,
-				0AC5CBFF24ABCD7F005A2195 /* icon-cross.png */,
-				0AC5CC0024ABCD7F005A2195 /* splash@2x.png */,
-				0AC5CC0124ABCD7F005A2195 /* prof@3x.png */,
-				0AC5CC0224ABCD7F005A2195 /* hotmail@3x.png */,
-				0AC5CC0324ABCD7F005A2195 /* icon-sendinvites@3x.png */,
-				0AC5CC0424ABCD7F005A2195 /* yahoo@3x.png */,
-				0AC5CC0524ABCD7F005A2195 /* End.png */,
-				0AC5CC0624ABCD7F005A2195 /* Contacts@3x.png */,
-				0AC5CC0724ABCD7F005A2195 /* background.png */,
-				0AC5CC0824ABCD7F005A2195 /* icon-importcontact@3x.png */,
-				0AC5CC0924ABCD7F005A2195 /* icon@2x.png */,
-				0AC5CC0A24ABCD7F005A2195 /* gmail@3x.png */,
-				0AC5CC0B24ABCD7F005A2195 /* End@2x.png */,
-				0AC5CC0C24ABCD7F005A2195 /* splash.png */,
-				0AC5CC0D24ABCD7F005A2195 /* Stickers@3x.png */,
-				0AC5CC0F24ABCD7F005A2195 /* prof.png */,
+				0AC5CC1224ABCD7F005A2195 /* BGthrone.png */,
 				0AC5CC1024ABCD7F005A2195 /* BGthrone@2x.png */,
 				0AC5CC1124ABCD7F005A2195 /* BGthrone@3x.png */,
-				0AC5CC1224ABCD7F005A2195 /* BGthrone.png */,
-				0AC5CC1324ABCD7F005A2195 /* Stickers@2x.png */,
-				0AC5CC1424ABCD7F005A2195 /* Gift.png */,
-				0AC5CC1524ABCD7F005A2195 /* Hellotter-logo-white.png */,
-				0AC5CC1624ABCD7F005A2195 /* End@3x.png */,
 				0AC5CC1724ABCD7F005A2195 /* Call.png */,
-				0AC5CC1824ABCD7F005A2195 /* icon@3x.png */,
-				0AC5CC1924ABCD7F005A2195 /* gmail@2x.png */,
-				0AC5CC1A24ABCD7F005A2195 /* icon-importcontact@2x.png */,
-				0AC5CC1B24ABCD7F005A2195 /* yahoo.png */,
-				0AC5CC1C24ABCD7F005A2195 /* popmail@2x.png */,
-				0AC5CC1D24ABCD7F005A2195 /* hotmail.png */,
-				0AC5CC1E24ABCD7F005A2195 /* Favorite1.png */,
-				0AC5CC1F24ABCD7F005A2195 /* background@2x.png */,
+				0AC5CBDB24ABCD7F005A2195 /* Call@2x.png */,
+				0AC5CBD424ABCD7F005A2195 /* Call@3x.png */,
+				0AC5CC3224ABCD80005A2195 /* cameraplus.png */,
+				0AC5CBCE24ABCD7F005A2195 /* cameraplus@2x.png */,
+				0AC5CBE024ABCD7F005A2195 /* cameraplus@3x.png */,
+				0AC5CBF024ABCD7F005A2195 /* check-symbol.png */,
+				0AC5CBE524ABCD7F005A2195 /* check-symbol@2x.png */,
+				0AC5CBA724ABCD7F005A2195 /* check-symbol@3x.png */,
 				0AC5CC2024ABCD80005A2195 /* Contacts.png */,
+				0AC5CBE624ABCD7F005A2195 /* Contacts@2x.png */,
+				0AC5CC0624ABCD7F005A2195 /* Contacts@3x.png */,
 				0AC5CC2124ABCD80005A2195 /* email2.png */,
-				0AC5CC2224ABCD80005A2195 /* wallet@3x.png */,
-				0AC5CC2324ABCD80005A2195 /* Stickers.png */,
+				0AC5CBD124ABCD7F005A2195 /* email2@2x.png */,
+				0AC5CBDF24ABCD7F005A2195 /* email2@3x.png */,
+				0AC5CC0524ABCD7F005A2195 /* End.png */,
+				0AC5CC0B24ABCD7F005A2195 /* End@2x.png */,
+				0AC5CC1624ABCD7F005A2195 /* End@3x.png */,
+				0AC5CC3024ABCD80005A2195 /* Favorite.png */,
 				0AC5CC2424ABCD80005A2195 /* Favorite@2x.png */,
-				0AC5CC2524ABCD80005A2195 /* fonts */,
+				0AC5CC2B24ABCD80005A2195 /* Favorite@3x.png */,
+				0AC5CC1E24ABCD7F005A2195 /* Favorite1.png */,
+				0AC5CBFE24ABCD7F005A2195 /* Favorite1@2x.png */,
+				0AC5CBEC24ABCD7F005A2195 /* Favorite1@3x.png */,
 				0AC5CC2724ABCD80005A2195 /* Favorites.png */,
+				0AC5CBD524ABCD7F005A2195 /* Favorites@2x.png */,
+				0AC5CBDC24ABCD7F005A2195 /* Favorites@3x.png */,
+				0AC5CBAC24ABCD7F005A2195 /* filters */,
+				0AC5CC2524ABCD80005A2195 /* fonts */,
+				0AC5CC1424ABCD7F005A2195 /* Gift.png */,
+				0AC5CBF624ABCD7F005A2195 /* Gift@2x.png */,
+				0AC5CBF524ABCD7F005A2195 /* Gift@3x.png */,
+				0AC5CBF724ABCD7F005A2195 /* gmail.png */,
+				0AC5CC1924ABCD7F005A2195 /* gmail@2x.png */,
+				0AC5CC0A24ABCD7F005A2195 /* gmail@3x.png */,
+				0AC5CC2D24ABCD80005A2195 /* hellootter_singup.png */,
+				0AC5CBA824ABCD7F005A2195 /* hellootter_singup@2x.png */,
+				0AC5CBE324ABCD7F005A2195 /* hellootter_singup@3x.png */,
+				0AC5CC1524ABCD7F005A2195 /* Hellotter-logo-white.png */,
+				0AC5CBDD24ABCD7F005A2195 /* Hellotter-logo-white@2x.png */,
+				0AC5CBD224ABCD7F005A2195 /* Hellotter-logo-white@3x.png */,
+				0AC5CC1D24ABCD7F005A2195 /* hotmail.png */,
+				0AC5CBE924ABCD7F005A2195 /* hotmail@2x.png */,
+				0AC5CC0224ABCD7F005A2195 /* hotmail@3x.png */,
+				0AC5CBFF24ABCD7F005A2195 /* icon-cross.png */,
+				0AC5CBE224ABCD7F005A2195 /* icon-cross@2x.png */,
+				0AC5CBAA24ABCD7F005A2195 /* icon-cross@3x.png */,
+				0AC5CC2E24ABCD80005A2195 /* icon-importcontact-2.png */,
+				0AC5CBD024ABCD7F005A2195 /* icon-importcontact-2@2x.png */,
+				0AC5CBDE24ABCD7F005A2195 /* icon-importcontact-2@3x.png */,
+				0AC5CBAB24ABCD7F005A2195 /* icon-importcontact.png */,
+				0AC5CC1A24ABCD7F005A2195 /* icon-importcontact@2x.png */,
+				0AC5CC0824ABCD7F005A2195 /* icon-importcontact@3x.png */,
+				0AC5CC2A24ABCD80005A2195 /* icon-sendinvites.png */,
+				0AC5CBE824ABCD7F005A2195 /* icon-sendinvites@2x.png */,
+				0AC5CC0324ABCD7F005A2195 /* icon-sendinvites@3x.png */,
+				0AC5CBD624ABCD7F005A2195 /* icon.png */,
+				0AC5CC0924ABCD7F005A2195 /* icon@2x.png */,
+				0AC5CC1824ABCD7F005A2195 /* icon@3x.png */,
+				0AC5CC3324ABCD80005A2195 /* Image.png */,
+				0AC5CBE124ABCD7F005A2195 /* Image@2x.png */,
+				0AC5CBA924ABCD7F005A2195 /* Image@3x.png */,
+				0AC5CBCF24ABCD7F005A2195 /* Plus.png */,
+				0AC5CBF124ABCD7F005A2195 /* Plus@2x.png */,
+				0AC5CBF924ABCD7F005A2195 /* Plus@3x.png */,
+				0AC5CBD824ABCD7F005A2195 /* popmail.png */,
+				0AC5CC1C24ABCD7F005A2195 /* popmail@2x.png */,
+				0AC5CC3124ABCD80005A2195 /* popmail@3x.png */,
+				0AC5CC0F24ABCD7F005A2195 /* prof.png */,
+				0AC5CBEA24ABCD7F005A2195 /* prof@2x.png */,
+				0AC5CC0124ABCD7F005A2195 /* prof@3x.png */,
+				0AC5CC0C24ABCD7F005A2195 /* splash.png */,
+				0AC5CC0024ABCD7F005A2195 /* splash@2x.png */,
+				0AC5CBEB24ABCD7F005A2195 /* splash@3x.png */,
+				0AC5CC2324ABCD80005A2195 /* Stickers.png */,
+				0AC5CC1324ABCD7F005A2195 /* Stickers@2x.png */,
+				0AC5CC0D24ABCD7F005A2195 /* Stickers@3x.png */,
+				0AC5CBD324ABCD7F005A2195 /* stop.png */,
 				0AC5CC2824ABCD80005A2195 /* stop@2x.png */,
 				0AC5CC2924ABCD80005A2195 /* stop@3x.png */,
-				0AC5CC2A24ABCD80005A2195 /* icon-sendinvites.png */,
-				0AC5CC2B24ABCD80005A2195 /* Favorite@3x.png */,
+				0AC5CBE424ABCD7F005A2195 /* switchcamera.png */,
+				0AC5CBFA24ABCD7F005A2195 /* switchcamera@2x.png */,
+				0AC5CBEF24ABCD7F005A2195 /* switchcamera@3x.png */,
+				0AC5CBF424ABCD7F005A2195 /* visa.png */,
+				0AC5CBF324ABCD7F005A2195 /* visa@2x.png */,
+				0AC5CBF824ABCD7F005A2195 /* visa@3x.png */,
+				0AC5CBF224ABCD7F005A2195 /* vline.png */,
+				0AC5CBFC24ABCD7F005A2195 /* vline@2x.png */,
+				0AC5CBED24ABCD7F005A2195 /* vline@3x.png */,
+				0AC5CBD724ABCD7F005A2195 /* wallet.png */,
 				0AC5CC2C24ABCD80005A2195 /* wallet@2x.png */,
-				0AC5CC2D24ABCD80005A2195 /* hellootter_singup.png */,
-				0AC5CC2E24ABCD80005A2195 /* icon-importcontact-2.png */,
-				0AC5CC2F24ABCD80005A2195 /* background@3x.png */,
-				0AC5CC3024ABCD80005A2195 /* Favorite.png */,
-				0AC5CC3124ABCD80005A2195 /* popmail@3x.png */,
-				0AC5CC3224ABCD80005A2195 /* cameraplus.png */,
-				0AC5CC3324ABCD80005A2195 /* Image.png */,
+				0AC5CC2224ABCD80005A2195 /* wallet@3x.png */,
+				0AC5CC1B24ABCD7F005A2195 /* yahoo.png */,
+				0AC5CBE724ABCD7F005A2195 /* yahoo@2x.png */,
+				0AC5CC0424ABCD7F005A2195 /* yahoo@3x.png */,
 			);
 			name = assets;
 			path = ../assets;
@@ -647,6 +649,7 @@
 		13B07FAE1A68108700A75B9A /* hellotter */ = {
 			isa = PBXGroup;
 			children = (
+				2F990FB924AD9C7500CC9F6B /* GoogleService-Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -758,6 +761,7 @@
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
 				B5C6691CBE9E4DD9DBA6806B /* [CP] Copy Pods Resources */,
+				8FB6B79E93C0EE1DBD0DF663 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -780,6 +784,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				4E4941855F8840785DD2D7F3 /* [CP] Copy Pods Resources */,
+				C3363C08B75D73413CFA423E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -916,6 +921,7 @@
 				0AC5CC5824ABCD80005A2195 /* stickers-115@2x.png in Resources */,
 				0AC5CC8924ABCD80005A2195 /* Account.png in Resources */,
 				0AC5CC5F24ABCD80005A2195 /* email2@2x.png in Resources */,
+				0AC332FF24AC7FC8001EA2E0 /* main.jsbundle in Resources */,
 				0AC5CC3F24ABCD80005A2195 /* stickers-112@2x.png in Resources */,
 				0AC5CC7424ABCD80005A2195 /* Contacts@2x.png in Resources */,
 				0AC5CCAA24ABCD80005A2195 /* popmail@2x.png in Resources */,
@@ -964,6 +970,7 @@
 				0AC5CCB824ABCD80005A2195 /* Favorite@3x.png in Resources */,
 				0AC5CCB924ABCD80005A2195 /* wallet@2x.png in Resources */,
 				0AC5CCBC24ABCD80005A2195 /* background@3x.png in Resources */,
+				2F990FBC24AD9C7600CC9F6B /* GoogleService-Info.plist in Resources */,
 				0AC5CC8F24ABCD80005A2195 /* prof@3x.png in Resources */,
 				0AC5CCB224ABCD80005A2195 /* Favorite@2x.png in Resources */,
 				0AC5CC7024ABCD80005A2195 /* icon-cross@2x.png in Resources */,
@@ -1053,7 +1060,6 @@
 				0AC5CC8124ABCD80005A2195 /* visa@2x.png in Resources */,
 				0AC5CC7224ABCD80005A2195 /* switchcamera.png in Resources */,
 				0AC5CC9524ABCD80005A2195 /* background.png in Resources */,
-				0AC332FF24AC7FC8001EA2E0 /* main.jsbundle in Resources */,
 				0AC5CC4124ABCD80005A2195 /* maskicon-24@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1198,6 +1204,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hellotter/Pods-hellotter-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8FB6B79E93C0EE1DBD0DF663 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hellotter-hellotterTests/Pods-hellotter-hellotterTests-frameworks.sh",
+				"${PODS_ROOT}/../../node_modules/react-native-webrtc/ios/WebRTC.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hellotter-hellotterTests/Pods-hellotter-hellotterTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AA7A5DF5037DE4E0CE0CE594 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1268,6 +1292,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hellotter-hellotterTests/Pods-hellotter-hellotterTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C3363C08B75D73413CFA423E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hellotter/Pods-hellotter-frameworks.sh",
+				"${PODS_ROOT}/../../node_modules/react-native-webrtc/ios/WebRTC.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hellotter/Pods-hellotter-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ED186979AD4976FA8F46FF40 /* [CP] Check Pods Manifest.lock */ = {

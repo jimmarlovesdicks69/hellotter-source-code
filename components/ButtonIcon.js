@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, Dimensions } from 'react-native';
 import { Button } from "react-native-elements";
+import Text from './Text';
 const screenWidth = Math.round(Dimensions.get('window').width);
 
 const ButtonIcon = (props) => {
@@ -11,7 +12,7 @@ const ButtonIcon = (props) => {
             }
             onPress={() => props.onPress()}
             buttonStyle={{ backgroundColor: 'red', borderRadius: 5, width: screenWidth * .4 }}
-            title={props.title}
+            title={<Text>{props.title}</Text>}
             fontFamily="regular"
         />
     );

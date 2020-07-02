@@ -19,17 +19,16 @@ export default function ImportContacts({ route, navigation }) {
             scopes: ['profile', 'email', 'openid',], // what API you want to access on behalf of the user, default is email and profile
             webClientId: '879498274464-m00luc99iv14p0rgqq2tlpvatkkt7bt3.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
             offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-            forceCodeForRefreshToken:true
+            forceCodeForRefreshToken:true,
             // hostedDomain: '', // specifies a hosted domain restriction
             // loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)
             // forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
             // accountName: '', // [Android] specifies an account name on the device that should be used
-            // iosClientId: '<FROM DEVELOPER CONSOLE>', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+            iosClientId: '879498274464-pb4eredqir7nov8sa32gq6h1hr6m83cc.apps.googleusercontent.com', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
         
           });
     }, []);
 
-   
     const signIn = async () => {
         try {
           await GoogleSignin.hasPlayServices();
@@ -104,7 +103,7 @@ export default function ImportContacts({ route, navigation }) {
 
     return (
         <View style={styles.wrapper}>
-            <DefHeader />
+            <DefHeader isBack={true}/>
             <View style={styles.title}>
                 <Image source={require('../../assets/icon-importcontact-2.png')} />
                 <Text size={20} color="black" style={styles.texttitle}>Import Contacts</Text>
@@ -123,7 +122,7 @@ export default function ImportContacts({ route, navigation }) {
                         <Image style={{ marginRight: 10 }} source={require('../../assets/gmail.png')} />
                         <Text color='black' size={18}>Gmail</Text>
                     </View>
-                    <ImportButton onPress={() => googleSignIn()} />
+                    <ImportButton onPress={() => signIn()} />
                 </View>
 
                 <View style={styles.mail}>
@@ -131,7 +130,7 @@ export default function ImportContacts({ route, navigation }) {
                         <Image style={{ marginRight: 10 }} source={require('../../assets/hotmail.png')} />
                         <Text color='black' size={18}>Hotmail</Text>
                     </View>
-                    <ImportButton onPress={() => signIn()} />
+                    <ImportButton onPress={() => {}} />
                 </View>
 
                 <View style={styles.mail}>

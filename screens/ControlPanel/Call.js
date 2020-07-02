@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { UserInfoContext } from '../../contexts/UserInfoContext';
 import DefHeader from '../../components/DefHeader';
@@ -10,9 +10,12 @@ import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import ControlPanel from '../../components/ControlPanel';
 
 import { IconButton, useTheme } from 'react-native-paper';
+import { ContactsContext } from '../../contexts/ConcactsContext';
 
 export default function Call() {
     const { userInfo } = useContext(UserInfoContext)
+    const { searchContacts,contacts } = useContext(ContactsContext)
+    const [search, setSearch] = useState("");
 
 
     const { colors } = useTheme();
@@ -21,20 +24,20 @@ export default function Call() {
 
     return (
         <View style={styles.wrapper}>
-            <DefHeader />
+            <DefHeader isBack={true}/>
             <Profile fullname={userInfo.fullname} email={userInfo.email} />
-            <Search name="Call" withButton={true}/>
+            <Search name="Call" withButton={true} value={search} onChange={(val) => setSearch(val)}/>
 
             <ScrollView>
             <View style={styles.contactsContainer}>
-                    {globalContacts.map((name, index) => {
+                    {searchContacts(search).map((name, index) => {
                         var nextLetter = (index == globalContacts.length - 1) ? "" : globalContacts[index + 1]['fullname'][0];
                         if (letter != name['fullname'][0]) {
                             letter = name['fullname'][0]
                             return (
                                 <View key={index}>
                                     <View style={styles.letterContainer}>
-                                        <Text color={'black'}>{name['fullname'][0]}</Text>
+                                        <Text color={'black'}>{name['fullname'][0].toUpperCase()}</Text>
                                     </View>
 
                                     <View style={styles.nameContainer}>

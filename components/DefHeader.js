@@ -1,11 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, Dimensions, SafeAreaView, StatusBar } from 'react-native';
 import { useTheme, IconButton } from 'react-native-paper';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Text from './Text'
 
 import { useNavigation } from '@react-navigation/native';
 
+const screenHeight = Math.round(Dimensions.get('window').height);
+const screenWidth = Math.round(Dimensions.get('window').width);
 
 const DefHeader = (props) => {
     const { colors } = useTheme();
@@ -14,7 +16,7 @@ const DefHeader = (props) => {
 
     const styles = StyleSheet.create({
         view: {
-            height: 60,
+            height: screenHeight*.09,
             width: '100%',
             flexDirection: 'row',
             justifyContent: 'space-between',
@@ -32,6 +34,7 @@ const DefHeader = (props) => {
 
 
     return (
+        <SafeAreaView style={{backgroundColor:'#33FFFF'}}>
         <View style={styles.view}>
             {props.isBack ?
                 <TouchableOpacity onPress={() => { navigation.goBack() }}>
@@ -44,9 +47,10 @@ const DefHeader = (props) => {
             }
             <Image style={styles.logo} source={require('../assets/hellootter_singup.png')} />
             <TouchableOpacity onPress={() => {navigation.navigate('VideoCall')}}>
-                <Image source={require('../assets/cameraplus.png')} />
+                <Image style={{marginLeft:props.isBack?7:0}} source={require('../assets/cameraplus.png')} />
             </TouchableOpacity>
         </View>
+        </SafeAreaView>
     )
 
 

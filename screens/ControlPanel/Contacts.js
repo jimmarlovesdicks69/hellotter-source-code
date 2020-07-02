@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useState, useEffect } from "react";
-import { StyleSheet, View, Image,Button } from 'react-native';
+import { StyleSheet, View, Image,Button, Dimensions } from 'react-native';
 
 
 import DefHeader from '../../components/DefHeader'
@@ -12,6 +12,8 @@ import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import Text from '../../components/Text'
 import { UserInfoContext } from "../../contexts/UserInfoContext";
 import { ContactsContext } from "../../contexts/ConcactsContext";
+
+const screenHeight = Math.round(Dimensions.get('window').height);
 export default function Contacts({ navigation }) {
 
     const { userInfo } = useContext(UserInfoContext)
@@ -31,7 +33,7 @@ export default function Contacts({ navigation }) {
 
     return (
         <View style={styles.wrapper}>
-            <DefHeader />
+            <DefHeader isBack={true}/>
             <Profile fullname={userInfo.fullname} email={userInfo.email} />
             <Search name="Contacts" value={search} onChange={(val) => setSearch(val)}/>
              <ScrollView>
@@ -87,8 +89,8 @@ export default function Contacts({ navigation }) {
                 </View>
             </ScrollView>
             <View style={styles.importContainer}>
-                <ButtonIcon title="   Import Contacts" image={require('../../assets/icon-importcontact.png')} onPress={()=>navigation.navigate('ImportContacts')}/>
-                <ButtonIcon title="   Send Invites" image={require('../../assets/icon-sendinvites.png')} onPress={() => navigation.navigate('SendInvites')} />
+                <ButtonIcon title="  Import Contacts" image={require('../../assets/icon-importcontact.png')} onPress={()=>navigation.navigate('ImportContacts')}/>
+                <ButtonIcon title="  Send Invites" image={require('../../assets/icon-sendinvites.png')} onPress={() => navigation.navigate('SendInvites')} />
             </View>
             <ControlPanel />
         </View>
@@ -107,7 +109,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: "space-evenly",
         borderTopWidth: .5,
-        marginBottom:60
+        marginBottom:screenHeight * .10
     },
     letterContainer: {
         paddingHorizontal: 15,

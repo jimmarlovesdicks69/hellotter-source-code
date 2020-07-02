@@ -3,7 +3,7 @@ import React, { Fragment, useEffect, useState, useMemo } from "react";
 import 'react-native-gesture-handler';
 import ApiKeys from './constants/ApiKeys'
 import * as firebase from 'firebase';
-import { StatusBar, StyleSheet, Image, View, ActivityIndicator, AsyncStorage } from 'react-native';
+import { StatusBar, StyleSheet, Image, View, ActivityIndicator, AsyncStorage, Platform } from 'react-native';
 
 
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
@@ -239,7 +239,7 @@ export default function App() {
 
   return (
     <PaperProvider theme={theme}>
-      <StatusBar hidden={true} />
+      <StatusBar hidden={(Platform.os == 'ios')?true:false} backgroundColor='#33FFFF'/>
       <AuthContext.Provider value={authContext}>
       <ContactsContextProvider>
         <NavigationContainer>

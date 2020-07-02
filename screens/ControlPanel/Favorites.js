@@ -25,7 +25,7 @@ export default function Favorites() {
 
     return (
         <View style={styles.wrapper}>
-            <DefHeader />
+            <DefHeader isBack={true}/>
             <Profile fullname={userInfo.fullname} email={userInfo.email} />
             <FavoritesSearch name='Favorites' onPress={() => setOnEdit(!onEdit)} onEdit={onEdit} />
             <ScrollView>
