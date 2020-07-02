@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useState, useEffect } from "react";
-import { StyleSheet, View, Image,Button, Dimensions } from 'react-native';
+import { StyleSheet, View, Image,Button, Dimensions, Platform } from 'react-native';
 
 
 import DefHeader from '../../components/DefHeader'
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: "space-evenly",
         borderTopWidth: .5,
-        marginBottom:screenHeight * .10
+        marginBottom:Platform.OS == 'ios'?screenHeight*.01: screenHeight * .10
     },
     letterContainer: {
         paddingHorizontal: 15,
