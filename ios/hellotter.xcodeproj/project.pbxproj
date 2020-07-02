@@ -12,7 +12,8 @@
 		0A54D19424ABEAB2006C4EBA /* backgrounddashboarda@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54D19124ABEAB2006C4EBA /* backgrounddashboarda@3x.png */; };
 		0A54D19524ABEAB2006C4EBA /* backgrounddashboarda@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54D19224ABEAB2006C4EBA /* backgrounddashboarda@2x.png */; };
 		0A54D19624ABEAB2006C4EBA /* backgrounddashboarda.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54D19324ABEAB2006C4EBA /* backgrounddashboarda.png */; };
-		0AC332FF24AC7FC8001EA2E0 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 0AC332FE24AC7FC8001EA2E0 /* main.jsbundle */; };
+		0A85982E24ADFE5500AFC4C9 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A85982D24ADFE5500AFC4C9 /* main.jsbundle */; };
+		0A85983024ADFFCD00AFC4C9 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 0A85982F24ADFFCD00AFC4C9 /* assets */; };
 		0AC5CC3624ABCD80005A2195 /* check-symbol@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AC5CBA724ABCD7F005A2195 /* check-symbol@3x.png */; };
 		0AC5CC3724ABCD80005A2195 /* hellootter_singup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AC5CBA824ABCD7F005A2195 /* hellootter_singup@2x.png */; };
 		0AC5CC3824ABCD80005A2195 /* Image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AC5CBA924ABCD7F005A2195 /* Image@3x.png */; };
@@ -219,7 +220,8 @@
 		0A54D19124ABEAB2006C4EBA /* backgrounddashboarda@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgrounddashboarda@3x.png"; sourceTree = "<group>"; };
 		0A54D19224ABEAB2006C4EBA /* backgrounddashboarda@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgrounddashboarda@2x.png"; sourceTree = "<group>"; };
 		0A54D19324ABEAB2006C4EBA /* backgrounddashboarda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgrounddashboarda.png; sourceTree = "<group>"; };
-		0AC332FE24AC7FC8001EA2E0 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		0A85982D24ADFE5500AFC4C9 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		0A85982F24ADFFCD00AFC4C9 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../images/assets; sourceTree = "<group>"; };
 		0AC5CBA724ABCD7F005A2195 /* check-symbol@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check-symbol@3x.png"; sourceTree = "<group>"; };
 		0AC5CBA824ABCD7F005A2195 /* hellootter_singup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hellootter_singup@2x.png"; sourceTree = "<group>"; };
 		0AC5CBA924ABCD7F005A2195 /* Image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Image@3x.png"; sourceTree = "<group>"; };
@@ -699,6 +701,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				0A85982F24ADFFCD00AFC4C9 /* assets */,
 				0A25323924AB93EB004934C0 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* hellotter */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -727,7 +730,7 @@
 		A215F0BCE8334E1B8D5C1CA3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0AC332FE24AC7FC8001EA2E0 /* main.jsbundle */,
+				0A85982D24ADFE5500AFC4C9 /* main.jsbundle */,
 				0AC5CBA624ABCD7F005A2195 /* assets */,
 				A10ACEFC15024B2C8AC091F3 /* AntDesign.ttf */,
 				AE216050F3A143DB8CFC21A9 /* Entypo.ttf */,
@@ -761,7 +764,6 @@
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
 				B5C6691CBE9E4DD9DBA6806B /* [CP] Copy Pods Resources */,
-				8FB6B79E93C0EE1DBD0DF663 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -784,7 +786,6 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				4E4941855F8840785DD2D7F3 /* [CP] Copy Pods Resources */,
-				C3363C08B75D73413CFA423E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -921,7 +922,6 @@
 				0AC5CC5824ABCD80005A2195 /* stickers-115@2x.png in Resources */,
 				0AC5CC8924ABCD80005A2195 /* Account.png in Resources */,
 				0AC5CC5F24ABCD80005A2195 /* email2@2x.png in Resources */,
-				0AC332FF24AC7FC8001EA2E0 /* main.jsbundle in Resources */,
 				0AC5CC3F24ABCD80005A2195 /* stickers-112@2x.png in Resources */,
 				0AC5CC7424ABCD80005A2195 /* Contacts@2x.png in Resources */,
 				0AC5CCAA24ABCD80005A2195 /* popmail@2x.png in Resources */,
@@ -958,6 +958,7 @@
 				0AC5CC6E24ABCD80005A2195 /* cameraplus@3x.png in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				0AC5CC4824ABCD80005A2195 /* stickers-118@2x.png in Resources */,
+				0A85982E24ADFE5500AFC4C9 /* main.jsbundle in Resources */,
 				0AC5CC6F24ABCD80005A2195 /* Image@2x.png in Resources */,
 				0AC5CCA324ABCD80005A2195 /* Hellotter-logo-white.png in Resources */,
 				0AC5CC3C24ABCD80005A2195 /* stickers-115.png in Resources */,
@@ -975,6 +976,7 @@
 				0AC5CCB224ABCD80005A2195 /* Favorite@2x.png in Resources */,
 				0AC5CC7024ABCD80005A2195 /* icon-cross@2x.png in Resources */,
 				0AC5CC3624ABCD80005A2195 /* check-symbol@3x.png in Resources */,
+				0A85983024ADFFCD00AFC4C9 /* assets in Resources */,
 				0AC5CC3E24ABCD80005A2195 /* maskicon-24.png in Resources */,
 				0AC5CC4724ABCD80005A2195 /* stickers-111.png in Resources */,
 				0AC5CCA024ABCD80005A2195 /* BGthrone.png in Resources */,
@@ -1162,64 +1164,14 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-hellotter/Pods-hellotter-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hellotter/Pods-hellotter-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8FB6B79E93C0EE1DBD0DF663 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-hellotter-hellotterTests/Pods-hellotter-hellotterTests-frameworks.sh",
-				"${PODS_ROOT}/../../node_modules/react-native-webrtc/ios/WebRTC.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hellotter-hellotterTests/Pods-hellotter-hellotterTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AA7A5DF5037DE4E0CE0CE594 /* [CP] Check Pods Manifest.lock */ = {
@@ -1252,64 +1204,14 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-hellotter-hellotterTests/Pods-hellotter-hellotterTests-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hellotter-hellotterTests/Pods-hellotter-hellotterTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C3363C08B75D73413CFA423E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-hellotter/Pods-hellotter-frameworks.sh",
-				"${PODS_ROOT}/../../node_modules/react-native-webrtc/ios/WebRTC.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hellotter/Pods-hellotter-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ED186979AD4976FA8F46FF40 /* [CP] Check Pods Manifest.lock */ = {

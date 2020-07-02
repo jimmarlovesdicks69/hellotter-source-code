@@ -19,7 +19,6 @@ import Signup from "./screens/SignupScreen/Signup";
 import ForgotPassword from "./screens/ForgotPasswordScreen/ForgotPassword";
 import Splash from './screens/SplashScreen/Splash';
 import Dashboard from './screens/DashboardScreen/Dashboard'
-import VideoCall from './screens/DashboardScreen/VideoCall'
 
 import Contacts from './screens/ControlPanel/Contacts'
 import Favorites from "./screens/ControlPanel/Favorites";
@@ -270,10 +269,6 @@ export default function App() {
                 <Stack.Screen
                   name="Dashboard"
                   component={DashBoardScreen}
-                />
-                  <Stack.Screen
-                  name="VideoCall"
-                  component={VideoCall}
                 />
                 <Stack.Screen
                   name="Contacts"
