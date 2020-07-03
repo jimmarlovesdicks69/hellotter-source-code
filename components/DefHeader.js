@@ -41,12 +41,12 @@ const DefHeader = (props) => {
                     </TouchableOpacity>
                     :
                     <TouchableOpacity onPress={() => { navigation.navigate('Profile') }}>
-                        <Image source={require('../assets/End.png')} />
+                        <Image source={require('../assets/End.png')} style={{width:30,height:30}} />
                     </TouchableOpacity>
                 }
                 <Image style={styles.logo} source={require('../assets/hellootter_singup.png')} />
                 <TouchableOpacity onPress={() => { navigation.navigate('VideoCall') }}>
-                    <Image source={require('../assets/cameraplus.png')} />
+                    <Image source={require('../assets/cameraplus.png')} style={{width:30,height:30}}/>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>

@@ -29,25 +29,25 @@ export default function Signup({ navigation }) {
 
     //keyboard is open or hidden listener
     useEffect(() => {
-       const keyboardDidShowListener = Keyboard.addListener(
-         'keyboardDidShow',
-         () => {
-           setKeyboardVisible(true); 
-           
-         }
-       );
-       const keyboardDidHideListener = Keyboard.addListener(
-         'keyboardDidHide',
-         () => {
-           setKeyboardVisible(false); 
-         }
-       );
-   
-       return () => {
-         keyboardDidHideListener.remove();
-         keyboardDidShowListener.remove();
-       };
-     }, []);
+        const keyboardDidShowListener = Keyboard.addListener(
+            'keyboardDidShow',
+            () => {
+                setKeyboardVisible(true);
+
+            }
+        );
+        const keyboardDidHideListener = Keyboard.addListener(
+            'keyboardDidHide',
+            () => {
+                setKeyboardVisible(false);
+            }
+        );
+
+        return () => {
+            keyboardDidHideListener.remove();
+            keyboardDidShowListener.remove();
+        };
+    }, []);
 
     const signUp = (email, password, fullname, confirmPassword) => {
         const error1 = fullname.length > 6 ? "" : "Fullname must up to 6 characters";
@@ -250,7 +250,8 @@ const styles = StyleSheet.create({
         backgroundColor: "transparent",
     },
     icon: {
-
+        width: 85,
+        height: 85
     },
     error: {
         marginBottom: 5,
@@ -300,7 +301,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#33FFFF"
     },
     parent2: {
-        height: Platform.OS == 'ios'? (isIphoneX()?screenHeight * .85-44 : screenHeight * .85-20): screenHeight * .85,
+        height: Platform.OS == 'ios' ? (isIphoneX() ? screenHeight * .85 - 44 : screenHeight * .85 - 20) : screenHeight * .85,
         width: "100%",
         alignSelf: 'center',
         backgroundColor: "#3389FF",

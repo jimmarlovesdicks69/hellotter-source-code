@@ -68,18 +68,15 @@ const scale = SCREEN_WIDTH / 430;
 
 export function normalize(size) {
   if (size == undefined)
-  return 15
-  const newSize = size * scale 
-  if (Platform.OS === 'ios') {
-    return Math.round(PixelRatio.roundToNearestPixel(newSize))
-  } else {
-    return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
-  }
+    return 15
+  const newSize = size * scale
+  return Math.round(PixelRatio.roundToNearestPixel(newSize))
+
 }
 
 //Idntify if phone is iphone x or higher
 export function isIphoneX() {
-  
+
   return (
     // Check either, iPhone X or XR
     (isIPhoneXSize() || isIPhoneXrSize())

@@ -25,6 +25,7 @@ import {
   mediaDevices,
   registerGlobals,
 } from 'react-native-webrtc';
+
 import DefHeader from '../../components/DefHeader';
 
 const { width, height } = Dimensions.get('window');
@@ -238,7 +239,6 @@ function handleVideoOffer(data) {
       'Incoming Call',
       data.callername + ' is calling you',
       [
-        console.log('Callling accepted by non working Wi-Fi'),
         { text: 'Cancel', onPress: () => callReject(data), style: 'cancel' },
         { text: 'OK', onPress: () => callAccept(data) },
       ],
@@ -485,7 +485,8 @@ export default class VideoCall extends Component {
   renderVideo() {
     return (
       <View style={{ flex: 1 }}>
-        <DefHeader />
+                <DefHeader />
+
         <StatusBar barStyle="light-content" />
         <View style={styles.toolbar}>
           <TouchableOpacity onPress={() => this.backtouserList()}>
@@ -495,16 +496,21 @@ export default class VideoCall extends Component {
           <Text style={styles.toolbarButton} />
         </View>
         <ImageBackground source={require('../../assets/backgrounddashboarda.png')} style={{ flexGrow: 1,alignItems: 'center', paddingTop:50}}>
-        <View style={styles.rtcview}>
+       
         <TouchableOpacity onPress={()=> this.switchCamera()}>
             <Image source={require('../../assets/switchcamera.png')} style = {styles.ImageClass} />
         </TouchableOpacity>
 
+        <View style={styles.rtcview}>
+
           {this.state.localStream && <RTCView style={styles.rtc} streamURL={this.state.localStream.toURL()} />}
-          {this.state.remoteStream && <RTCView style={styles.rtc1} streamURL={this.state.remoteStream.toURL()} />}
-          <Button  onPress={() => this.callUser()} title="Call" style={styles.callBtn} color="#81c04d" />
+        </View>
+
+        <View style={styles.rtcview}>
+          {this.state.remoteStream && <RTCView style={styles.rtc} streamURL={this.state.remoteStream.toURL()} />}
         </View> 
       
+          <Button  onPress={() => this.callUser()} title="Call" color="#81c04d" />
           {/* <Button  onPress={() => this.switchCamera()} title="Switch Camera" color="#81c04d" /> */}
 
           <Text style={[styles.instructions, { color: 'grey' }]}>{this.state.callResponse}</Text>
@@ -519,19 +525,20 @@ export default class VideoCall extends Component {
   renderLogin() {
     return (
       <View style={{ flex: 1 }}>
-        <DefHeader />
+                <DefHeader />
+
         <StatusBar barStyle="light-content" />
         <View style={styles.toolbar}>
           <TouchableOpacity onPress={()=>{this.props.navigation.navigate('Dashboard')}}>
             <Text style={styles.toolbarButton}>Back</Text>
           </TouchableOpacity>
-          <Text style={styles.toolbarTitle}>Make a video call</Text>
+          <Text style={styles.toolbarTitle}>Create a Meeting</Text>
           <Text style={styles.toolbarButton} />
         </View>
         <ImageBackground source={require('../../assets/backgrounddashboarda.png')} style={{ flexGrow: 1}}>
 
         <View style={styles.container}>
-          <Text style={styles.instructions}>Enter User Name :</Text>
+          <Text style={styles.instructions}>Enter Meeting Name/ID :</Text>
           <TextInput
             style={{
               padding: 5,
@@ -544,7 +551,7 @@ export default class VideoCall extends Component {
             onChangeText={text => this.setState({ text })}
             value={this.state.text}
           />
-          <Button  style={styles.clickButton} onPress={() => this.onPressLogin()} title="Click" color="#81c04d"/>
+          <Button  style={styles.clickButton} onPress={() => this.onPressLogin()} title="Create" color="#81c04d"/>
           <Text style={styles.instructions}>{this.state.message}</Text>
         </View>
         </ImageBackground>
@@ -555,14 +562,15 @@ export default class VideoCall extends Component {
     return (
       
       <View  style={{ flex: 1 }}>
-        <DefHeader />
+                <DefHeader />
+
         <StatusBar barStyle="light-content" />
         
         <View style={styles.toolbar}>
         <TouchableOpacity onPress={()=>{this.props.navigation.navigate('Dashboard')}}>
             <Text style={styles.toolbarButton}>Back</Text>
           </TouchableOpacity>
-          <Text style={styles.toolbarTitle}>My Contacts</Text>
+          <Text style={styles.toolbarTitle}>Meeting Name/ID</Text>
           <Text style={styles.toolbarButton} />
         </View>
         <ImageBackground source={require('../../assets/backgrounddashboarda.png')} style={{ flexGrow: 1}}>
@@ -645,47 +653,24 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   rtcview: {
-    top: 80,
     justifyContent: 'center',
     alignItems: 'center',
-    height: '30%',
-    width: '31%',
+    height: '35%',
+    width: '40%',
+    backgroundColor: 'transparent',
+    marginBottom:10,
+    borderRadius:10,
+    borderWidth: 1,
+    borderColor: '#ffffff'
   },
 
   rtc: {
     width: '100%',
     height: '100%',
-    backgroundColor: 'transparent',
-    borderRadius:10,
-    borderWidth: 1,
-    borderColor: '#fff'
-  },
-  rtcview1: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '30%',
-    width: '30%',
-    backgroundColor: 'transparent',
-    borderRadius:10,
-    borderWidth: 1,
-    borderColor: '#fff'
-  },
-  rtc1: {
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'transparent',
-    borderRadius:10,
-    borderWidth: 1,
-    borderColor: '#fff'
+
   },
   ImageClass: {
-    left: 10,
-    top: 10,
     height: 40, // Provide your own width, height and frame rate here
     width: 40,
   },
-  callBtn: {
-    top: 300,
-
-  }
 });

@@ -262,7 +262,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   icon: {
-
+    width:85,
+    height:85
 
   },
   input: {
