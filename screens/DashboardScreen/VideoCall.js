@@ -237,7 +237,6 @@ function handleVideoOffer(data) {
       'Incoming Call',
       data.callername + ' is calling you',
       [
-        console.log('Callling accepted by non working Wi-Fi'),
         { text: 'Cancel', onPress: () => callReject(data), style: 'cancel' },
         { text: 'OK', onPress: () => callAccept(data) },
       ],
