@@ -231,7 +231,6 @@ export default function App() {
       <View style={styles.wrapper}>
         <Image source={require("./assets/icon.png")}
           style={styles.logo} />
-        <ActivityIndicator />
       </View>
     )
   }

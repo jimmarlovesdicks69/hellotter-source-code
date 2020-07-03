@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions, Image, Platform, ActivityIndicator, ToastAndroid, SafeAreaView } from 'react-native';
+import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions, Image, Platform, ActivityIndicator, ToastAndroid, SafeAreaView, Keyboard } from 'react-native';
 import { TextInput, HelperText } from "react-native-paper";
-import { validateEmail, setNameFirstLetterCapital } from '../../Utils/Utils';
+import { validateEmail, setNameFirstLetterCapital, isIphoneX } from '../../Utils/Utils';
 import * as firebase from 'firebase';
 import { ScrollView } from "react-native-gesture-handler";
 import DefButton from "../../components/DefButton";
@@ -24,11 +24,30 @@ export default function Signup({ navigation }) {
     const [errorMessage3, setErrorMessage3] = useState("");
     const [errorMessage4, setErrorMessage4] = useState("");
 
+    const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
 
+    //keyboard is open or hidden listener
     useEffect(() => {
-
-    })
+       const keyboardDidShowListener = Keyboard.addListener(
+         'keyboardDidShow',
+         () => {
+           setKeyboardVisible(true); 
+           
+         }
+       );
+       const keyboardDidHideListener = Keyboard.addListener(
+         'keyboardDidHide',
+         () => {
+           setKeyboardVisible(false); 
+         }
+       );
+   
+       return () => {
+         keyboardDidHideListener.remove();
+         keyboardDidShowListener.remove();
+       };
+     }, []);
 
     const signUp = (email, password, fullname, confirmPassword) => {
         const error1 = fullname.length > 6 ? "" : "Fullname must up to 6 characters";
@@ -79,22 +98,24 @@ export default function Signup({ navigation }) {
         <KeyboardAwareScrollView
             showsVerticalScrollIndicator={false}
             enableAutomaticScroll
-            extraScrollHeight={10}
             enableOnAndroid={true}
             style={styles.scroll}
+            scrollEnabled={isKeyboardVisible}
         >
             <View style={styles.parent1}>
-                <View style={styles.child1}>
-                    <SafeAreaView>
-                        <Image style={styles.icon} source={require('../../assets/hellootter_singup.png')} resizeMode={'cover'}/>
-                    </SafeAreaView>
-                </View>
+                <SafeAreaView>
+                    <View style={styles.child1}>
+
+                        <Image style={styles.icon} source={require('../../assets/hellootter_singup.png')} resizeMode={'cover'} />
+
+                    </View>
+                </SafeAreaView>
                 <View style={styles.parent2}>
                     <View style={styles.child2}>
                         <View>
                             <TextInput
                                 style={styles.input}
-                                label="Fullname"
+                                label="Full name"
                                 value={fullname}
                                 underlineColor="#fff"
                                 onChangeText={(value) => setFullName(value)}
@@ -149,7 +170,7 @@ export default function Signup({ navigation }) {
                             <Text style={styles.agreement}>
                                 By Clicking "Sign Up", I agree to the terms and conditions of hellotter
                         </Text>
-                            <DefButton text="SIGNUP" onPress={() => signUp(email, password, fullname, confirmPassword)}/>
+                            <DefButton text="SIGN UP" onPress={() => signUp(email, password, fullname, confirmPassword)} />
                         </View>
 
 
@@ -160,7 +181,7 @@ export default function Signup({ navigation }) {
                                 </Text>
                                 <TouchableOpacity onPress={() => navigation.goBack()}>
                                     <Text color="white" size={15} style={styles.login}>
-                                        Sign in
+                                        Log in
                         </Text>
                                 </TouchableOpacity>
                             </View>
@@ -229,7 +250,7 @@ const styles = StyleSheet.create({
         backgroundColor: "transparent",
     },
     icon: {
-        width: screenWidth* 0.2
+
     },
     error: {
         marginBottom: 5,
@@ -279,7 +300,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#33FFFF"
     },
     parent2: {
-        height: screenHeight * .85,
+        height: Platform.OS == 'ios'? (isIphoneX()?screenHeight * .85-44 : screenHeight * .85-20): screenHeight * .85,
         width: "100%",
         alignSelf: 'center',
         backgroundColor: "#3389FF",

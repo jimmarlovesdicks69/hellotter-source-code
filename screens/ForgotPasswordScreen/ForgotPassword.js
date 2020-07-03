@@ -43,7 +43,6 @@ export default function ForgotPassword({ navigation }) {
 
                         navigation.navigate('ChangePassword', { 'email': email, 'from': 'login' })
                     } else if (response['message'] == "email already sent") {
-                        alert('Please Check your email')
                         setIsReset(true)
                     } else {
                         setIsReset(true)
@@ -91,9 +90,9 @@ export default function ForgotPassword({ navigation }) {
                             <DefButton text='RESET PASSWORD' onPress={() => { resetPassword(email) }}></DefButton>
                         </View>
                         <View style={styles.view3}>
-                            <Text color="black">{"Remember password? "}</Text>
+                            <Text size={17} color="black">{"Remember password? "}</Text>
                             <TouchableOpacity onPress={() => { navigation.goBack() }}>
-                                <Text color="black" style={{ textDecorationLine: 'underline', }}>Log In</Text>
+                                <Text size={17} color="black" style={{ textDecorationLine: 'underline', }}>Log In</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -109,7 +108,7 @@ export default function ForgotPassword({ navigation }) {
                             <Text color='black' size={18} style={{ marginTop: 15, textAlign: 'center' }}>Check your email for instruction to reset your password.</Text>
                         </View>
                         <View style={styles.formView}>
-                            <DefButton text='RESET PASSWORD' onPress={() => { navigation.navigate('ChangePassword', { 'email': email }) }}></DefButton>
+                            <DefButton text='RESET PASSWORD' onPress={() => resetPassword(email)}></DefButton>
                         </View>
                     </View>
                 }

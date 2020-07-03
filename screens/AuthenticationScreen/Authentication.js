@@ -7,10 +7,12 @@ import {
   Image,
   Dimensions,
   ActivityIndicator,
-  SafeAreaView
+  SafeAreaView,
+  Platform,
+  Keyboard
 } from "react-native";
 import { TextInput, HelperText } from "react-native-paper";
-import { validateEmail } from '../../Utils/Utils';
+import { validateEmail, isIphoneX } from '../../Utils/Utils';
 
 import { CheckBox, Input } from "react-native-elements";
 
@@ -47,8 +49,27 @@ export default function Authentication({ navigation }) {
   const { signIn } = useContext(AuthContext);
 
 
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
   useEffect(() => {
-  });
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        setKeyboardVisible(true); // or some other action
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setKeyboardVisible(false); // or some other action
+      }
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
 
   const login = (email, password) => {
     const error1 = validateEmail(email) ? "" : "Invalid Email";
@@ -109,17 +130,21 @@ export default function Authentication({ navigation }) {
   return (
     <KeyboardAwareScrollView
       showsVerticalScrollIndicator={false}
-      enableAutomaticScroll
-      extraScrollHeight={10}
       enableOnAndroid={true}
+      scrollEnabled={isKeyboardVisible}
       style={styles.scroll}
+
     >
       <View style={styles.parent1}>
-        <View style={styles.child1}>
-          <SafeAreaView>
-            <Image style={styles.icon} source={require('../../assets/hellootter_singup.png')} resizeMode={'cover'}/>
-          </SafeAreaView>
-        </View>
+
+        <SafeAreaView>
+          <View style={styles.child1}>
+
+            <Image style={styles.icon} source={require('../../assets/hellootter_singup.png')} resizeMode={'cover'} />
+          </View>
+        </SafeAreaView>
+
+
         <View style={styles.parent2}>
           <View style={styles.child2}>
             <View>
@@ -162,7 +187,7 @@ export default function Authentication({ navigation }) {
               />
               <DefButton onPress={() => login(email, password)} text="LOGIN" />
               <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
-                <Text style={styles.forgotPassword}>
+                <Text style={styles.forgotPassword} size={17}>
                   Forgot Password
             </Text>
               </TouchableOpacity>
@@ -237,7 +262,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   icon: {
-    width: screenWidth* 0.2
+
+
   },
   input: {
     backgroundColor: "transparent",
@@ -248,12 +274,12 @@ const styles = StyleSheet.create({
   checkBox: {
     backgroundColor: "transparent",
     borderColor: "transparent",
-    alignSelf:'stretch',
+    alignSelf: 'stretch',
     marginTop: 20,
-    alignSelf:'center',
+    alignSelf: 'center',
     marginBottom: 10,
-    width:screenWidth,
-    paddingHorizontal:40,
+    width: screenWidth,
+    paddingHorizontal: 40,
     padding: 0,
     // margin:0
   },
@@ -291,7 +317,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#33FFFF"
   },
   parent2: {
-    height: screenHeight * .85,
+    height: Platform.OS == 'ios' ? (isIphoneX() ? screenHeight * .85 - 44 : screenHeight * .85 - 20) : screenHeight * .85,
     width: "100%",
     alignSelf: 'center',
     backgroundColor: "#3389FF",

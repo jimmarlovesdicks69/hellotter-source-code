@@ -56,6 +56,8 @@ export const sortContacts = (contacts) => {
 }
 
 
+
+//Calculate text size based on screen dimensions
 const {
   width: SCREEN_WIDTH,
   height: SCREEN_HEIGHT,
@@ -65,7 +67,6 @@ const scale = SCREEN_WIDTH / 430;
 
 
 export function normalize(size) {
-  console.log(size, 'thisis the size')
   if (size == undefined)
   return 15
   const newSize = size * scale 
@@ -74,4 +75,21 @@ export function normalize(size) {
   } else {
     return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
   }
+}
+
+//Idntify if phone is iphone x or higher
+export function isIphoneX() {
+  
+  return (
+    // Check either, iPhone X or XR
+    (isIPhoneXSize() || isIPhoneXrSize())
+  )
+}
+
+export function isIPhoneXSize() {
+  return SCREEN_HEIGHT == 812 || SCREEN_WIDTH == 812;
+}
+
+export function isIPhoneXrSize(dim) {
+  return SCREEN_HEIGHT == 896 || SCREEN_WIDTH == 896;
 }
