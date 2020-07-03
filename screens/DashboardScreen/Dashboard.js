@@ -7,6 +7,8 @@ import { AuthContext } from '../../contexts/context'
 import { UserInfoContext } from "../../contexts/UserInfoContext";
 import { ContactsContext } from "../../contexts/ConcactsContext";
 import FilterPanel from "../../components/FilterPanel";
+import FiltersAndStickersView from "../../components/FiltersAndStickersView";
+import BackgroundView from "../../components/BackgroundView";
 //import { black } from "react-native-paper/lib/typescript/src/styles/colors";
 
 export default function Dashboard({ navigation }) {
@@ -15,8 +17,8 @@ export default function Dashboard({ navigation }) {
   const { contacts, setSavedContacts } = useContext(ContactsContext)
 
   const [showFilterPanel, setShowFilterPanel] = useState(false)
+  const [showBackgroundPanel, setShowBackgroundPanel] = useState(false)
   const [countRender, setCountRender] = useState(false)
-
   // console.log(globalUserInfo)
 
   useEffect(() => {
@@ -42,12 +44,20 @@ export default function Dashboard({ navigation }) {
         {/* </View> */}
 
 
-        {!showFilterPanel &&
-          <ControlPanel onFilterPanelPressed={() => { setShowFilterPanel(true); setCountRender(true) }} />
+        {
+          (!showFilterPanel && !showBackgroundPanel) &&
+          <ControlPanel
+            onFilterPanelPressed={() => { setShowFilterPanel(true); setCountRender(true) }}
+            onBackgroundPanelPressed={() => { setShowBackgroundPanel(true); setCountRender(true) }}
+          />
         }
 
-        {countRender &&
-          <FilterPanel onBackdropPressed={() => setShowFilterPanel(false)} showFilterPanel={showFilterPanel} />
+
+        {(countRender && showBackgroundPanel == true) &&
+          <BackgroundView onBackdropPressed={() => setShowBackgroundPanel(false)} showBackgroundPanel={showBackgroundPanel} />
+        }
+        {(countRender && showFilterPanel == true) &&
+          <FiltersAndStickersView onBackdropPressed={() => setShowFilterPanel(false)} showFilterPanel={showFilterPanel} />
         }
       </View>
     </Fragment>

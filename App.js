@@ -31,10 +31,13 @@ import AddCoins from "./screens/DrawerScreen/AddCoins";
 
 import { AuthContext } from './contexts/context'
 import UserInfoContextProvider from "./contexts/UserInfoContext";
+import FiltersAndStickersContextProvider from "./contexts/FiltersAndStickersContext";
+import ContactsContextProvider, { ContactsContext } from "./contexts/ConcactsContext";
+
 import Call from "./screens/ControlPanel/Call";
 import ChangePassword from "./screens/ForgotPasswordScreen/ChangePassword";
 import { sortContacts } from "./Utils/Utils";
-import ContactsContextProvider, { ContactsContext } from "./contexts/ConcactsContext";
+
 import CustomDrawer from "./components/CustomDrawer";
 import SendInvites from "./screens/ControlPanel/SendInvites";
 
@@ -45,7 +48,7 @@ const socket = io.connect('http://192.168.0.9:4443', { transports: ['websocket']
 //const socket = io.connect('https://evening-shore-95443.herokuapp.com/', { transports: ['websocket'] });
 
 socket.on('connect', () => {
-  console.log('Socket:',socket.connected); // true
+  console.log('Socket:', socket.connected); // true
 });
 
 socket.on('message', function (message) {
@@ -130,7 +133,7 @@ export default function App() {
   }
 
   const [loginState, dispatch] = React.useReducer(loginReducer, initialLoginState)
-      
+
   socket.on('roommessage', function (message) {
     var data = message;
     switch (data.type) {
@@ -140,10 +143,10 @@ export default function App() {
         break;
       case 'disconnect':
         global.globalActiveUsers.forEach((item, index) => {
-            if(item === data.username) {
-                console.log('New user : ' + data.username);
-                global.globalActiveUsers.splice(index, 1);
-            }
+          if (item === data.username) {
+            console.log('New user : ' + data.username);
+            global.globalActiveUsers.splice(index, 1);
+          }
         });
         break;
       default:
@@ -152,11 +155,11 @@ export default function App() {
   });
 
   const authContext = useMemo(() => ({
-    signIn: async (isFound,contacts) => {
+    signIn: async (isFound, contacts) => {
       let userToken;
       userToken = 'token';
 
-      contacts.sort(function(a, b) {
+      contacts.sort(function (a, b) {
         var nameA = a.fullname.toUpperCase(); // ignore upper and lowercase
         var nameB = b.fullname.toUpperCase(); // ignore upper and lowercase
         if (nameA < nameB) {
@@ -165,23 +168,23 @@ export default function App() {
         if (nameA > nameB) {
           return 1;
         }
-      
+
         // names must be equal
         return 0;
       });
-      var filteredContacts = contacts.filter(function(el) { return el.id != isFound['id']; });
+      var filteredContacts = contacts.filter(function (el) { return el.id != isFound['id']; });
       try {
         await AsyncStorage.setItem('token', userToken);
         await AsyncStorage.setItem('userinfo', JSON.stringify(isFound));
         await AsyncStorage.setItem('contacts', JSON.stringify(filteredContacts));
       } catch (error) {
 
-        alert(error+'this')
+        alert(error + 'this')
       }
 
       globalUserInfo = isFound
       globalContacts = filteredContacts
-      
+
       dispatch({ type: 'LOGIN', id: isFound['email'], token: userToken });
     },
     signOut: async () => {
@@ -219,7 +222,7 @@ export default function App() {
       } catch (error) {
         alert(error)
       }
-      console.log(userInfo+' app')
+      console.log(userInfo + ' app')
       globalUserInfo = JSON.parse(userInfo)
       globalContacts = JSON.parse(contacts)
       dispatch({ type: 'REGISTER', token: userToken });
@@ -237,79 +240,81 @@ export default function App() {
 
   return (
     <PaperProvider theme={theme}>
-      <StatusBar hidden={(Platform.os == 'ios')?true:false} backgroundColor='#33FFFF'/>
+      <StatusBar hidden={(Platform.os == 'ios') ? true : false} backgroundColor='#33FFFF' />
       <AuthContext.Provider value={authContext}>
-      <ContactsContextProvider>
-        <NavigationContainer>
+        <ContactsContextProvider>
+          <NavigationContainer>
 
 
-          {loginState.userToken == null ? (
-            <Stack.Navigator headerMode="none">
-              <Stack.Screen
-                name="Authentication"
-                component={Authentication}
-              />
-              <Stack.Screen
-                name="Signup"
-                component={Signup}
-              />
-              <Stack.Screen
-                name="ForgotPassword"
-                component={ForgotPassword}
-              />
-              <Stack.Screen
-                name="ChangePassword"
-                component={ChangePassword}
-              />
-            </Stack.Navigator>
-          ) :
-            <UserInfoContextProvider>
+            {loginState.userToken == null ? (
               <Stack.Navigator headerMode="none">
                 <Stack.Screen
-                  name="Dashboard"
-                  component={DashBoardScreen}
+                  name="Authentication"
+                  component={Authentication}
                 />
                 <Stack.Screen
-                  name="Contacts"
-                  component={Contacts}
+                  name="Signup"
+                  component={Signup}
                 />
                 <Stack.Screen
-                  name="Favorites"
-                  component={Favorites}
+                  name="ForgotPassword"
+                  component={ForgotPassword}
                 />
                 <Stack.Screen
-                  name="Profile"
-                  component={Profile}
+                  name="ChangePassword"
+                  component={ChangePassword}
                 />
-                 <Stack.Screen
-                  name="Call"
-                  component={Call}
-                />
-                 <Stack.Screen
-                  name="ImportContacts"
-                  component={ImportContacts}
-                />
-                <Stack.Screen
-                    name="VirtualCoin"
-                    component={VirtualCoin}
-                  />
-                  <Stack.Screen
-                    name="AddCoins"
-                    component={AddCoins}
-                  />
-                  <Stack.Screen
-                    name="SendInvites"
-                    component={SendInvites}
-                  />
-                  <Stack.Screen
-                    name="ChangePassword"
-                    component={ChangePassword}
-                  />
               </Stack.Navigator>
-            </UserInfoContextProvider>
-          }
+            ) :
+              <UserInfoContextProvider>
+                <FiltersAndStickersContextProvider>
+                  <Stack.Navigator headerMode="none">
+                    <Stack.Screen
+                      name="Dashboard"
+                      component={DashBoardScreen}
+                    />
+                    <Stack.Screen
+                      name="Contacts"
+                      component={Contacts}
+                    />
+                    <Stack.Screen
+                      name="Favorites"
+                      component={Favorites}
+                    />
+                    <Stack.Screen
+                      name="Profile"
+                      component={Profile}
+                    />
+                    <Stack.Screen
+                      name="Call"
+                      component={Call}
+                    />
+                    <Stack.Screen
+                      name="ImportContacts"
+                      component={ImportContacts}
+                    />
+                    <Stack.Screen
+                      name="VirtualCoin"
+                      component={VirtualCoin}
+                    />
+                    <Stack.Screen
+                      name="AddCoins"
+                      component={AddCoins}
+                    />
+                    <Stack.Screen
+                      name="SendInvites"
+                      component={SendInvites}
+                    />
+                    <Stack.Screen
+                      name="ChangePassword"
+                      component={ChangePassword}
+                    />
+                  </Stack.Navigator>
+                </FiltersAndStickersContextProvider>
+              </UserInfoContextProvider>
+            }
 
-        </NavigationContainer>
+          </NavigationContainer>
         </ContactsContextProvider>
       </AuthContext.Provider>
     </PaperProvider>
