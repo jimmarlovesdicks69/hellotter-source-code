@@ -32,7 +32,7 @@ const ControlPanel = (props) => {
                 <TouchableOpacity onPress={() => navigation.navigate('Call')}><Image source={require('../assets/Call.png')} style={{width:30,height:30}}/></TouchableOpacity>
                 <TouchableOpacity onPress={() => props.onBackgroundPanelPressed()}><Image source={require('../assets/Image.png')} style={{width:30,height:30}}/></TouchableOpacity>
                 <TouchableOpacity onPress={() => props.onFilterPanelPressed()}><Image source={require('../assets/Stickers.png')} style={{width:30,height:30}}/></TouchableOpacity>
-                <TouchableOpacity><Image source={require('../assets/Gift.png')} style={{width:15,height:16}}/></TouchableOpacity>
+                <TouchableOpacity><Image source={require('../assets/Gift.png')} style={{width:30,height:30}}/></TouchableOpacity>
             </View>
         </SafeAreaView>
     )
