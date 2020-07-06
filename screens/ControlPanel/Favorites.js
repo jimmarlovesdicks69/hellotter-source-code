@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native'
+import { View, StyleSheet, TouchableOpacity, Image, Dimensions, SafeAreaView } from 'react-native'
 
 import DefHeader from '../../components/DefHeader';
 import Profile from '../../components/Profile';
@@ -26,11 +26,11 @@ export default function Favorites() {
 
     return (
         <View style={styles.wrapper}>
-            <DefHeader isBack={true}/>
+            <DefHeader isBack={true} />
             <Profile fullname={userInfo.fullname} email={userInfo.email} />
             <FavoritesSearch name='Favorites' onPress={() => setOnEdit(!onEdit)} onEdit={onEdit} />
             <ScrollView>
-            <View style={styles.favoritesContainer}>
+                <View style={styles.favoritesContainer}>
                     {globalContacts.map((name, index) => {
                         // if (letter != name[0]) {
                         //     letter = name[0]
@@ -56,7 +56,7 @@ export default function Favorites() {
                                         <Text color={'black'}>{name['fullname']}</Text>
                                         {onEdit &&
                                             <TouchableOpacity>
-                                                <Image style={{width:20,height:20}} source={require('../../assets/icon-cross.png')} />
+                                                <Image style={{ width: 20, height: 20 }} source={require('../../assets/icon-cross.png')} />
                                             </TouchableOpacity>
                                         }
                                     </View>
@@ -84,8 +84,10 @@ export default function Favorites() {
                     })}
                 </View>
             </ScrollView>
-            <View style={{marginBottom:Platform.OS == 'ios'?screenHeight*.01: screenHeight * .10}}/>
-            <ControlPanel />
+            <View style={{ marginBottom: Platform.OS == 'ios' ? screenHeight * .01 : screenHeight * .10 }} />
+            <SafeAreaView style={{ backgroundColor: 'black' }}>
+                <ControlPanel />
+            </SafeAreaView>
         </View>
     )
 }

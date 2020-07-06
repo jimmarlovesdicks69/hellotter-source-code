@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, SafeAreaView } from 'react-native';
 import DefHeader from '../../components/DefHeader'
 import ControlPanel from '../../components/ControlPanel'
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -58,10 +58,12 @@ export default function Dashboard({ navigation }) {
 
         {
           (!showFilterPanel && !showBackgroundPanel) &&
-          <ControlPanel
-            onFilterPanelPressed={() => { setShowFilterPanel(true); setCountRender(true) }}
-            onBackgroundPanelPressed={() => { setShowBackgroundPanel(true); setCountRender(true) }}
-          />
+          <SafeAreaView style={{backgroundColor:'black'}}> 
+            <ControlPanel
+              onFilterPanelPressed={() => { setShowFilterPanel(true); setCountRender(true) }}
+              onBackgroundPanelPressed={() => { setShowBackgroundPanel(true); setCountRender(true) }}
+            />
+          </SafeAreaView>
         }
 
 

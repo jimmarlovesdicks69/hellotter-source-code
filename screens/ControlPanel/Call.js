@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { StyleSheet, View, Image, Dimensions } from 'react-native';
+import { StyleSheet, View, Image, Dimensions, SafeAreaView } from 'react-native';
 import { UserInfoContext } from '../../contexts/UserInfoContext';
 import DefHeader from '../../components/DefHeader';
 import Profile from '../../components/Profile';
@@ -16,7 +16,7 @@ import { ContactsContext } from '../../contexts/ConcactsContext';
 const screenHeight = Math.round(Dimensions.get('window').height);
 export default function Call() {
     const { userInfo } = useContext(UserInfoContext)
-    const { searchContacts,contacts } = useContext(ContactsContext)
+    const { searchContacts, contacts } = useContext(ContactsContext)
     const [search, setSearch] = useState("");
 
 
@@ -26,12 +26,12 @@ export default function Call() {
 
     return (
         <View style={styles.wrapper}>
-            <DefHeader isBack={true}/>
+            <DefHeader isBack={true} />
             <Profile fullname={userInfo.fullname} email={userInfo.email} />
-            <Search name="Call" withButton={true} value={search} onChange={(val) => setSearch(val)}/>
+            <Search name="Call" withButton={true} value={search} onChange={(val) => setSearch(val)} />
 
             <ScrollView>
-            <View style={styles.contactsContainer}>
+                <View style={styles.contactsContainer}>
                     {searchContacts(search).map((name, index) => {
                         var nextLetter = (index == globalContacts.length - 1) ? "" : globalContacts[index + 1]['fullname'][0];
                         if (letter != name['fullname'][0]) {
@@ -93,8 +93,10 @@ export default function Call() {
 
 
             </ScrollView>
-            <View style={{marginBottom:Platform.OS == 'ios'?screenHeight*.01: screenHeight * .10}}/>
-            <ControlPanel />
+            <View style={{ marginBottom: Platform.OS == 'ios' ? screenHeight * .01 : screenHeight * .10 }} />
+            <SafeAreaView style={{ backgroundColor: 'black' }}>
+                <ControlPanel />
+            </SafeAreaView>
         </View>
     )
 }
@@ -116,12 +118,12 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
     },
     nameContainer: {
-        paddingVertical:3,
+        paddingVertical: 3,
         paddingHorizontal: 15,
         backgroundColor: 'white',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems:'center'
+        alignItems: 'center'
     },
 
 });

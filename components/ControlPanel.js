@@ -25,16 +25,16 @@ const ControlPanel = (props) => {
 
     const navigation = useNavigation();
     return (
-        <SafeAreaView>
-            <View style={styles.view}>
-                <TouchableOpacity onPress={() => navigation.navigate('Favorites')}><Image source={require('../assets/Favorite.png')} style={{width:30,height:30}}/></TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Contacts')}><Image source={require('../assets/Contacts.png')} style={{width:30,height:30}}/></TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Call')}><Image source={require('../assets/Call.png')} style={{width:30,height:30}}/></TouchableOpacity>
-                <TouchableOpacity onPress={() => props.onBackgroundPanelPressed()}><Image source={require('../assets/Image.png')} style={{width:30,height:30}}/></TouchableOpacity>
-                <TouchableOpacity onPress={() => props.onFilterPanelPressed()}><Image source={require('../assets/Stickers.png')} style={{width:30,height:30}}/></TouchableOpacity>
-                <TouchableOpacity><Image source={require('../assets/Gift.png')} style={{width:30,height:30}}/></TouchableOpacity>
-            </View>
-        </SafeAreaView>
+            <SafeAreaView>
+                <View style={styles.view}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Favorites')}><Image source={require('../assets/Favorite.png')} style={{ width: 30, height: 30 }} /></TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Contacts')}><Image source={require('../assets/Contacts.png')} style={{ width: 30, height: 30 }} /></TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Call')}><Image source={require('../assets/Call.png')} style={{ width: 30, height: 30 }} /></TouchableOpacity>
+                    <TouchableOpacity onPress={() => props.onBackgroundPanelPressed()}><Image source={require('../assets/Image.png')} style={{ width: 30, height: 30 }} /></TouchableOpacity>
+                    <TouchableOpacity onPress={() => props.onFilterPanelPressed()}><Image source={require('../assets/Stickers.png')} style={{ width: 30, height: 30 }} /></TouchableOpacity>
+                    <TouchableOpacity><Image source={require('../assets/Gift.png')} style={{ width: 30, height: 30 }} /></TouchableOpacity>
+                </View>
+            </SafeAreaView>
     )
 
 
