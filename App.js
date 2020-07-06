@@ -41,6 +41,7 @@ import SendInvites from "./screens/ControlPanel/SendInvites";
 
 
 import io from 'socket.io-client';
+import FiltersAndStickersContextProvider from "./contexts/FiltersAndStickersContext";
 const socket = io.connect('http://192.168.0.9:4443', { transports: ['websocket'] });
 
 //const socket = io.connect('https://evening-shore-95443.herokuapp.com/', { transports: ['websocket'] });
@@ -232,18 +233,17 @@ export default function App() {
       <View style={styles.wrapper}>
         <Image source={require("./assets/icon.png")}
           style={styles.logo} />
-        <ActivityIndicator />
+        {/* <ActivityIndicator /> */}
       </View>
     )
   }
 
   return (
     <PaperProvider theme={theme}>
-      <StatusBar hidden={(Platform.os == 'ios')?true:false} backgroundColor='#33FFFF'/>
+      <StatusBar hidden={(Platform.OS == 'ios')?false:true} backgroundColor='#33FFFF'/>
       <AuthContext.Provider value={authContext}>
       <ContactsContextProvider>
         <NavigationContainer>
-
 
           {loginState.userToken == null ? (
             <Stack.Navigator headerMode="none">
@@ -266,6 +266,7 @@ export default function App() {
             </Stack.Navigator>
           ) :
             <UserInfoContextProvider>
+              <FiltersAndStickersContextProvider>
               <Stack.Navigator headerMode="none">
                 <Stack.Screen
                   name="Dashboard"
@@ -312,6 +313,7 @@ export default function App() {
                     component={ChangePassword}
                   />
               </Stack.Navigator>
+              </FiltersAndStickersContextProvider>
             </UserInfoContextProvider>
           }
 

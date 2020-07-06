@@ -9,6 +9,10 @@ import { ContactsContext } from "../../contexts/ConcactsContext";
 import FilterPanel from "../../components/FilterPanel";
 import FiltersAndStickersView from "../../components/FiltersAndStickersView";
 import BackgroundView from "../../components/BackgroundView";
+import { bgData } from "../../Utils/Datas/BackgroundData"
+import { FiltersAndStickersContext } from "../../contexts/FiltersAndStickersContext";
+
+
 //import { black } from "react-native-paper/lib/typescript/src/styles/colors";
 
 export default function Dashboard({ navigation }) {
@@ -19,6 +23,11 @@ export default function Dashboard({ navigation }) {
   const [showFilterPanel, setShowFilterPanel] = useState(false)
   const [showBackgroundPanel, setShowBackgroundPanel] = useState(false)
   const [countRender, setCountRender] = useState(false)
+
+  const { selectedBackground } = useContext(FiltersAndStickersContext)
+
+  // const [BackgroundData, setBackgroundData] = useState()
+
   // console.log(globalUserInfo)
 
   useEffect(() => {
@@ -27,10 +36,13 @@ export default function Dashboard({ navigation }) {
     setSavedContacts([...globalContacts])
   }, [])
 
-
   useEffect(() => {
-    console.log(showFilterPanel)
-  }, [showFilterPanel])
+    console.log(selectedBackground)
+  }, [selectedBackground])
+
+  // useEffect(() => {
+  //   console.log(showFilterPanel)
+  // }, [showFilterPanel])
 
   return (
     <Fragment>
@@ -38,8 +50,8 @@ export default function Dashboard({ navigation }) {
         <DefHeader />
         {/* <View style={styles.videoView}> */}
 
-        <ImageBackground source={require('../../assets/BGthrone.png')} style={{ flexGrow: 1, resizeMode: 'cover' }}>
-          
+        <ImageBackground source={bgData[selectedBackground.selectedPanel][selectedBackground.index]} style={{ flexGrow: 1, resizeMode: 'cover' }}>
+
         </ImageBackground>
         {/* </View> */}
 

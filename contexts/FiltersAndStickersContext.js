@@ -5,7 +5,7 @@ export const FiltersAndStickersContext = createContext();
 
 const FiltersAndStickersContextProvider = (props) => {
     const [selectedFilterOrSticker, setSelectedFilterOrSticker] = useState({index:null,selectedPanel: 1,selectedTab:0})
-    const [selectedBackground, setSelectedBackground] = useState({index:null, selectedPanel:1})
+    const [selectedBackground, setSelectedBackground] = useState({index:0, selectedPanel:1})
 
     const setFilterOrSticker = (index, selectedPanel, selectedTab) => {
         console.log(index)

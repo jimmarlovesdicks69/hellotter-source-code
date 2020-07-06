@@ -43,7 +43,8 @@ export default function ForgotPassword({ navigation }) {
 
                         navigation.navigate('ChangePassword', { 'email': email, 'from': 'login' })
                     } else if (response['message'] == "email already sent") {
-                        setIsReset(true)
+                        navigation.navigate('ChangePassword', { 'email': email, 'from': 'login' })
+                        // setIsReset(true)
                     } else {
                         setIsReset(true)
                     }
@@ -99,10 +100,10 @@ export default function ForgotPassword({ navigation }) {
                     :
                     <View>
                         <View style={styles.titleView}>
-                            <Text color='black' size={25} style={{ fontWeight: 'bold' }}>Email Sent</Text>
+                            <Text color='black' size={25} style={{ fontWeight: 'bold' }}>You've got mail</Text>
                         </View>
                         <View style={styles.email}>
-                            <Image source={require('../../assets/email2.png')}></Image>
+                            <Image source={require('../../assets/Hellotter-logo.png')}></Image>
                         </View>
                         <View style={styles.titleView}>
                             <Text color='black' size={18} style={{ marginTop: 15, textAlign: 'center' }}>Check your email for instruction to reset your password.</Text>
@@ -144,12 +145,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 25,
     },
     email: {
-        backgroundColor: '#33FFFF',
-        width: 150,
-        height: 150,
-        borderRadius: 100,
-        alignSelf: 'center',
-        justifyContent: 'center',
         alignItems: 'center'
     },
     view3: {
