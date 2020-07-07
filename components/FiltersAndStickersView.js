@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Dimensions, View, StyleSheet, Image } from 'react-native'
+import { Dimensions, View, StyleSheet, Image, SafeAreaView } from 'react-native'
 import * as Animatable from 'react-native-animatable';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import FilterPanel from './FilterPanel';
@@ -18,37 +18,41 @@ const FiltersAndStickersView = (props) => {
 
     if (show) {
         return (
-            <Animatable.View duration={500} animation={props.showFilterPanel ? "fadeInUp" : "fadeOutDown"} onAnimationEnd={() => { (!props.showFilterPanel) ? setShow(false) : setShow(true) }}
-                style={{ height: screenHeight, position: 'absolute', right: 0, bottom: 0, width: screenWidth }} >
+            <SafeAreaView style={{backgroundColor:'black'}}>
+                <SafeAreaView>
+                    <Animatable.View duration={500} animation={props.showFilterPanel ? "fadeInUp" : "fadeOutDown"} onAnimationEnd={() => { (!props.showFilterPanel) ? setShow(false) : setShow(true) }}
+                        style={{ height: screenHeight, position: 'absolute', right: 0, bottom: 0, width: screenWidth }} >
 
-                <View style={{ flexGrow: 1, backgroundColor: 'transparent' }} onTouchStart={() => props.onBackdropPressed()} />
+                        <View style={{ flexGrow: 1, backgroundColor: 'transparent' }} onTouchStart={() => props.onBackdropPressed()} />
 
-                <View style={{ backgroundColor:'rgba(0,0,0,0.8)', width: screenWidth, }}>
-                    {tab == 0 ?
-                        <FilterPanel /> :
-                        <StickersPanel />
-                    }
+                        <View style={{ backgroundColor: 'rgba(0,0,0,0.8)', width: screenWidth, }}>
+                            {tab == 0 ?
+                                <FilterPanel /> :
+                                <StickersPanel />
+                            }
 
-                    <View style={{ flexDirection: 'row', backgroundColor: 'rgba(0, 0, 0, 0.8)' }}>
+                            <View style={{ flexDirection: 'row', backgroundColor: 'rgba(0, 0, 0, 0.8)' }}>
 
-                        <TouchableOpacity style={[styles.tab]} onPress={() => setTab(0)} disabled={tab == 0}>
-                            <View style={[styles.triangle, { borderBottomColor: tab == 0 ? '#33FFFF' : '#212121' }]}></View>
+                                <TouchableOpacity style={[styles.tab]} onPress={() => setTab(0)} disabled={tab == 0}>
+                                    <View style={[styles.triangle, { borderBottomColor: tab == 0 ? '#33FFFF' : '#212121' }]}></View>
 
-                            <View style={{ backgroundColor: tab == 0 ? '#33FFFF' : '#212121', padding: 5, width: screenWidth / 2, justifyContent: 'center', alignItems: 'center', }}>
-                                <Image source={tab == 0 ? require('../assets/Filters.png') : require('../assets/Filters1.png')} />
+                                    <View style={{ backgroundColor: tab == 0 ? '#33FFFF' : '#212121', padding: 10, width: screenWidth / 2, justifyContent: 'center', alignItems: 'center', }}>
+                                        <Image source={tab == 0 ? require('../assets/Filters.png') : require('../assets/Filters1.png')} />
+                                    </View>
+
+                                </TouchableOpacity>
+                                <TouchableOpacity style={[styles.tab]} onPress={() => setTab(1)} disabled={tab == 1}>
+                                    <View style={[styles.triangle, { borderBottomColor: tab == 1 ? '#33FFFF' : '#212121' }]}></View>
+
+                                    <View style={{ backgroundColor: tab == 1 ? '#33FFFF' : '#212121', padding: 10, width: screenWidth / 2, justifyContent: 'center', alignItems: 'center', }}>
+                                        <Image source={tab == 1 ? require('../assets/Stickers1.png') : require('../assets/Stickers2.png')} />
+                                    </View>
+                                </TouchableOpacity>
                             </View>
-
-                        </TouchableOpacity>
-                        <TouchableOpacity style={[styles.tab]} onPress={() => setTab(1)} disabled={tab == 1}>
-                            <View style={[styles.triangle, { borderBottomColor: tab == 1 ? '#33FFFF' : '#212121' }]}></View>
-
-                            <View style={{ backgroundColor: tab == 1 ? '#33FFFF' : '#212121', padding: 5, width: screenWidth / 2, justifyContent: 'center', alignItems: 'center', }}>
-                                <Image source={tab == 1 ? require('../assets/Stickers1.png') : require('../assets/Stickers2.png')} />
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </Animatable.View>
+                        </View>
+                    </Animatable.View>
+                </SafeAreaView>
+            </SafeAreaView>
         );
     } else {
         return (

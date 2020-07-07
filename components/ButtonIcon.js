@@ -11,7 +11,7 @@ const ButtonIcon = (props) => {
                 <Image source={props.image} />
             }
             onPress={() => props.onPress()}
-            buttonStyle={{ backgroundColor: 'red', borderRadius: 5, width: screenWidth * .4 }}
+            buttonStyle={{ backgroundColor: "#FC5757", borderRadius: 5, width: screenWidth * .4 }}
             title={<Text>{props.title}</Text>}
             fontFamily="regular"
         />
