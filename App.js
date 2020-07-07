@@ -42,6 +42,7 @@ import SendInvites from "./screens/ControlPanel/SendInvites";
 
 import io from 'socket.io-client';
 import FiltersAndStickersContextProvider from "./contexts/FiltersAndStickersContext";
+import YahooLogin from "./screens/ControlPanel/YahooLogin";
 const socket = io.connect('http://192.168.0.9:4443', { transports: ['websocket'] });
 
 //const socket = io.connect('https://evening-shore-95443.herokuapp.com/', { transports: ['websocket'] });
@@ -311,6 +312,10 @@ export default function App() {
                   <Stack.Screen
                     name="ChangePassword"
                     component={ChangePassword}
+                  />
+                  <Stack.Screen
+                    name="YahooLogin"
+                    component={YahooLogin}
                   />
               </Stack.Navigator>
               </FiltersAndStickersContextProvider>

@@ -80,6 +80,8 @@ target 'hellotter' do
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   pod 'react-native-webrtc', :path => '../node_modules/react-native-webrtc'
   
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
   target 'hellotterTests' do
     inherit! :complete
     # Pods for testing
