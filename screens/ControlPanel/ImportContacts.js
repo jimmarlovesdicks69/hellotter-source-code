@@ -16,7 +16,7 @@ export default function ImportContacts({ route, navigation }) {
 
     useEffect(() => {
         GoogleSignin.configure({
-            scopes: ['profile', 'email', 'openid',], // what API you want to access on behalf of the user, default is email and profile
+            scopes: ['profile', 'email', 'openid','https://www.googleapis.com/auth/contacts'], // what API you want to access on behalf of the user, default is email and profile
             webClientId: '879498274464-m00luc99iv14p0rgqq2tlpvatkkt7bt3.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
             offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
             forceCodeForRefreshToken:true,
@@ -124,7 +124,7 @@ export default function ImportContacts({ route, navigation }) {
                         <Image style={{ marginRight: 10 }} source={require('../../assets/gmail.png')} />
                         <Text color='black' size={18}>Gmail</Text>
                     </View>
-                    <ImportButton onPress={() => googleSignIn()} />
+                    <ImportButton onPress={() => signIn()} />
                 </View>
 
                 <View style={styles.mail}>
@@ -132,7 +132,7 @@ export default function ImportContacts({ route, navigation }) {
                         <Image style={{ marginRight: 10 }} source={require('../../assets/hotmail.png')} />
                         <Text color='black' size={18}>Hotmail</Text>
                     </View>
-                    <ImportButton onPress={() => signIn()} />
+                    <ImportButton onPress={() => {}} />
                 </View>
 
                 <View style={styles.mail}>
