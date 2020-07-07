@@ -12,6 +12,7 @@ import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import Text from '../../components/Text'
 import { UserInfoContext } from "../../contexts/UserInfoContext";
 import { ContactsContext } from "../../contexts/ConcactsContext";
+import { isIphoneX } from "../../Utils/Utils";
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 export default function Contacts({ navigation }) {
