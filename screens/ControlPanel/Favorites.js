@@ -26,8 +26,8 @@ export default function Favorites() {
 
     return (
         <View style={styles.wrapper}>
-            <DefHeader isBack={true} />
-            <Profile fullname={userInfo.fullname} email={userInfo.email} />
+            <DefHeader/>
+            <Profile fullname={userInfo.fullname} email={userInfo.email}/>
             <FavoritesSearch name='Favorites' onPress={() => setOnEdit(!onEdit)} onEdit={onEdit} />
             <ScrollView>
                 <View style={styles.favoritesContainer}>
@@ -49,14 +49,14 @@ export default function Favorites() {
                                         rounded
                                         overlayContainerStyle={{ backgroundColor: colors.primary }}
                                         size={30}
-                                        title={<Text size={15}>{getInitials(name['fullname'])}</Text>}
+                                        title={<Text size={15} color='black'>{getInitials(name['fullname'])}</Text>}
                                         onPress={() => console.log("Works!")}
                                     />
                                     <View style={styles.nameContainer}>
                                         <Text color={'black'}>{name['fullname']}</Text>
                                         {onEdit &&
                                             <TouchableOpacity>
-                                                <Image style={{ width: 20, height: 20 }} source={require('../../assets/icon-cross.png')} />
+                                                <Image style={{ width: 20, height: 20,marginRight:15 }} source={require('../../assets/icon-cross.png')} />
                                             </TouchableOpacity>
                                         }
                                     </View>
@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
     },
     favoritesContainer: {
         flexGrow: 1,
+        backgroundColor:'white'
     },
     importContainer: {
         padding: 10,

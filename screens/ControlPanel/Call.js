@@ -26,7 +26,7 @@ export default function Call() {
 
     return (
         <View style={styles.wrapper}>
-            <DefHeader isBack={true} />
+            <DefHeader/>
             <Profile fullname={userInfo.fullname} email={userInfo.email} />
             <Search name="Call" withButton={true} value={search} onChange={(val) => setSearch(val)} />
 

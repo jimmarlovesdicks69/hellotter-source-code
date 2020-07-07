@@ -27,7 +27,7 @@ const Profile = (props) => {
                     rounded
                     overlayContainerStyle={{ backgroundColor: colors.primary }}
                     size={100}
-                    title={<Text size={50}>{getInitials(props.fullname)}</Text>}
+                    title={<Text size={50} color={props.textColor?'black':'white'}>{getInitials(props.fullname)}</Text>}
                     onPress={() => console.log("Works!")}
                 />
             </View>

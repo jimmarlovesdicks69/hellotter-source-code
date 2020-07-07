@@ -34,7 +34,7 @@ export default function Contacts({ navigation }) {
 
     return (
         <View style={styles.wrapper}>
-            <DefHeader isBack={true} />
+            <DefHeader/>
             <Profile fullname={userInfo.fullname} email={userInfo.email} />
             <Search name="Contacts" value={search} onChange={(val) => setSearch(val)} />
             <ScrollView>
