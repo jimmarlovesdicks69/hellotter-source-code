@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Image, ScrollView, TouchableOpacity, Dimensions, StyleSheet } from 'react-native'
 import Text from './Text'
 import * as Animatable from 'react-native-animatable';
 import { FlatList } from 'react-native-gesture-handler';
+import { FiltersAndStickersContext } from '../contexts/FiltersAndStickersContext';
+import FiltersContainer from './FiltersContainer';
 
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 const screenWidth = Math.round(Dimensions.get('window').width);
 const FilterPanel = (props) => {
+    const { setFilterOrSticker, selectedFilterOrSticker } = useContext(FiltersAndStickersContext)
+
 
     const [tabs, setTabs] = useState([
         { name: 'Favorites', selected: true },
@@ -17,156 +21,102 @@ const FilterPanel = (props) => {
         { name: 'Kids', selected: false }
     ])
 
-    const [selectedTab, setSelectedTab] = useState(0)
-    const [selectedFilter, setSelectedFilter] = useState({ index: -1, selected: '' })
+    const [selectedPanel, setSelectedPanel] = useState(0)
+    const [favoritesImages, setFavoritesImages] = useState([]);
+
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    useEffect(() => {
+        console.log(selectedFilterOrSticker)
+    }, [selectedFilterOrSticker]);
 
 
+    // useEffect(() => {
+    //     console.log(selectedFilter)
+    //     return () => {
+    //         setSelectedFilter({ index: -1, selected: '' })
+    //     }
+    // }, []);
 
     return (
-        <Animatable.View duration={500} animation={props.showFilterPanel ? "fadeInUp" : "fadeOutDown"}
-            style={{ height: screenHeight, position: 'absolute', right: 0, bottom: 0, width: screenWidth }} >
-            <View style={{ height: screenHeight * .70, backgroundColor: 'transparent' }} onTouchStart={() => props.onBackdropPressed()} />
-            <View style={{ backgroundColor: 'black', opacity: 0.8, width: screenWidth, height: screenHeight * .30 }}>
-                <View style={{ height: 40, flexDirection: 'row', alignItems: 'center', paddingLeft: 10 }}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', width: 60, justifyContent: 'space-between' }}>
-                        <Image source={require('../assets/stop.png')} />
-                        <Image source={require('../assets/Favorite1.png')} />
-                        <Image source={require('../assets/vline.png')} />
-                    </View>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1, marginLeft: 10, justifyContent: 'space-between' }}>
-                        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                            {tabs.map((tab, index) => {
-                                return (
-                                    <TouchableOpacity style={{ height: 40, borderBottomWidth: (selectedTab == index) ? 3 : 0, borderBottomColor: 'white', marginRight: 15, alignItems: 'center', justifyContent: 'center', width: 100 }}
-                                        onPress={() => setSelectedTab(index)}>
-                                        <Text size={18}>{tab.name}</Text>
-                                    </TouchableOpacity>
-                                )
-                            })}
-                        </ScrollView>
-                    </View>
+
+        <View style={{ backgroundColor: 'black', opacity: 0.8, width: screenWidth, height: screenHeight * .30 }}>
+            <View style={{ height: 40, flexDirection: 'row', alignItems: 'center', paddingLeft: 10 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', width: 60, justifyContent: 'space-between' }}>
+                    <TouchableOpacity onPress={() => setFilterOrSticker( null, selectedPanel,0 )}><Image source={require('../assets/stop.png')} /></TouchableOpacity>
+                    <TouchableOpacity
+                        disabled={isFavorited(selectedPanel, selectedFilterOrSticker.index, favoritesImages)}
+                        onPress={() => {
+
+                            var filter = addToFavorites(selectedPanel, selectedFilterOrSticker.index)
+                            // console.log(filter)
+
+                            setFavoritesImages(prevState => [...prevState, filter])
+
+
+                        }}><Image source={require('../assets/Favorite1.png')} /></TouchableOpacity>
+                    <Image source={require('../assets/vline.png')} />
                 </View>
-                <View style={{ flexGrow: 1, padding: 20, justifyContent: 'center', alignItems: 'center' }}>
-                    <Favorites selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter} selectedTab={selectedTab} />
+                <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1, marginLeft: 10, justifyContent: 'space-between' }}>
+                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                        {tabs.map((tab, index) => {
+                            return (
+                                <TouchableOpacity style={{ height: 40, borderBottomWidth: (selectedPanel == index) ? 3 : 0, borderBottomColor: 'white', marginRight: 15, alignItems: 'center', justifyContent: 'center', width: 100 }}
+                                    key={index}
+                                    onPress={() => setSelectedPanel(index)}>
+                                    <Text size={18}>{tab.name}</Text>
+                                </TouchableOpacity>
+                            )
+                        })}
+                    </ScrollView>
                 </View>
             </View>
-        </Animatable.View>
+            <View style={{ flexGrow: 1, paddingVertical: 20 }}>
+                <FiltersContainer selectedPanel={selectedPanel} favoritesImages={favoritesImages} />
+            </View>
 
+        </View>
 
     )
 };
-
-
-
 export default FilterPanel;
 
 
-const favoritesImages = [require('../assets/filters/maskicon-24.png'), require('../assets/filters/stickers-352.png'), require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-118.png'), require('../assets/filters/stickers-117.png'), require('../assets/filters/stickers-111.png'), require('../assets/filters/stickers-112.png'), require('../assets/filters/stickers-115.png')]
-const trendingImages = [ require('../assets/filters/stickers-352.png'), require('../assets/filters/maskicon-24.png'), require('../assets/filters/stickers-118.png'), require('../assets/filters/stickers-117.png'), require('../assets/filters/stickers-111.png'), require('../assets/filters/stickers-115.png'), require('../assets/filters/stickers-112.png'), require('../assets/filters/stickers-352.png')]
-const beautyImages = [require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-352.png'), require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-355.png'),]
-const funImages = [require('../assets/filters/stickers-370.png'), require('../assets/filters/stickers-370.png'), require('../assets/filters/stickers-370.png'), require('../assets/filters/stickers-370.png'), require('../assets/filters/stickers-370.png'), require('../assets/filters/stickers-370.png'), require('../assets/filters/stickers-370.png'), require('../assets/filters/stickers-370.png')]
-const kidsImages = [require('../assets/filters/stickers-372.png'), require('../assets/filters/stickers-372.png'), require('../assets/filters/stickers-372.png'), require('../assets/filters/stickers-372.png'), require('../assets/filters/stickers-372.png'), require('../assets/filters/stickers-372.png'), require('../assets/filters/stickers-372.png'), require('../assets/filters/stickers-372.png'),]
 
+function isFavorited(selected, index, favoritesImages) {
+    if (selected == " " || selected == 0)
+        return false
 
-const Favorites = (props) => {
-
-    if (props.selectedTab == 0)
-        return (
-            <FlatList
-                data={favoritesImages}
-                renderItem={({ item, index }) => {
-                    return (
-                        <TouchableOpacity onPress={() => props.setSelectedFilter({ index: index, selected: props.selectedTab })}>
-                            <View style={styles.imageWrapper}>
-                                <Image style={{ borderColor: '#33FFFF', borderWidth: (props.selectedFilter.index == index && props.selectedFilter.selected == props.selectedTab) ? 3 : 0, borderRadius: 50 }}
-                                    source={favoritesImages[index]} />
-                            </View>
-                        </TouchableOpacity>
-                    )
-                }}
-                numColumns={4}
-            />
-        )
-
-    if (props.selectedTab == 1)
-        return (
-            <FlatList
-                data={trendingImages}
-                renderItem={({ item, index }) => {
-                    return (
-                        <TouchableOpacity onPress={() => props.setSelectedFilter({ index: index, selected: props.selectedTab })}>
-                            <View style={styles.imageWrapper}>
-                                <Image style={{ borderColor: "#33FFFF", borderWidth: (props.selectedFilter.index == index && props.selectedFilter.selected == props.selectedTab) ? 3 : 0, borderRadius: 50 }}
-                                    source={trendingImages[index]} />
-                            </View>
-                        </TouchableOpacity>
-                    )
-                }}
-                numColumns={4}
-            />
-        )
-
-    if (props.selectedTab == 2)
-        return (
-            <FlatList
-                data={beautyImages}
-                renderItem={({ item, index }) => {
-                    return (
-                        <TouchableOpacity onPress={() => props.setSelectedFilter({ index: index, selected: props.selectedTab })}>
-                            <View style={styles.imageWrapper}>
-                                <Image style={{ borderColor: "#33FFFF", borderWidth: (props.selectedFilter.index == index && props.selectedFilter.selected == props.selectedTab) ? 3 : 0, borderRadius: 50 }}
-                                    source={beautyImages[index]} />
-                            </View>
-                        </TouchableOpacity>
-                    )
-                }}
-                numColumns={4}
-            />
-        )
-
-    if (props.selectedTab == 3)
-        return (
-            <FlatList
-                data={funImages}
-                renderItem={({ item, index }) => {
-                    return (
-                        <TouchableOpacity onPress={() => props.setSelectedFilter({ index: index, selected: props.selectedTab })}>
-                            <View style={styles.imageWrapper}>
-                                <Image style={{ borderColor: "#33FFFF", borderWidth: (props.selectedFilter.index == index && props.selectedFilter.selected == props.selectedTab) ? 3 : 0, borderRadius: 50 }}
-                                    source={funImages[index]} />
-                            </View>
-                        </TouchableOpacity>
-                    )
-                }}
-                numColumns={4}
-            />
-        )
-
-    if (props.selectedTab == 4)
-        return (
-            <FlatList
-                data={kidsImages}
-                renderItem={({ item, index }) => {
-                    return (
-                        <TouchableOpacity onPress={() => props.setSelectedFilter({ index: index, selected: props.selectedTab })}>
-                            <View style={styles.imageWrapper}>
-                                <Image style={{ borderColor: "#33FFFF", borderWidth: (props.selectedFilter.index == index && props.selectedFilter.selected == props.selectedTab) ? 3 : 0, borderRadius: 50 }}
-                                    source={kidsImages[0]} />
-                            </View>
-                        </TouchableOpacity>
-                    )
-                }}
-                numColumns={4}
-            />
-        )
-
-
-
-
+    var fav = [...favoritesImages]
+    var filter = addToFavorites(selected, index)
+    var bool = (fav.includes(filter)) ? true : false
+    return bool;
 }
+
+function addToFavorites(selected, index) {
+    // console.log(index, selected)
+    if (selected == 1) {
+        // console.log('ops')
+        return trendingImages[index]
+    } else if (selected == 2) {
+        return beautyImages[index]
+    } else if (selected == 3) {
+        return funImages[index]
+    } else if (selected == 4) {
+        return kidsImages[index]
+    }
+}
+
+const trendingImages = [require('../assets/filters/stickers-352.png'), require('../assets/filters/maskicon-24.png'), require('../assets/filters/stickers-118.png'), require('../assets/filters/stickers-117.png'), require('../assets/filters/stickers-111.png'), require('../assets/filters/stickers-115.png'), require('../assets/filters/stickers-112.png'), require('../assets/filters/stickers-352.png')]
+const beautyImages = [require('../assets/filters/stickers-355.png'), require('../assets/filters/stickers-352.png'), require('../assets/filters/maskicon-24.png'), require('../assets/filters/stickers-118.png'), require('../assets/filters/stickers-117.png'), require('../assets/filters/stickers-111.png'), require('../assets/filters/stickers-115.png'), require('../assets/filters/stickers-112.png'),]
+const funImages = [require('../assets/filters/stickers-352.png'), require('../assets/filters/maskicon-24.png'), require('../assets/filters/stickers-118.png'), require('../assets/filters/stickers-117.png'), require('../assets/filters/stickers-111.png'), require('../assets/filters/stickers-115.png'), require('../assets/filters/stickers-112.png'), require('../assets/filters/stickers-370.png')]
+const kidsImages = [require('../assets/filters/stickers-372.png'), require('../assets/filters/stickers-352.png'), require('../assets/filters/maskicon-24.png'), require('../assets/filters/stickers-118.png'), require('../assets/filters/stickers-117.png'), require('../assets/filters/stickers-111.png'), require('../assets/filters/stickers-115.png'), require('../assets/filters/stickers-112.png'),]
+
+
+
 const styles = StyleSheet.create({
     imageWrapper: {
-        paddingHorizontal: 15,
+        paddingHorizontal: screenWidth * .055,
         paddingBottom: 15
     },
     image: {

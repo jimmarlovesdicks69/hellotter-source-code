@@ -3,7 +3,7 @@ import React, { Fragment, useEffect, useState, useMemo } from "react";
 import 'react-native-gesture-handler';
 import ApiKeys from './constants/ApiKeys'
 import * as firebase from 'firebase';
-import { StatusBar, StyleSheet, Image, View, ActivityIndicator, AsyncStorage } from 'react-native';
+import { StatusBar, StyleSheet, Image, View, ActivityIndicator, AsyncStorage, Platform } from 'react-native';
 
 
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
@@ -18,8 +18,8 @@ import Authentication from './screens/AuthenticationScreen/Authentication';
 import Signup from "./screens/SignupScreen/Signup";
 import ForgotPassword from "./screens/ForgotPasswordScreen/ForgotPassword";
 import Splash from './screens/SplashScreen/Splash';
-import Dashboard from './screens/DashboardScreen/Dashboard'
-import VideoCall from './screens/DashboardScreen/VideoCall'
+import Dashboard from './screens/DashboardScreen/Dashboard';
+ import VideoCall from './screens/DashboardScreen/VideoCall'
 
 import Contacts from './screens/ControlPanel/Contacts'
 import Favorites from "./screens/ControlPanel/Favorites";
@@ -41,6 +41,8 @@ import SendInvites from "./screens/ControlPanel/SendInvites";
 
 
 import io from 'socket.io-client';
+import FiltersAndStickersContextProvider from "./contexts/FiltersAndStickersContext";
+import YahooLogin from "./screens/ControlPanel/YahooLogin";
 const socket = io.connect('http://192.168.0.9:4443', { transports: ['websocket'] });
 
 //const socket = io.connect('https://evening-shore-95443.herokuapp.com/', { transports: ['websocket'] });
@@ -202,12 +204,12 @@ export default function App() {
 
   useEffect(() => {
 
-    async function loadFont() {
-      await Font.loadAsync({
-        regular: require('./assets/fonts/OpenSans-Regular.ttf')
-      })
-    }
-    loadFont()
+    // async function loadFont() {
+    //   await Font.loadAsync({
+    //     regular: require('./assets/fonts/OpenSans-Regular.ttf')
+    //   })
+    // }
+    // loadFont()
 
     setTimeout(async () => {
       let userToken = null;
@@ -232,18 +234,17 @@ export default function App() {
       <View style={styles.wrapper}>
         <Image source={require("./assets/icon.png")}
           style={styles.logo} />
-        <ActivityIndicator />
+        {/* <ActivityIndicator /> */}
       </View>
     )
   }
 
   return (
     <PaperProvider theme={theme}>
-      <StatusBar hidden={true} />
+      <StatusBar hidden={(Platform.OS == 'ios')?false:true} backgroundColor='#33FFFF'/>
       <AuthContext.Provider value={authContext}>
       <ContactsContextProvider>
         <NavigationContainer>
-
 
           {loginState.userToken == null ? (
             <Stack.Navigator headerMode="none">
@@ -266,6 +267,7 @@ export default function App() {
             </Stack.Navigator>
           ) :
             <UserInfoContextProvider>
+              <FiltersAndStickersContextProvider>
               <Stack.Navigator headerMode="none">
                 <Stack.Screen
                   name="Dashboard"
@@ -311,7 +313,12 @@ export default function App() {
                     name="ChangePassword"
                     component={ChangePassword}
                   />
+                  <Stack.Screen
+                    name="YahooLogin"
+                    component={YahooLogin}
+                  />
               </Stack.Navigator>
+              </FiltersAndStickersContextProvider>
             </UserInfoContextProvider>
           }
 

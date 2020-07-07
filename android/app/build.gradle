@@ -128,7 +128,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.Hellotter"
+        applicationId "dw.hellotter"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -148,6 +148,7 @@ android {
             exclude '/lib/x86_64/**'
         }
     }
+
     splits {
         abi {
             reset()
@@ -163,6 +164,14 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
+                storeFile file(MYAPP_UPLOAD_STORE_FILE)
+                storePassword MYAPP_UPLOAD_STORE_PASSWORD
+                keyAlias MYAPP_UPLOAD_KEY_ALIAS
+                keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+            }
+        }
     }
     buildTypes {
         debug {
@@ -172,6 +181,7 @@ android {
             // Caution! In production, you need to generate your own keystore file.
             // see https://facebook.github.io/react-native/docs/signed-apk-android.
             signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
@@ -197,8 +207,8 @@ dependencies {
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:+"
     implementation 'com.android.support:support-v4:28.0.0'// From node_modules
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
-    // implementation(project(":react-native-google-signin"))
+    // implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+
     // implementation project(':WebRTCModule') // No longer needed due to autolinking
 
     if (enableHermes) {

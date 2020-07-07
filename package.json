@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build:ios": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'"
   },
   "dependencies": {
     "@react-native-community/google-signin": "^4.0.3",
@@ -32,6 +33,7 @@
     "react-native-vector-icons": "^6.6.0",
     "react-native-web": "~0.11.7",
     "react-native-webrtc": "^1.75.3",
+    "react-native-webview": "^10.3.2",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0"
   },

@@ -1,12 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, Dimensions, SafeAreaView } from 'react-native';
 import { useTheme, IconButton } from 'react-native-paper';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Text from './Text'
 
 import { useNavigation } from '@react-navigation/native';
 
-
+const screenHeight = Math.round(Dimensions.get('window').height);
+const screenWidth = Math.round(Dimensions.get('window').width);
 const DefHeader = (props) => {
     const { colors } = useTheme();
 
@@ -14,7 +15,7 @@ const DefHeader = (props) => {
 
     const styles = StyleSheet.create({
         view: {
-            height: 60,
+            height: screenHeight * .09,
             width: '100%',
             flexDirection: 'row',
             justifyContent: 'space-between',
@@ -23,7 +24,7 @@ const DefHeader = (props) => {
             backgroundColor: colors.primary
         },
         logo: {
-            width: 55,
+            width: 55,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
             height: 55,
             resizeMode: 'contain',
         }
@@ -32,21 +33,23 @@ const DefHeader = (props) => {
 
 
     return (
-        <View style={styles.view}>
-            {props.isBack ?
-                <TouchableOpacity onPress={() => { navigation.goBack() }}>
-                    <Text size={17} color='black'>Back</Text>
+        <SafeAreaView style={{ backgroundColor: '#33FFFF' }}>
+            <View style={styles.view}>
+                {props.isBack ?
+                    <TouchableOpacity onPress={() => { navigation.goBack() }}>
+                        <Text size={17} color='black'>Back</Text>
+                    </TouchableOpacity>
+                    :
+                    <TouchableOpacity onPress={() => { navigation.navigate('Profile') }}>
+                        <Image source={require('../assets/End.png')} style={{width:30,height:30}} />
+                    </TouchableOpacity>
+                }
+                <Image style={styles.logo} source={require('../assets/hellootter_singup.png')} />
+                <TouchableOpacity onPress={() => { navigation.navigate('VideoCall') }}>
+                    <Image source={require('../assets/cameraplus.png')} style={{width:30,height:30}}/>
                 </TouchableOpacity>
-                :
-                <TouchableOpacity onPress={() => { navigation.navigate('Profile') }}>
-                    <Image source={require('../assets/End.png')} />
-                </TouchableOpacity>
-            }
-            <Image style={styles.logo} source={require('../assets/hellootter_singup.png')} />
-            <TouchableOpacity onPress={() => {navigation.navigate('VideoCall')}}>
-                <Image source={require('../assets/cameraplus.png')} />
-            </TouchableOpacity>
-        </View>
+            </View>
+        </SafeAreaView>
     )
 
 

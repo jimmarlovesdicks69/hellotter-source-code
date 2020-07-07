@@ -1,24 +1,27 @@
 import React from 'react';
-import ReactNative, { } from 'react-native';
+import ReactNative, { Dimensions, Platform, PixelRatio } from 'react-native';
+import { normalize } from '../Utils/Utils';
+
 
 const Text = (props) => {
 
+
     const getProps = () => {
-        const { weigth,size,color } = props;
+        const { weigth, size, color } = props;
 
         return {
-            fontSize: size,
-            fontFamily: weigth,
+            fontSize: normalize(size),
             color
         }
     }
+
     Text.defaultProps = {
         weigth: "regular",
-        size:15,
-        color:'white'
+        size: normalize(15),
+        color: 'white'
     }
     return (
-        <ReactNative.Text style={{ ...getProps(), ...props.style }}>
+        <ReactNative.Text style={[getProps(), props.style ]}>
             {props.children}
         </ReactNative.Text>
     );

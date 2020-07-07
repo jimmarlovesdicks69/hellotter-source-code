@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, SafeAreaView, Platform } from 'react-native';
 import DefHeader from '../../components/DefHeader'
 import ControlPanel from '../../components/ControlPanel'
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -7,6 +7,13 @@ import { AuthContext } from '../../contexts/context'
 import { UserInfoContext } from "../../contexts/UserInfoContext";
 import { ContactsContext } from "../../contexts/ConcactsContext";
 import FilterPanel from "../../components/FilterPanel";
+import FiltersAndStickersView from "../../components/FiltersAndStickersView";
+import BackgroundView from "../../components/BackgroundView";
+import { bgData } from "../../Utils/Datas/BackgroundData"
+import { FiltersAndStickersContext } from "../../contexts/FiltersAndStickersContext";
+
+
+//import { black } from "react-native-paper/lib/typescript/src/styles/colors";
 
 export default function Dashboard({ navigation }) {
   const { signOut } = useContext(AuthContext);
@@ -14,7 +21,12 @@ export default function Dashboard({ navigation }) {
   const { contacts, setSavedContacts } = useContext(ContactsContext)
 
   const [showFilterPanel, setShowFilterPanel] = useState(false)
+  const [showBackgroundPanel, setShowBackgroundPanel] = useState(false)
   const [countRender, setCountRender] = useState(false)
+
+  const { selectedBackground } = useContext(FiltersAndStickersContext)
+
+  // const [BackgroundData, setBackgroundData] = useState()
 
   // console.log(globalUserInfo)
 
@@ -24,10 +36,13 @@ export default function Dashboard({ navigation }) {
     setSavedContacts([...globalContacts])
   }, [])
 
-
   useEffect(() => {
-    console.log(showFilterPanel)
-  }, [showFilterPanel])
+    console.log(selectedBackground)
+  }, [selectedBackground])
+
+  // useEffect(() => {
+  //   console.log(showFilterPanel)
+  // }, [showFilterPanel])
 
   return (
     <Fragment>
@@ -35,23 +50,33 @@ export default function Dashboard({ navigation }) {
         <DefHeader />
         {/* <View style={styles.videoView}> */}
 
-        <ImageBackground source={require('../../assets/background_dashboard.png')} style={{ flexGrow: 1, resizeMode: 'cover' }}>
-          <TouchableOpacity onPress={() => signOut()}>
-            <View style={{ height: 20, width: 60, backgroundColor: 'white' }}>
-              <Text>Sign Out</Text>
-            </View>
+        <ImageBackground source={bgData[selectedBackground.selectedPanel][selectedBackground.index]} style={{ flexGrow: 1, resizeMode: 'cover' }}>
 
-          </TouchableOpacity>
         </ImageBackground>
         {/* </View> */}
 
 
-        {!showFilterPanel &&
-          <ControlPanel onFilterPanelPressed={() => { setShowFilterPanel(true); setCountRender(true) }} />
+        {
+          (!showFilterPanel && !showBackgroundPanel && Platform.OS == "ios") ?
+            <SafeAreaView style={{ backgroundColor: 'black' }}>
+              <ControlPanel
+                onFilterPanelPressed={() => { setShowFilterPanel(true); setCountRender(true) }}
+                onBackgroundPanelPressed={() => { setShowBackgroundPanel(true); setCountRender(true) }}
+              />
+            </SafeAreaView> :
+            <ControlPanel
+              onFilterPanelPressed={() => { setShowFilterPanel(true); setCountRender(true) }}
+              onBackgroundPanelPressed={() => { setShowBackgroundPanel(true); setCountRender(true) }}
+            />
+
         }
 
-        {countRender &&
-          <FilterPanel onBackdropPressed={() => setShowFilterPanel(false)} showFilterPanel={showFilterPanel} />
+
+        {(countRender && showBackgroundPanel == true) &&
+          <BackgroundView onBackdropPressed={() => setShowBackgroundPanel(false)} showBackgroundPanel={showBackgroundPanel} />
+        }
+        {(countRender && showFilterPanel == true) &&
+          <FiltersAndStickersView onBackdropPressed={() => setShowFilterPanel(false)} showFilterPanel={showFilterPanel} />
         }
       </View>
     </Fragment>
@@ -62,7 +87,6 @@ export default function Dashboard({ navigation }) {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-
   },
   videoView: {
     flexGrow: 1,

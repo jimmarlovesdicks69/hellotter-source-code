@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { StyleSheet, View, Image, Dimensions, SafeAreaView } from 'react-native';
 import { UserInfoContext } from '../../contexts/UserInfoContext';
 import DefHeader from '../../components/DefHeader';
 import Profile from '../../components/Profile';
@@ -10,9 +10,14 @@ import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import ControlPanel from '../../components/ControlPanel';
 
 import { IconButton, useTheme } from 'react-native-paper';
+import { ContactsContext } from '../../contexts/ConcactsContext';
 
+
+const screenHeight = Math.round(Dimensions.get('window').height);
 export default function Call() {
     const { userInfo } = useContext(UserInfoContext)
+    const { searchContacts, contacts } = useContext(ContactsContext)
+    const [search, setSearch] = useState("");
 
 
     const { colors } = useTheme();
@@ -21,20 +26,20 @@ export default function Call() {
 
     return (
         <View style={styles.wrapper}>
-            <DefHeader />
+            <DefHeader/>
             <Profile fullname={userInfo.fullname} email={userInfo.email} />
-            <Search name="Call" withButton={true}/>
+            <Search name="Call" withButton={true} value={search} onChange={(val) => setSearch(val)} />
 
             <ScrollView>
-            <View style={styles.contactsContainer}>
-                    {globalContacts.map((name, index) => {
+                <View style={styles.contactsContainer}>
+                    {searchContacts(search).map((name, index) => {
                         var nextLetter = (index == globalContacts.length - 1) ? "" : globalContacts[index + 1]['fullname'][0];
                         if (letter != name['fullname'][0]) {
                             letter = name['fullname'][0]
                             return (
                                 <View key={index}>
                                     <View style={styles.letterContainer}>
-                                        <Text color={'black'}>{name['fullname'][0]}</Text>
+                                        <Text color={'black'}>{name['fullname'][0].toUpperCase()}</Text>
                                     </View>
 
                                     <View style={styles.nameContainer}>
@@ -88,8 +93,10 @@ export default function Call() {
 
 
             </ScrollView>
-            <View style={{marginBottom:60}}/>
-            <ControlPanel />
+            <View style={{ marginBottom: Platform.OS == 'ios' ? screenHeight * .01 : screenHeight * .10 }} />
+            <SafeAreaView style={{ backgroundColor: 'black' }}>
+                <ControlPanel />
+            </SafeAreaView>
         </View>
     )
 }
@@ -111,12 +118,12 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
     },
     nameContainer: {
-        paddingVertical:3,
+        paddingVertical: 3,
         paddingHorizontal: 15,
         backgroundColor: 'white',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems:'center'
+        alignItems: 'center'
     },
 
 });

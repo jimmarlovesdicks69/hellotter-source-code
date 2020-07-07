@@ -49,7 +49,7 @@ const Search = (props) => {
                 <IconButton
                     icon={require('../assets/Plus.png')}
                     color={colors.primary}
-                    style={{ margin: 0 }}
+                    style={{ margin: 0,padding:0 }}
                     size={25}
                     onPress={() => console.log('Pressed')}
                 />

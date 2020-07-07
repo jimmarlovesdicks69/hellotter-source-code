@@ -20,7 +20,7 @@ const ContactsContextProvider = (props) => {
         }
         var filteredContact = contacts.filter(function (contact) {
             var value = contact.fullname.toLowerCase()
-            return value.includes(val)
+            return value.includes(val.toLowerCase())
         });
 
         return [...filteredContact];

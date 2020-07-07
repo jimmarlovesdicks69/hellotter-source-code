@@ -8,7 +8,7 @@ const DefButton = (props) => {
             style={{
                 backgroundColor: "#FC5757",
                 padding: 10,
-                margin: 15,
+                marginVertical: 15,
                 height: 40,
                 borderRadius: 3,
             }}

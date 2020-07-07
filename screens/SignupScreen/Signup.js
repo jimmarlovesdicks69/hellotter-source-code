@@ -1,10 +1,10 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions, Image, Platform, ActivityIndicator, ToastAndroid } from 'react-native';
+import { StyleSheet, View, ImageBackground, TouchableOpacity, Dimensions, Image, Platform, ActivityIndicator, ToastAndroid, SafeAreaView, Keyboard } from 'react-native';
 import { TextInput, HelperText } from "react-native-paper";
-import { validateEmail, setNameFirstLetterCapital } from '../../Utils/Utils';
+import { validateEmail, setNameFirstLetterCapital, isIphoneX } from '../../Utils/Utils';
 import * as firebase from 'firebase';
 import { ScrollView } from "react-native-gesture-handler";
-
+import DefButton from "../../components/DefButton";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import Text from '../../components/Text';
@@ -24,11 +24,30 @@ export default function Signup({ navigation }) {
     const [errorMessage3, setErrorMessage3] = useState("");
     const [errorMessage4, setErrorMessage4] = useState("");
 
+    const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
 
+    //keyboard is open or hidden listener
     useEffect(() => {
+        const keyboardDidShowListener = Keyboard.addListener(
+            'keyboardDidShow',
+            () => {
+                setKeyboardVisible(true);
 
-    })
+            }
+        );
+        const keyboardDidHideListener = Keyboard.addListener(
+            'keyboardDidHide',
+            () => {
+                setKeyboardVisible(false);
+            }
+        );
+
+        return () => {
+            keyboardDidHideListener.remove();
+            keyboardDidShowListener.remove();
+        };
+    }, []);
 
     const signUp = (email, password, fullname, confirmPassword) => {
         const error1 = fullname.length > 6 ? "" : "Fullname must up to 6 characters";
@@ -76,113 +95,132 @@ export default function Signup({ navigation }) {
         ToastAndroid.show("Signup Succesfull!", ToastAndroid.SHORT);
     };
     return (
-
         <KeyboardAwareScrollView
             showsVerticalScrollIndicator={false}
             enableAutomaticScroll
-            extraScrollHeight={10}
             enableOnAndroid={true}
-            extraHeight={Platform.select({ android: 100 })}
             style={styles.scroll}
+            scrollEnabled={isKeyboardVisible}
         >
-            <ImageBackground
-                source={require("../../assets/background.png")}
-                style={styles.image}
-            >
+            <View style={styles.parent1}>
+                <SafeAreaView>
+                    <View style={styles.child1}>
 
-                <View>
-                    <Image style={styles.icon} source={require('../../assets/Hellotter-logo-white.png')} />
-                    <TextInput
-                        style={styles.input}
-                        label="Fullname"
-                        value={fullname}
-                        underlineColor="#fff"
-                        onChangeText={(value) => setFullName(value)}
-                    />
-                    <HelperText
-                        type="error"
-                        visible={errorMessage1.length != ""}
-                    >
-                        {errorMessage1}
-                    </HelperText>
-                    <TextInput
-                        style={styles.input}
-                        label="Email"
-                        value={email}
-                        underlineColor="#fff"
-                        onChangeText={(value) => setEmail(value)}
-                    />
-                    <HelperText
-                        type="error"
-                        visible={errorMessage2.length != ""}
-                    >
-                        {errorMessage2}
-                    </HelperText>
-                    <TextInput
-                        style={styles.input}
-                        label="Password"
-                        value={password}
-                        underlineColor="#fff"
-                        secureTextEntry
-                        onChangeText={(value) => setPassword(value)}
-                    />
-                    <HelperText
-                        type="error"
-                        visible={errorMessage3.length != ""}
-                    >
-                        {errorMessage3}
-                    </HelperText>
-                    <TextInput
-                        style={styles.input}
-                        label="Confirm Password"
-                        value={confirmPassword}
-                        underlineColor="#fff"
-                        secureTextEntry
-                        onChangeText={(value) => setConfirmPassword(value)}
-                    />
-                    <HelperText
-                        type="error"
-                        visible={errorMessage4.length != ""}
-                    >
-                        {errorMessage4}
-                    </HelperText>
-                    <Text style={styles.agreement}>
-                        By Clicking "Sign Up", I agree to the terms and conditions of hellotter
-                        </Text>
-                    <TouchableOpacity
-                        style={styles.submitButton}
-                        // disabled={!formValid}
-                        onPress={() => signUp(email, password, fullname, confirmPassword)}
-                    >
-                        <Text style={styles.submitButtonText}> SIGN UP </Text>
-                    </TouchableOpacity>
-                </View>
+                        <Image style={styles.icon} source={require('../../assets/hellootter_singup.png')} resizeMode={'cover'} />
 
-
-                <View style={styles.view2}>
-                    <View style={styles.view3}>
-                        <Text size={15} color="white">
-                            {"Already a Member? "}
-                        </Text>
-                        <TouchableOpacity onPress={() => navigation.goBack()}>
-                            <Text color="white" size={15} style={styles.login}>
-                                Sign in
-                        </Text>
-                        </TouchableOpacity>
                     </View>
-                    <Text style={styles.version}>
-                        V1.0.1
+                </SafeAreaView>
+                <View style={styles.parent2}>
+                    <View style={styles.child2}>
+                        <View>
+                            <TextInput
+                                style={styles.input}
+                                label="Full name"
+                                value={fullname}
+                                underlineColor="#fff"
+                                onChangeText={(value) => setFullName(value)}
+                            />
+                            <HelperText
+                                type="error"
+                                visible={errorMessage1.length != ""}
+                            >
+                                {errorMessage1}
+                            </HelperText>
+                            <TextInput
+                                style={styles.input}
+                                label="Email"
+                                value={email}
+                                underlineColor="#fff"
+                                onChangeText={(value) => setEmail(value)}
+                            />
+                            <HelperText
+                                type="error"
+                                visible={errorMessage2.length != ""}
+                            >
+                                {errorMessage2}
+                            </HelperText>
+                            <TextInput
+                                style={styles.input}
+                                label="Password"
+                                value={password}
+                                underlineColor="#fff"
+                                secureTextEntry
+                                onChangeText={(value) => setPassword(value)}
+                            />
+                            <HelperText
+                                type="error"
+                                visible={errorMessage3.length != ""}
+                            >
+                                {errorMessage3}
+                            </HelperText>
+                            <TextInput
+                                style={styles.input}
+                                label="Confirm Password"
+                                value={confirmPassword}
+                                underlineColor="#fff"
+                                secureTextEntry
+                                onChangeText={(value) => setConfirmPassword(value)}
+                            />
+                            <HelperText
+                                type="error"
+                                visible={errorMessage4.length != ""}
+                            >
+                                {errorMessage4}
+                            </HelperText>
+                            <Text style={styles.agreement}>
+                                By Clicking "Sign Up", I agree to the terms and conditions of hellotter
                         </Text>
-                </View>
+                            <DefButton text="SIGN UP" onPress={() => signUp(email, password, fullname, confirmPassword)} />
+                        </View>
 
+
+                        <View style={styles.view2}>
+                            <View style={styles.view3}>
+                                <Text size={15} color="white">
+                                    {"Already a Member? "}
+                                </Text>
+                                <TouchableOpacity onPress={() => navigation.goBack()}>
+                                    <Text color="white" size={15} style={styles.login}>
+                                        Log in
+                        </Text>
+                                </TouchableOpacity>
+                            </View>
+                            <Text style={styles.version}>
+                                V1.0.1
+                        </Text>
+                        </View>
+
+                    </View>
+                </View>
                 {isLoading &&
                     <View style={styles.spinner}>
                         <ActivityIndicator size="large" color="#0000ff" />
                     </View>
                 }
-
-            </ImageBackground>
+            </View>
         </KeyboardAwareScrollView>
+        // <KeyboardAwareScrollView
+        //     showsVerticalScrollIndicator={false}
+        //     enableAutomaticScroll
+        //     extraScrollHeight={10}
+        //     enableOnAndroid={true}
+        //     extraHeight={Platform.select({ android: 100 })}
+        //     style={styles.scroll}
+        // >
+        //     <ImageBackground
+        //         source={require("../../assets/background.png")}
+        //         style={styles.image}
+        //     >
+
+
+        //         {isLoading &&
+        //             <View style={styles.spinner}>
+        //                 <ActivityIndicator size="large" color="#0000ff" />
+        //             </View>
+        //         }
+
+        //     </ImageBackground>
+        // </KeyboardAwareScrollView>
 
 
 
@@ -210,14 +248,10 @@ const styles = StyleSheet.create({
     },
     input: {
         backgroundColor: "transparent",
-        alignSelf: "stretch",
     },
     icon: {
-        marginTop: screenHeight * .01,
-        marginBottom: screenHeight * .05,
-        width: 100,
-        height: 100,
-        alignSelf: 'center'
+        width: 85,
+        height: 85
     },
     error: {
         marginBottom: 5,
@@ -261,5 +295,34 @@ const styles = StyleSheet.create({
     view3: {
         flexDirection: 'row',
         marginBottom: 10,
+    },
+    parent1: {
+        flex: 1,
+        backgroundColor: "#33FFFF"
+    },
+    parent2: {
+        height: Platform.OS == 'ios' ? (isIphoneX() ? screenHeight * .85 - 44 : screenHeight * .85 - 20) : screenHeight * .85,
+        width: "100%",
+        alignSelf: 'center',
+        backgroundColor: "#3389FF",
+        transform: [{ scaleX: 1.5 }],
+        borderTopStartRadius: 300,
+        borderTopEndRadius: 300,
+        overflow: 'hidden',
+
+    },
+    child1: {
+        height: screenHeight * .15,
+        backgroundColor: "#33FFFF",
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    child2: {
+        flex: 1,
+        transform: [{ scaleX: 0.70 }],
+        backgroundColor: '#3389FF',
+        justifyContent: "space-between",
+        paddingTop: 40,
+        paddingHorizontal: 40
     },
 });

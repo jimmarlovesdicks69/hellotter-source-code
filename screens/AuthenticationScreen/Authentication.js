@@ -1,4 +1,4 @@
-import React, { Fragment,useState, useEffect, useContext } from "react";
+import React, { Fragment, useState, useEffect, useContext } from "react";
 import {
   StyleSheet,
   ImageBackground,
@@ -6,10 +6,13 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
-  ActivityIndicator
+  ActivityIndicator,
+  SafeAreaView,
+  Platform,
+  Keyboard
 } from "react-native";
 import { TextInput, HelperText } from "react-native-paper";
-import { validateEmail } from '../../Utils/Utils';
+import { validateEmail, isIphoneX } from '../../Utils/Utils';
 
 import { CheckBox, Input } from "react-native-elements";
 
@@ -20,15 +23,15 @@ import DefButton from "../../components/DefButton";
 import Text from "../../components/Text";
 
 
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 
-const socket = io.connect('http://192.168.0.9:4443', { transports: ['websocket'] });
+// const socket = io.connect('http://192.168.0.9:4443', { transports: ['websocket'] });
 
 //const socket = io.connect('https://evening-shore-95443.herokuapp.com/', { transports: ['websocket'] });
 
-socket.on('connect', () => {
-  console.log('Socket:',socket.connected); // true
-});
+// socket.on('connect', () => {
+//   console.log('Socket:', socket.connected); // true
+// });
 
 
 const screenHeight = Math.round(Dimensions.get('window').height);
@@ -44,10 +47,29 @@ export default function Authentication({ navigation }) {
   const [isLoading, setisLoading] = useState(false);
 
   const { signIn } = useContext(AuthContext);
- 
- 
+
+
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
   useEffect(() => {
-  });
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        setKeyboardVisible(true); // or some other action
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setKeyboardVisible(false); // or some other action
+      }
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
 
   const login = (email, password) => {
     const error1 = validateEmail(email) ? "" : "Invalid Email";
@@ -70,8 +92,8 @@ export default function Authentication({ navigation }) {
           password: password,
         })
       }).then(res => res.json())
-        .then(async(response) => {
-          
+        .then(async (response) => {
+
           if (response['error'] == true) {
             setErrorMessage2(response['message'])
             setisLoading(false)
@@ -82,7 +104,7 @@ export default function Authentication({ navigation }) {
             }); */
             let response2 = await fetch('http://3.23.32.212/api/fetch_contacts.php');
             let json = await response2.json();
-            signIn(response,json)
+            signIn(response, json)
             setisLoading(false)
           }
         }).catch(error => {
@@ -96,101 +118,129 @@ export default function Authentication({ navigation }) {
     console.log('message from socket:', data);
   }
 
-  socket.on('message', function (message) {
-  var data = message;
-  switch (data.type) {
-    case 'login':
-      onLogin(data);
-      break;
-  }
-  });
+  // socket.on('message', function (message) {
+  //   var data = message;
+  //   switch (data.type) {
+  //     case 'login':
+  //       onLogin(data);
+  //       break;
+  //   }
+  // });
 
   return (
     <KeyboardAwareScrollView
       showsVerticalScrollIndicator={false}
-      enableAutomaticScroll
-      extraScrollHeight={10}
       enableOnAndroid={true}
+      scrollEnabled={isKeyboardVisible}
       style={styles.scroll}
+
     >
-      <ImageBackground
-        source={require("../../assets/background.png")}
-        style={styles.image}
-      >
+      <View style={styles.parent1}>
 
-        <View>
-          <Image style={styles.icon} source={require('../../assets/Hellotter-logo-white.png')} />
-          <TextInput
-            style={styles.input}
-            label="Email"
-            value={email}
-            underlineColor="#fff"
-            onChangeText={(value) => setEmail(value)}
-          />
-          <HelperText
-            style={styles.error}
-            type="error"
-            visible={errorMessage1}
-          >
-            {errorMessage1}
-          </HelperText>
-          <TextInput
-            style={styles.input}
-            label="Password"
-            underlineColor="#fff"
-            value={password}
-            secureTextEntry
-            onChangeText={(value) => setPassword(value)}
-          />
-          <HelperText
-            style={styles.error}
-            type="error"
-            visible={errorMessage2}
-          >
-            {errorMessage2}
-          </HelperText>
-          <CheckBox
-                        containerStyle={styles.checkBox}
-                        title="Remember me"
-                        checked={rememberMe}
-                        checkedColor='white'
-                        textStyle={{ color: 'white' }}
-                        onPress={() => setRememberMe(!rememberMe)}
-                    />
-          <DefButton onPress={() => login(email, password)} text="LOGIN" />
-          <TouchableOpacity onPress={()=> navigation.navigate('ForgotPassword')}>
-            <Text style={styles.forgotPassword}>
-              Forgot Password
+        <SafeAreaView>
+          <View style={styles.child1}>
+
+            <Image style={styles.icon} source={require('../../assets/hellootter_singup.png')} resizeMode={'cover'} />
+          </View>
+        </SafeAreaView>
+
+
+        <View style={styles.parent2}>
+          <View style={styles.child2}>
+            <View>
+              <TextInput
+                style={styles.input}
+                label="Email"
+                value={email}
+                underlineColor="#fff"
+                onChangeText={(value) => setEmail(value)}
+              />
+              <HelperText
+                style={styles.error}
+                type="error"
+                visible={errorMessage1}
+              >
+                {errorMessage1}
+              </HelperText>
+              <TextInput
+                style={styles.input}
+                label="Password"
+                underlineColor="#fff"
+                value={password}
+                secureTextEntry
+                onChangeText={(value) => setPassword(value)}
+              />
+              <HelperText
+                style={styles.error}
+                type="error"
+                visible={errorMessage2}
+              >
+                {errorMessage2}
+              </HelperText>
+              <CheckBox
+                containerStyle={styles.checkBox}
+                title="Remember me"
+                checked={rememberMe}
+                checkedColor='white'
+                textStyle={{ color: 'white' }}
+                onPress={() => setRememberMe(!rememberMe)}
+              />
+              <DefButton onPress={() => login(email, password)} text="LOGIN" />
+              <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
+                <Text style={styles.forgotPassword} size={17}>
+                  Forgot Password
             </Text>
-          </TouchableOpacity>
-        </View>
+              </TouchableOpacity>
+            </View>
 
 
 
-        <View style={styles.view2}>
-                    <View style={styles.view3}>
-                        <Text size={15} color="white"> 
-                           {"Not a Member? "} 
+            <View style={styles.view2}>
+              <View style={styles.view3}>
+                <Text size={15} color="white">
+                  {"Not a Member? "}
+                </Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+                  <Text color="white" size={15} style={styles.signup}>
+                    Sign up
                         </Text>
-                        <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-                            <Text color="white" size={15} style={styles.signup}>
-                                Sign up
-                        </Text>
-                        </TouchableOpacity>
-                    </View>
-                    <Text style={styles.version}>
-                        V1.0.1
+                </TouchableOpacity>
+              </View>
+              <Text style={styles.version}>
+                V1.1.1
                     </Text>
-                </View>
-
-
+            </View>
+          </View>
+        </View>
         {isLoading &&
           <View style={styles.spinner}>
             <ActivityIndicator size="large" color="#0000ff" />
           </View>
         }
-      </ImageBackground>
+      </View>
     </KeyboardAwareScrollView>
+    // <KeyboardAwareScrollView
+    //   showsVerticalScrollIndicator={false}
+    //   enableAutomaticScroll
+    //   extraScrollHeight={10}
+    //   enableOnAndroid={true}
+    //   style={styles.scroll}
+    // >
+    //   <ImageBackground
+    //     source={require("../../assets/background.png")}
+    //     style={styles.image}
+    //   >
+
+
+
+
+    //     {isLoading &&
+    //       <View style={styles.spinner}>
+    //         <ActivityIndicator size="large" color="#0000ff" />
+    //       </View>
+    //     }
+    //   </ImageBackground>
+    // </KeyboardAwareScrollView>
 
 
   );
@@ -212,27 +262,28 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   icon: {
-    marginTop: screenHeight*.01,
-    marginBottom: screenHeight*.05,
-    width: 100,
-    height: 100,
-    alignSelf: 'center'
+    width:85,
+    height:85
+
   },
   input: {
-    marginBottom: 5,
     backgroundColor: "transparent",
   },
   error: {
-    marginBottom: 5,
-    fontFamily: "regular"
+    marginBottom: 5
   },
   checkBox: {
     backgroundColor: "transparent",
     borderColor: "transparent",
-    margin: 0,
+    alignSelf: 'stretch',
+    marginTop: 20,
+    alignSelf: 'center',
     marginBottom: 10,
-    padding: 0
-},
+    width: screenWidth,
+    paddingHorizontal: 40,
+    padding: 0,
+    // margin:0
+  },
   forgotPassword: {
     color: 'white',
     alignSelf: "center",
@@ -261,6 +312,36 @@ const styles = StyleSheet.create({
   view3: {
     flexDirection: 'row',
     marginBottom: 10,
-},
+  },
+  parent1: {
+    flex: 1,
+    backgroundColor: "#33FFFF"
+  },
+  parent2: {
+    height: Platform.OS == 'ios' ? (isIphoneX() ? screenHeight * .85 - 44 : screenHeight * .85 - 20) : screenHeight * .85,
+    width: "100%",
+    alignSelf: 'center',
+    backgroundColor: "#3389FF",
+    transform: [{ scaleX: 1.5 }],
+    borderTopStartRadius: 300,
+    borderTopEndRadius: 300,
+    overflow: 'hidden',
+
+  },
+  child1: {
+    height: screenHeight * .15,
+    backgroundColor: "#33FFFF",
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  child2: {
+    flex: 1,
+    transform: [{ scaleX: 0.70 }],
+    backgroundColor: '#3389FF',
+    justifyContent: "space-between",
+    paddingTop: 40,
+    paddingHorizontal: 40
+  },
+
 
 });

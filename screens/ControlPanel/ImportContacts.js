@@ -16,40 +16,45 @@ export default function ImportContacts({ route, navigation }) {
 
     useEffect(() => {
         GoogleSignin.configure({
-            scopes: ['profile', 'email', 'openid', 'https://www.googleapis.com/auth/contacts'], // what API you want to access on behalf of the user, default is email and profile
-            // webClientId: '<FROM DEVELOPER CONSOLE>', // client ID of type WEB for your server (needed to verify user ID and offline access)
-            // offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+            scopes: ['profile', 'email', 'openid','https://www.googleapis.com/auth/contacts'], // what API you want to access on behalf of the user, default is email and profile
+            webClientId: '879498274464-m00luc99iv14p0rgqq2tlpvatkkt7bt3.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
+            offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+            forceCodeForRefreshToken:true,
             // hostedDomain: '', // specifies a hosted domain restriction
             // loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)
             // forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
             // accountName: '', // [Android] specifies an account name on the device that should be used
             // iosClientId: '<FROM DEVELOPER CONSOLE>', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
-            androidClientId: '1004382062310-t089iha7ksl9hsqec3638r8u8urme0u1.apps.googleusercontent.com'
+            iosClientId: '879498274464-pb4eredqir7nov8sa32gq6h1hr6m83cc.apps.googleusercontent.com', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+        
           });
     }, []);
 
    
     const signIn = async () => {
-        console.log('yas')
         try {
           await GoogleSignin.hasPlayServices();
           const userInfo = await GoogleSignin.signIn();
-          console.log(userInfo)
-          console.log('yes')
+
+          const currentUser = GoogleSignin.getTokens().then((res)=>{
+            console.log(res.accessToken ); //<
+          })
+        //   console.log(userInfo)
+        //   console.log('yes2')
         } catch (error) {
-            alert(error)
+            // alert(error)
           if (error.code === statusCodes.SIGN_IN_CANCELLED) {
             // user cancelled the login flow
-            console.log(error)
+            console.log(error, '1')
           } else if (error.code === statusCodes.IN_PROGRESS) {
-            // operation (e.g. sign in) is in progress already
-            console.log(error)
+            // operation (e.g. sign in) is in progress already  
+            console.log(error, '2')
           } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
             // play services not available or outdated
-            console.log(error)
+            console.log(error, 3)
           } else {
             // some other error happened
-            console.log(error)
+            alert(error)
           }
         }
       };
@@ -111,7 +116,7 @@ export default function ImportContacts({ route, navigation }) {
                         <Image style={{ marginRight: 10 }} source={require('../../assets/yahoo.png')} />
                         <Text color='black' size={18}>Yahoo mail</Text>
                     </View>
-                    <ImportButton onPress={() => {}} />
+                    <ImportButton onPress={() => {}} /> 
                 </View>
 
                 <View style={styles.mail}>
@@ -119,7 +124,7 @@ export default function ImportContacts({ route, navigation }) {
                         <Image style={{ marginRight: 10 }} source={require('../../assets/gmail.png')} />
                         <Text color='black' size={18}>Gmail</Text>
                     </View>
-                    <ImportButton onPress={() => googleSignIn()} />
+                    <ImportButton onPress={() => signIn()} />
                 </View>
 
                 <View style={styles.mail}>
@@ -127,7 +132,7 @@ export default function ImportContacts({ route, navigation }) {
                         <Image style={{ marginRight: 10 }} source={require('../../assets/hotmail.png')} />
                         <Text color='black' size={18}>Hotmail</Text>
                     </View>
-                    <ImportButton onPress={() => signIn()} />
+                    <ImportButton onPress={() => {}} />
                 </View>
 
                 <View style={styles.mail}>

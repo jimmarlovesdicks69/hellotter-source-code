@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Image } from 'react-native'
+import { View, StyleSheet, TouchableOpacity, Image, Dimensions, SafeAreaView } from 'react-native'
 
 import DefHeader from '../../components/DefHeader';
 import Profile from '../../components/Profile';
@@ -13,6 +13,7 @@ import { UserInfoContext } from '../../contexts/UserInfoContext';
 import { getInitials } from '../../Utils/Utils';
 
 
+const screenHeight = Math.round(Dimensions.get('window').height);
 export default function Favorites() {
     const { userInfo } = useContext(UserInfoContext)
 
@@ -25,11 +26,11 @@ export default function Favorites() {
 
     return (
         <View style={styles.wrapper}>
-            <DefHeader />
-            <Profile fullname={userInfo.fullname} email={userInfo.email} />
+            <DefHeader/>
+            <Profile fullname={userInfo.fullname} email={userInfo.email}/>
             <FavoritesSearch name='Favorites' onPress={() => setOnEdit(!onEdit)} onEdit={onEdit} />
             <ScrollView>
-            <View style={styles.favoritesContainer}>
+                <View style={styles.favoritesContainer}>
                     {globalContacts.map((name, index) => {
                         // if (letter != name[0]) {
                         //     letter = name[0]
@@ -48,14 +49,14 @@ export default function Favorites() {
                                         rounded
                                         overlayContainerStyle={{ backgroundColor: colors.primary }}
                                         size={30}
-                                        title={<Text size={15}>{getInitials(name['fullname'])}</Text>}
+                                        title={<Text size={15} color='black'>{getInitials(name['fullname'])}</Text>}
                                         onPress={() => console.log("Works!")}
                                     />
                                     <View style={styles.nameContainer}>
                                         <Text color={'black'}>{name['fullname']}</Text>
                                         {onEdit &&
                                             <TouchableOpacity>
-                                                <Image style={{width:20,height:20}} source={require('../../assets/icon-cross.png')} />
+                                                <Image style={{ width: 20, height: 20,marginRight:15 }} source={require('../../assets/icon-cross.png')} />
                                             </TouchableOpacity>
                                         }
                                     </View>
@@ -83,8 +84,10 @@ export default function Favorites() {
                     })}
                 </View>
             </ScrollView>
-            <View style={{marginBottom:60}}/>
-            <ControlPanel />
+            <View style={{ marginBottom: Platform.OS == 'ios' ? screenHeight * .01 : screenHeight * .10 }} />
+            <SafeAreaView style={{ backgroundColor: 'black' }}>
+                <ControlPanel />
+            </SafeAreaView>
         </View>
     )
 }
@@ -95,6 +98,7 @@ const styles = StyleSheet.create({
     },
     favoritesContainer: {
         flexGrow: 1,
+        backgroundColor:'white'
     },
     importContainer: {
         padding: 10,
