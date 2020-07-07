@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: "space-evenly",
         borderTopWidth: .5,
-        marginBottom: Platform.OS == 'ios' ? screenHeight * .01 : screenHeight * .10
+        marginBottom: Platform.OS == 'ios'?isIphoneX() ? screenHeight * .01: screenHeight*.07 : screenHeight * .10
     },
     letterContainer: {
         paddingHorizontal: 15,
