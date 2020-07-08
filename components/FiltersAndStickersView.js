@@ -16,7 +16,7 @@ const FiltersAndStickersView = (props) => {
     }, [props.showFilterPanel]);
 
 
-    function FiltersAndStickersViewChild() {
+    const FiltersAndStickersViewChild = () => {
         return (
             <Animatable.View duration={500} animation={props.showFilterPanel ? "fadeInUp" : "fadeOutDown"} onAnimationEnd={() => { (!props.showFilterPanel) ? setShow(false) : setShow(true) }}
                 style={{ height: screenHeight, position: 'absolute', right: 0, bottom: 0, width: screenWidth }} >

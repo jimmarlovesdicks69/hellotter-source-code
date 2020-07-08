@@ -11,12 +11,13 @@ import { useTheme } from 'react-native-paper';
 import Text from '../../components/Text'
 import { UserInfoContext } from '../../contexts/UserInfoContext';
 import { getInitials } from '../../Utils/Utils';
+import { ContactsContext } from '../../contexts/ConcactsContext';
 
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 export default function Favorites() {
     const { userInfo } = useContext(UserInfoContext)
-
+    const { contacts } = useContext(ContactsContext)
     const [onEdit, setOnEdit] = useState(false)
 
     const { colors } = useTheme();
@@ -31,7 +32,7 @@ export default function Favorites() {
             <FavoritesSearch name='Favorites' onPress={() => setOnEdit(!onEdit)} onEdit={onEdit} />
             <ScrollView>
                 <View style={styles.favoritesContainer}>
-                    {globalContacts.map((name, index) => {
+                    {contacts.map((name, index) => {
                         // if (letter != name[0]) {
                         //     letter = name[0]
                         //     return (
