@@ -331,10 +331,10 @@ export default function App() {
 
 const styles = StyleSheet.create({
   wrapper: {
-    display: "flex",
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    backgroundColor:'white'
   },
 
   logo: {

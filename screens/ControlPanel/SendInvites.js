@@ -96,8 +96,9 @@ export default function SendInvites() {
                 />
 
             </View>
-
+            <View style={{marginHorizontal:20}}>        
             <DefButton text="Send Invitation" onPress={() => sendInvites()}></DefButton>
+            </View>
             {isLoading &&
                 <View style={styles.spinner}>
                     <ActivityIndicator size="large" color="#0000ff" />
@@ -128,7 +129,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         borderBottomWidth: 1,
-        margin: 20
+        margin: 20,
+        alignItems:'center'
 
     },
     textEmail: {

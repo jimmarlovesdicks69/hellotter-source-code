@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useState, useEffect } from "react";
-import { StyleSheet, View, Image, Button, Dimensions, Platform,SafeAreaView } from 'react-native';
+import { StyleSheet, View, Image, Button, Dimensions, Platform, SafeAreaView } from 'react-native';
 
 
 import DefHeader from '../../components/DefHeader'
@@ -32,61 +32,51 @@ export default function Contacts({ navigation }) {
         navigation.navigate('Dashboard', { isCalling: true, caller: userInfo.email, callee });
     };
 
+    const contactDatas = () => {
+        return (
+            searchContacts(search).map((name, index) => {
+                var nextLetter = (index == globalContacts.length - 1) ? "" : globalContacts[index + 1]['fullname'][0];
+                // if (letter != name['fullname'][0]) {
+                //     letter = name['fullname'][0]
+                var isLetter = letter != name['fullname'][0]
+                letter = name['fullname'][0]
+                return (
+                    <View key={index}>
+
+                        {isLetter &&
+                            <View style={styles.letterContainer}>
+                                <Text color={'black'}>{name['fullname'][0].toUpperCase()}</Text>
+                            </View>
+                        }
+                        <TouchableOpacity onPress={() => callUser(name.email)}>
+                            <View style={styles.nameContainer}>
+                                <Text color={'black'}>{name['fullname']}</Text>
+                            </View>
+                        </TouchableOpacity>
+                        {name['fullname'][0] == nextLetter &&
+                            <View
+                                style={{
+                                    borderBottomColor: 'black',
+                                    borderBottomWidth: 1,
+                                    marginHorizontal: 15
+                                }}
+                            />
+                        }
+
+                    </View>
+                )
+            })
+        )
+    }
+
     return (
         <View style={styles.wrapper}>
-            <DefHeader/>
+            <DefHeader />
             <Profile fullname={userInfo.fullname} email={userInfo.email} />
             <Search name="Contacts" value={search} onChange={(val) => setSearch(val)} />
             <ScrollView>
                 <View style={styles.contactsContainer}>
-                    {searchContacts(search).map((name, index) => {
-                        var nextLetter = (index == globalContacts.length - 1) ? "" : globalContacts[index + 1]['fullname'][0];
-                        if (letter != name['fullname'][0]) {
-                            letter = name['fullname'][0]
-                            return (
-                                <View key={index}>
-                                    <View style={styles.letterContainer}>
-                                        <Text color={'black'}>{name['fullname'][0].toUpperCase()}</Text>
-                                    </View>
-                                    <TouchableOpacity onPress={() => callUser(name.email)}>
-                                        <View style={styles.nameContainer}>
-                                            <Text color={'black'}>{name['fullname']}</Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                    {name['fullname'][0] == nextLetter &&
-                                        <View
-                                            style={{
-                                                borderBottomColor: 'black',
-                                                borderBottomWidth: 1,
-                                                marginHorizontal: 15
-                                            }}
-                                        />
-                                    }
-
-                                </View>
-                            )
-                        }
-
-                        return (
-                            <View key={index}>
-                                <TouchableOpacity onPress={() => callUser(name.email)}>
-                                    <View style={styles.nameContainer}>
-                                        <Text color={'black'}>{name['fullname']}</Text>
-                                    </View>
-                                </TouchableOpacity>
-                                {name['fullname'][0] == nextLetter &&
-                                    <View
-                                        style={{
-                                            borderBottomColor: 'black',
-                                            borderBottomWidth: 1,
-                                            marginHorizontal: 15
-                                        }}
-                                    />
-                                }
-                            </View>
-                        )
-                    })}
-
+                    {contactDatas()}
                 </View>
             </ScrollView>
             <View style={styles.importContainer}>
@@ -112,7 +102,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: "space-evenly",
         borderTopWidth: .5,
-        marginBottom: Platform.OS == 'ios'?isIphoneX() ? screenHeight * .01: screenHeight*.07 : screenHeight * .10
+        marginBottom: Platform.OS == 'ios' ? isIphoneX() ? screenHeight * .01 : screenHeight * .07 : screenHeight * .10
     },
     letterContainer: {
         paddingHorizontal: 15,
