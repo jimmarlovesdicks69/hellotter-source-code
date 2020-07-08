@@ -43,6 +43,7 @@ import SendInvites from "./screens/ControlPanel/SendInvites";
 import io from 'socket.io-client';
 import FiltersAndStickersContextProvider from "./contexts/FiltersAndStickersContext";
 import YahooLogin from "./screens/ControlPanel/YahooLogin";
+import HotmailLogin from "./screens/ControlPanel/HotmailLogin";
 const socket = io.connect('http://192.168.0.9:4443', { transports: ['websocket'] });
 
 //const socket = io.connect('https://evening-shore-95443.herokuapp.com/', { transports: ['websocket'] });
@@ -176,14 +177,14 @@ export default function App() {
       try {
         await AsyncStorage.setItem('token', userToken);
         await AsyncStorage.setItem('userinfo', JSON.stringify(isFound));
-        await AsyncStorage.setItem('contacts', JSON.stringify(filteredContacts));
+        // await AsyncStorage.setItem('contacts', JSON.stringify(filteredContacts));
       } catch (error) {
 
         alert(error+'this')
       }
 
       globalUserInfo = isFound
-      globalContacts = filteredContacts
+      // globalContacts = filteredContacts
       
       dispatch({ type: 'LOGIN', id: isFound['email'], token: userToken });
     },
@@ -316,6 +317,10 @@ export default function App() {
                   <Stack.Screen
                     name="YahooLogin"
                     component={YahooLogin}
+                  />
+                  <Stack.Screen
+                    name="HotmailLogin"
+                    component={HotmailLogin}
                   />
               </Stack.Navigator>
               </FiltersAndStickersContextProvider>
