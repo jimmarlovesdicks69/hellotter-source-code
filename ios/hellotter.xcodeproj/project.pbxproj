@@ -162,6 +162,7 @@
 		2F990FBC24AD9C7600CC9F6B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F990FB924AD9C7500CC9F6B /* GoogleService-Info.plist */; };
 		565B0EF92A3001C0771804AC /* libPods-hellotter-hellotterTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C7846E81DCCEA425211EDC /* libPods-hellotter-hellotterTests.a */; };
 		8B395A1467F8B2682DE79958 /* libPods-hellotter-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51DBA0DE013163A97B7F32FB /* libPods-hellotter-tvOS.a */; };
+		156227E0D13E41BBAB336F91 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9546ED0889D43408723FFE4 /* OpenSans-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -397,6 +398,7 @@
 		F8EAB6C75E4148431B31EC53 /* Pods-hellotter-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hellotter-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-hellotter-tvOS/Pods-hellotter-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		FAA51926BE400F96749BD110 /* Pods-hellotter-hellotterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hellotter-hellotterTests.release.xcconfig"; path = "Target Support Files/Pods-hellotter-hellotterTests/Pods-hellotter-hellotterTests.release.xcconfig"; sourceTree = "<group>"; };
 		FEB096B7034DB3CD49E3FCDC /* Pods-hellotter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hellotter.release.xcconfig"; path = "Target Support Files/Pods-hellotter/Pods-hellotter.release.xcconfig"; sourceTree = "<group>"; };
+		C9546ED0889D43408723FFE4 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; name = "OpenSans-Regular.ttf"; path = "../assets/fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -748,6 +750,7 @@
 				1C5E650DD1BA453B8909D35E /* Octicons.ttf */,
 				4EEAAB908AE24A7CBBB4C303 /* SimpleLineIcons.ttf */,
 				4C1C7873ADB9481E95B8D4F6 /* Zocial.ttf */,
+				C9546ED0889D43408723FFE4 /* OpenSans-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1065,6 +1068,7 @@
 				0AC5CC7224ABCD80005A2195 /* switchcamera.png in Resources */,
 				0AC5CC9524ABCD80005A2195 /* background.png in Resources */,
 				0AC5CC4124ABCD80005A2195 /* maskicon-24@3x.png in Resources */,
+				156227E0D13E41BBAB336F91 /* OpenSans-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,7 +24,7 @@ export default function HotmailLogin({ navigation }) {
                 var uri = nativeEvent.url
                 var pathArray = uri.split('/');
                 var host = pathArray[2];
-                alert(host)
+
                 if (host == "example.com" && !loaded) {
                     var code = getUrlParameter('code', uri)
 

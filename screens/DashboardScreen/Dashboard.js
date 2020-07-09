@@ -34,6 +34,7 @@ export default function Dashboard({ navigation }) {
     // globalContacts.splice(0, 1)
     setUser(globalUserInfo)
     globalContacts!= null ? setSavedContacts([...globalContacts]) : null
+    globalContacts=[]
   }, [])
 
   useEffect(() => {

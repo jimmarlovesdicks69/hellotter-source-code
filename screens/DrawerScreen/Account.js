@@ -5,6 +5,7 @@ import Text from '../../components/Text'
 import DefHeader from '../../components/DefHeader';
 import { UserInfoContext } from '../../contexts/UserInfoContext';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 export default function Account({ navigation }) {
     const { userInfo } = useContext(UserInfoContext)
@@ -27,7 +28,7 @@ export default function Account({ navigation }) {
                     <Text color="black" size={18} style={{ marginRight: 10 }}>Password:</Text>
                     <Text color="black" size={18}>******************</Text>
                 </View>
-                <TouchableOpacity onPress={()=> navigation.navigate('ChangePassword', { 'email': userInfo.email, 'from': 'account' })}>
+                <TouchableOpacity onPress={() => navigation.navigate('ChangePassword', { 'email': userInfo.email, 'from': 'account' })}>
                     <Text color="blue" size={15}>change</Text>
                 </TouchableOpacity>
             </View>
@@ -42,7 +43,7 @@ export default function Account({ navigation }) {
                         <Text color="black" size={18}>Strype payment</Text>
                         <Text color="black" size={18}></Text>
                     </View>
-                    {/* <MaterialIcons name="navigate-next" size={25} color="black" /> */}
+                    <MaterialIcons name="keyboard-arrow-right" size={25} color="black" />
                 </View>
             </TouchableOpacity>
             <View style={{ height: 40 }} />
@@ -58,7 +59,7 @@ export default function Account({ navigation }) {
                         <Text color="black" size={18}>$120</Text>
                         <Text color="black" size={18}></Text>
                     </View>
-                    {/* <MaterialIcons name="navigate-next" size={25} color="black" /> */}
+                    <MaterialIcons name="keyboard-arrow-right" size={25} color="black" />
 
                 </View>
             </TouchableOpacity>

@@ -3,6 +3,7 @@ import { StyleSheet, View, TextInput, Image,Dimensions } from 'react-native';
 
 import Text from './Text'
 import { IconButton, Colors, useTheme } from 'react-native-paper';
+import { normalize } from "../Utils/Utils";
 
 const screenWidth = Math.round(Dimensions.get('window').width);
 const Search = (props) => {
@@ -11,21 +12,18 @@ const Search = (props) => {
         view: {
             flexDirection: 'row',
             paddingHorizontal: 15,
-            paddingVertical: 5,
+            paddingVertical: 10,
             borderBottomWidth: .8,
             borderTopWidth: .8,
             justifyContent: 'space-between',
             alignItems: 'center'
         },
-        text: {
-            fontSize: 20
-        }
     });
 
 
     return (
         <View style={styles.view}>
-            <Text color={'black'} style={styles.text}>{props.name}</Text>
+            <Text color={'black'} size={20}>{props.name}</Text>
             <View style={{ borderRadius: 10 }}>
                 <TextInput placeholder=" Search" style={{
                     paddingLeft: 10,
@@ -33,11 +31,13 @@ const Search = (props) => {
                     borderColor: 'black',
                     backgroundColor: 'white',
                     width: screenWidth * .7,
-                    height:40,
-                    borderWidth: 1,
+                    height:normalize(40),
+                    borderWidth: 0.5,
                     borderStyle: 'solid',
-                    fontSize: 15,
+                    fontSize: normalize(15),
                     borderRadius: 25,
+                    margin:0,
+                    
                 }} 
 
                 value={props.value}
