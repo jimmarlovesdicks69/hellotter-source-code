@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { ActivityIndicator, View, Dimensions } from 'react-native'
 import { WebView } from 'react-native-webview';
-import { sortContacts } from '../../Utils/Utils';
+import { sortContacts, getUrlParameter } from '../../Utils/Utils';
 import { ContactsContext } from '../../contexts/ConcactsContext';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Text from '../../components/Text';
@@ -25,7 +25,6 @@ export default function YahooLogin({ navigation }) {
 
 
     return (
-
             <WebView source={{ uri: 'https://api.login.yahoo.com/oauth2/request_auth?client_id=dj0yJmk9RDIzS01UTmN2Nk1iJmQ9WVdrOWJ6UnJjVTVDTXpRbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTQ1&response_type=code&redirect_uri=https://example.com' }}
                 incognito={true}
                 onLoadEnd={syntheticEvent => {
@@ -118,9 +117,3 @@ export default function YahooLogin({ navigation }) {
     )
 }
 
-function getUrlParameter(name, uri) {
-    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-    var results = regex.exec(uri);
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-};
