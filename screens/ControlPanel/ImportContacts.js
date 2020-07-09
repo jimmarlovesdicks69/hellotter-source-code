@@ -87,7 +87,7 @@ export default function ImportContacts({ route, navigation }) {
             );
             let responseJson = await response.json();
             if (!responseJson['connections']) return
-
+            var contactsData = []
             responseJson['connections'].map(contact => {
                 var obj = {}
                 obj['fullname'] = contact['names'][0]['displayName']

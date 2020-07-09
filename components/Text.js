@@ -12,10 +12,14 @@ const Text = (props) => {
         return {
             fontFamily: weigth,
             fontSize: normalize(size),
-            color
+            color: color
         }
     }
-
+    Text.defaultProps = {
+        weigth: 'OpenSans-Regular',
+        size: normalize(15),
+        color: 'white'
+    }
 
     return (
         <ReactNative.Text style={[getProps(), props.style]}>
@@ -24,10 +28,6 @@ const Text = (props) => {
     );
 };
 
-Text.defaultProps = {
-    weigth: 'OpenSans-Regular',
-    size: normalize(15),
-    color: 'white'
-}
+
 
 export default Text;
