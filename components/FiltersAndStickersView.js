@@ -24,7 +24,7 @@ const FiltersAndStickersView = (props) => {
 
                     <View style={{ flexGrow: 1, backgroundColor: 'transparent' }} onTouchStart={() => props.onBackdropPressed()} />
 
-                    <View style={{ backgroundColor: 'rgba(0,0,0,0.8)', width: screenWidth, }}>
+                    <View style={{ backgroundColor: 'rgba(0,0,0,0.3)', width: screenWidth, }}>
                         {tab == 0 ?
                             <FilterPanel /> :
                             <StickersPanel />
@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     },
     tab: {
         width: screenWidth * .5,
+        // backgroundColor:'transparent'
         // padding: 5,
     },
     triangle: {
@@ -100,7 +101,6 @@ const styles = StyleSheet.create({
         borderBottomWidth: 10,
         borderLeftColor: 'transparent',
         borderRightColor: 'transparent',
-
         alignSelf: 'center'
     }
 

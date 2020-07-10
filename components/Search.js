@@ -24,7 +24,7 @@ const Search = (props) => {
     return (
         <View style={styles.view}>
             <Text color={'black'} size={20}>{props.name}</Text>
-            <View style={{ borderRadius: 10 }}>
+       
                 <TextInput placeholder=" Search" style={{
                     paddingLeft: 10,
                     paddingRight: 10,
@@ -34,7 +34,7 @@ const Search = (props) => {
                     height:normalize(40),
                     borderWidth: 0.5,
                     borderStyle: 'solid',
-                    fontSize: normalize(15),
+                    fontSize: normalize(13),
                     borderRadius: 25,
                     margin:0,
                     
@@ -44,7 +44,7 @@ const Search = (props) => {
                 onChangeText={props.onChange}
                     
                 />
-            </View>
+ 
             {props.withButton &&
                 <IconButton
                     icon={require('../assets/Plus.png')}

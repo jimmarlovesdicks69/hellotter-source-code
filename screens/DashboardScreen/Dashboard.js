@@ -11,6 +11,7 @@ import FiltersAndStickersView from "../../components/FiltersAndStickersView";
 import BackgroundView from "../../components/BackgroundView";
 import { bgData } from "../../Utils/Datas/BackgroundData"
 import { FiltersAndStickersContext } from "../../contexts/FiltersAndStickersContext";
+import GiftView from "../../components/GiftView";
 
 
 //import { black } from "react-native-paper/lib/typescript/src/styles/colors";
@@ -22,6 +23,7 @@ export default function Dashboard({ navigation }) {
 
   const [showFilterPanel, setShowFilterPanel] = useState(false)
   const [showBackgroundPanel, setShowBackgroundPanel] = useState(false)
+  const [showGiftPanel, setShowGiftPanel] = useState(false)
   const [countRender, setCountRender] = useState(false)
 
   const { selectedBackground } = useContext(FiltersAndStickersContext)
@@ -33,8 +35,9 @@ export default function Dashboard({ navigation }) {
   useEffect(() => {
     // globalContacts.splice(0, 1)
     setUser(globalUserInfo)
-    globalContacts!= null ? setSavedContacts([...globalContacts]) : null
-    globalContacts=[]
+    
+    globalContacts != null ? setSavedContacts([...globalContacts]) : null
+    globalContacts = []
   }, [])
 
   useEffect(() => {
@@ -58,17 +61,21 @@ export default function Dashboard({ navigation }) {
 
 
         {
-          (!showFilterPanel && !showBackgroundPanel && Platform.OS == "ios") ?
-            <SafeAreaView style={{ backgroundColor: 'black' }}>
+          (!showFilterPanel && !showBackgroundPanel && !showGiftPanel) ?
+            Platform.OS == "ios" ?
+              <SafeAreaView style={{ backgroundColor: 'black' }}>
+                <ControlPanel
+                  onFilterPanelPressed={() => { setShowFilterPanel(true); setCountRender(true) }}
+                  onBackgroundPanelPressed={() => { setShowBackgroundPanel(true); setCountRender(true) }}
+                  onGiftPanelPressed={() => { setShowGiftPanel(true); setCountRender(true) }}
+                />
+              </SafeAreaView> :
               <ControlPanel
                 onFilterPanelPressed={() => { setShowFilterPanel(true); setCountRender(true) }}
                 onBackgroundPanelPressed={() => { setShowBackgroundPanel(true); setCountRender(true) }}
-              />
-            </SafeAreaView> :
-            <ControlPanel
-              onFilterPanelPressed={() => { setShowFilterPanel(true); setCountRender(true) }}
-              onBackgroundPanelPressed={() => { setShowBackgroundPanel(true); setCountRender(true) }}
-            />
+                onGiftPanelPressed={() => { setShowGiftPanel(true); setCountRender(true) }}
+              /> :
+            null
 
         }
 
@@ -78,6 +85,9 @@ export default function Dashboard({ navigation }) {
         }
         {(countRender && showFilterPanel == true) &&
           <FiltersAndStickersView onBackdropPressed={() => setShowFilterPanel(false)} showFilterPanel={showFilterPanel} />
+        }
+        {(countRender && showGiftPanel == true) &&
+          <GiftView onBackdropPressed={() => setShowGiftPanel(false)} showGiftPanel={showGiftPanel} />
         }
       </View>
     </Fragment>
