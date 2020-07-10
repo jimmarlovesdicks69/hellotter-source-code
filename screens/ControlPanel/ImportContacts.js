@@ -12,7 +12,7 @@ import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-com
 
 export default function ImportContacts({ route, navigation }) {
     // firebase.initializeApp(config);
-    const { setSavedContacts } = useContext(ContactsContext)
+    const { setSavedContacts, contacts } = useContext(ContactsContext)
 
     useEffect(() => {
         GoogleSignin.configure({
@@ -38,6 +38,7 @@ export default function ImportContacts({ route, navigation }) {
 
             const currentUser = GoogleSignin.getTokens().then((res) => {
                 console.log(res.accessToken); //<
+                fetchContacts(res.accessToken)
             })
             //   console.log(userInfo)
             //   console.log('yes2')
@@ -85,14 +86,16 @@ export default function ImportContacts({ route, navigation }) {
                 "https://people.googleapis.com/v1/people/me/connections?personFields=names,emailAddresses&access_token=" + token
             );
             let responseJson = await response.json();
+            if (!responseJson['connections']) return
+            var contactsData = []
             responseJson['connections'].map(contact => {
                 var obj = {}
                 obj['fullname'] = contact['names'][0]['displayName']
                 obj['email'] = contact['emailAddresses'][0]['value']
-                globalContacts.push(obj)
+                contactsData.push(obj)
             })
-            globalContacts = sortContacts(globalContacts)
-            setSavedContacts([...globalContacts])
+            contactsData = sortContacts(contactsData)
+            setSavedContacts([...contactsData])
             try {
                 await AsyncStorage.setItem('contacts', JSON.stringify(globalContacts));
             } catch (error) {

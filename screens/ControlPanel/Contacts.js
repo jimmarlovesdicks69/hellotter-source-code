@@ -35,7 +35,7 @@ export default function Contacts({ navigation }) {
     const contactDatas = () => {
         return (
             searchContacts(search).map((name, index) => {
-                var nextLetter = (index == globalContacts.length - 1) ? "" : globalContacts[index + 1]['fullname'][0];
+                var nextLetter = (index == contacts.length - 1) ? "" : contacts[index + 1]['fullname'][0];
                 // if (letter != name['fullname'][0]) {
                 //     letter = name['fullname'][0]
                 var isLetter = letter != name['fullname'][0]

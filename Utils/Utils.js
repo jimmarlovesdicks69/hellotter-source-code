@@ -21,6 +21,7 @@ export var getInitials = function (string) {
   if (names.length > 1) {
     initials += names[names.length - 1].substring(0, 1).toUpperCase();
   }
+
   return initials;
 };
 
@@ -55,7 +56,12 @@ export const sortContacts = (contacts) => {
   return sorted
 }
 
-
+export function getUrlParameter(name, uri) {
+  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+  var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+  var results = regex.exec(uri);
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
 
 //Calculate text size based on screen dimensions
 const {

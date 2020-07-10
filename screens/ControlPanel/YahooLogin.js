@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { ActivityIndicator, View, Dimensions } from 'react-native'
 import { WebView } from 'react-native-webview';
-import { sortContacts } from '../../Utils/Utils';
+import { sortContacts, getUrlParameter } from '../../Utils/Utils';
 import { ContactsContext } from '../../contexts/ConcactsContext';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Text from '../../components/Text';
+import WebviewHeader from '../../components/WebviewHeader';
 
 
 const screenHeight = Math.round(Dimensions.get('window').height);
@@ -13,7 +14,6 @@ export default function YahooLogin({ navigation }) {
     const [loaded, setLoaded] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const { setSavedContacts } = useContext(ContactsContext)
-
 
     if (isLoading) {
         return (
@@ -25,7 +25,8 @@ export default function YahooLogin({ navigation }) {
 
 
     return (
-
+        <View style={{ flex: 1 }}>
+            <WebviewHeader site="Yahoo!" url="login.yahoo.com" onPress={()=> navigation.goBack()}/>
             <WebView source={{ uri: 'https://api.login.yahoo.com/oauth2/request_auth?client_id=dj0yJmk9RDIzS01UTmN2Nk1iJmQ9WVdrOWJ6UnJjVTVDTXpRbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTQ1&response_type=code&redirect_uri=https://example.com' }}
                 incognito={true}
                 onLoadEnd={syntheticEvent => {
@@ -86,7 +87,7 @@ export default function YahooLogin({ navigation }) {
                                 console.log(json3['contacts']['contact'].length)
 
 
-
+                                var contactsData = []
                                 json3['contacts']['contact'].map(contact => {
                                     var obj = {}
 
@@ -100,9 +101,9 @@ export default function YahooLogin({ navigation }) {
                                         }
                                     })
 
-                                    globalContacts.push(obj)
+                                    contactsData.push(obj)
                                 })
-                                globalContacts = sortContacts(globalContacts)
+                                contactsData = sortContacts(contactsData)
                                 setSavedContacts([...globalContacts])
                                 setIsLoading(false)
                                 navigation.goBack()
@@ -114,13 +115,8 @@ export default function YahooLogin({ navigation }) {
                     }
 
                 }} />
-            
+        </View>
+
     )
 }
 
-function getUrlParameter(name, uri) {
-    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-    var results = regex.exec(uri);
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-};

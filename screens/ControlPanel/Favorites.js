@@ -42,7 +42,7 @@ export default function Favorites() {
                         //     )
                         // }
 
-                        var nextLetter = (index == globalContacts.length - 1) ? "" : globalContacts[index + 1][0];
+                        var nextLetter = (index == contacts.length - 1) ? "" : contacts[index + 1][0];
                         return (
                             <View key={index}>
                                 <TouchableOpacity style={styles.contactView} disabled={onEdit}>

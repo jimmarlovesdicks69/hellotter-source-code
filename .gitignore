@@ -84,3 +84,5 @@ android/app/dropbox.key
 ios/app/dropbox.key
 ios/app/GoogleService-Info.plist
 
+# bundle
+android/app/src/main/assets/index.android.bundle
