@@ -26,7 +26,7 @@ const FiltersAndStickersView = (props) => {
 
                     <View style={{ backgroundColor: 'rgba(0,0,0,0.3)', width: screenWidth, }}>
                         {tab == 0 ?
-                            <FilterPanel /> :
+                            <FilterPanel /> :   
                             <StickersPanel />
                         }
 
